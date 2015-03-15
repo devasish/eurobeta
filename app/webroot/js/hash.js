@@ -7,7 +7,8 @@ function _ajax(url) {
     $.ajax({
         url : url,
         success: function (response) {
-            console.log(response);
+            $("#main-content").html(response);
+            //console.log(response);
         },
         error: function (jqXHR, txtStatus, errorThrown) {
             console.log(errorThrown);
