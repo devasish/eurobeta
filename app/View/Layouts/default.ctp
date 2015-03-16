@@ -29,7 +29,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('cake.generic');
-		//echo $this->Html->css('bootstrap');
+		echo $this->Html->css('font-awesome/css/font-awesome.min');
 		//echo $this->Html->css('sb-admin');
 
 		echo $this->fetch('meta');
@@ -40,7 +40,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <body>
 	<div id="container">
 		<div id="header">
-                    <?php echo $this->Html->link($cakeDescription, ''); ?></h1> <div class="logout"><?php echo $this->Html->link(__('Logout'), array('controller' => 'users', 'action' => 'logout')); ?></div></div>
+                    <h1 style="display: inline-block"><?php echo $this->Html->link($cakeDescription, ''); ?></h1> <div class="logout"><?php echo $this->Html->link('<i class="fa fa-power-off"></i>', array('controller' => 'users', 'action' => 'logout'), array('escape'=>false)); ?></div></div>
                         
 		</div>
 		<div id="content">

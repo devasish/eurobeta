@@ -15,7 +15,6 @@
  * @package       app.webroot.css
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 * {
 	margin:0;
 	padding:0;
@@ -23,7 +22,7 @@
 
 /** General Style Info **/
 body {
-	background: #003d4c;
+	background: #222222;
 	color: #fff;
 	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
 	font-size:90%;
@@ -46,7 +45,7 @@ h1, h2, h3, h4 {
 	margin-bottom:0.5em;
 }
 h1 {
-	background:#fff;
+	background:none;
 	color: #003d4c;
 	font-size: 100%;
 }
@@ -74,22 +73,21 @@ p {
 
 /** Layout **/
 #container {
-	text-align: left;
-	border-bottom: 2px solid #3C9;
+	text-align: left;        
 }
 
 #header{
-	padding: 10px 20px;
+	padding: 10px 20px;        
 }
 #header h1 {
 	line-height:20px;
-	background: #003d4c url('../img/cake.icon.png') no-repeat left;
+	background: url('../img/cake.icon.png') no-repeat left;
 	color: #fff;
 	padding: 0px 30px;
 }
 #header h1 a {
 	color: #fff;
-	background: #003d4c;
+	background: none;
 	font-weight: normal;
 	text-decoration: none;
 }
@@ -147,12 +145,9 @@ div.actions h3 {
 }
 div.logout{
     float: right;
-    display: block;
-    padding: 10px;
-    background: red;
-    
+    display: inline-block; 
+    font-size: 1.5em;    
 }
-
 
 /** Tables **/
 table {
