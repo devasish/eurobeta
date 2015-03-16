@@ -12,7 +12,6 @@
 			<th><?php echo $this->Paginator->sort('cbm'); ?></th>
 			<th><?php echo $this->Paginator->sort('ctn_per_pallete'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th><?php echo $this->Paginator->sort('status'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
@@ -29,7 +28,6 @@
 		<td><?php echo h($sap['Sap']['cbm']); ?>&nbsp;</td>
 		<td><?php echo h($sap['Sap']['ctn_per_pallete']); ?>&nbsp;</td>
 		<td><?php echo h($sap['Sap']['created']); ?>&nbsp;</td>
-		<td><?php echo h($sap['Sap']['modified']); ?>&nbsp;</td>
 		<td><?php echo h($sap['Sap']['status']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $sap['Sap']['id'])); ?>

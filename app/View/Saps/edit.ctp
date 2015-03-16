@@ -11,7 +11,7 @@
 		echo $this->Form->input('empty_ctn_wt');
 		echo $this->Form->input('cbm');
 		echo $this->Form->input('ctn_per_pallete');
-		echo $this->Form->input('status');
+		echo $this->Form->input('status', array('options' => array("1" => "Active", '0' => "Inactive")));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
