@@ -3,9 +3,9 @@
 	<fieldset>
 		<legend><?php echo __('Add Transfer'); ?></legend>
 	<?php
-		echo $this->Form->input('sap_id');
-		echo $this->Form->input('sap_code');
-		echo $this->Form->input('description');
+		echo $this->Form->input('search_sap');
+		echo $this->Form->input('sap_id', array('type' => 'hidden'));
+		echo $this->Form->input('description', array('readonly' => true));
 		echo $this->Form->input('ctn_per_pallet');
 		echo $this->Form->input('net_wt');
 		echo $this->Form->input('remarks');
