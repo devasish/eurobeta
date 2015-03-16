@@ -46,11 +46,5 @@
 		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?> </li>
 	</ul>
 </div>
-<div class="left-menu">
-	<ul>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
-                <li><?php echo $this->Html->link(__('List User'), array('action' => 'index')); ?></li>                
-                <li><?php echo $this->Html->link(__('List User'), array('action' => 'index')); ?></li>
-	</ul>
-</div>
+
 
