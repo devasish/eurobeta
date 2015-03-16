@@ -1,6 +1,6 @@
 <div class="users index">
 	<h2><?php echo __('Users'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+        <table class="table table-bordered table-hover" cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
@@ -47,8 +47,18 @@
 	</div>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
+                <li><?php echo $this->Html->link(__('List User'), array('action' => 'index')); ?></li>
+                <li><?php echo $this->Html->link(__('List User'), array('action' => 'index')); ?></li>
+                <li><?php echo $this->Html->link(__('List User'), array('action' => 'index')); ?></li>
+	</ul>
+</div>
+<div class="left-menu">
+	<ul>
+		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
+                <li><?php echo $this->Html->link(__('List User'), array('action' => 'index')); ?></li>
+                <li><?php echo $this->Html->link(__('List User'), array('action' => 'index')); ?></li>
+                <li><?php echo $this->Html->link(__('List User'), array('action' => 'index')); ?></li>
 	</ul>
 </div>
