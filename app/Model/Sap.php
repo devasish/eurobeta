@@ -72,7 +72,7 @@ class Sap extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'ctn_per_pallete' => array(
+		'ctn_per_pallet' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',

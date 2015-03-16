@@ -36,9 +36,9 @@
 			<?php echo h($sap['Sap']['cbm']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Ctn Per Pallete'); ?></dt>
+		<dt><?php echo __('Ctn Per Pallet'); ?></dt>
 		<dd>
-			<?php echo h($sap['Sap']['ctn_per_pallete']); ?>
+			<?php echo h($sap['Sap']['ctn_per_pallet']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
