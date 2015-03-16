@@ -28,9 +28,14 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
+		//echo $this->Html->css('cake.generic');
 		echo $this->Html->css('font-awesome/css/font-awesome.min');
-		//echo $this->Html->css('sb-admin');
+		echo $this->Html->css('default');
+		echo $this->Html->css('jquery-ui.min');
+                
+		echo $this->Html->script('jquery-1.11.2.min');
+		echo $this->Html->script('jquery-ui.min');
+                
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
