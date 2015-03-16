@@ -23,7 +23,6 @@ class UsersController extends AppController {
      * @return void
      */
     public function index() {
-        $this->layout = "ajax";
         $this->User->recursive = 0;
         $this->set('users', $this->Paginator->paginate());
     }
@@ -49,7 +48,6 @@ class UsersController extends AppController {
      * @return void
      */
     public function add() {
-        $this->layout = "ajax";
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
