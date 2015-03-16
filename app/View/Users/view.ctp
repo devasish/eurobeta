@@ -1,4 +1,26 @@
 <div class="users view">
+    <?php if($user['User']['role']==1){
+                $role = 'Admininstrator';
+              }
+              
+              elseif ($user['User']['role']==2){
+                $role = 'QA';  
+              }
+              else{
+                  $role = 'Not Defined';
+              }
+              
+            if($user['User']['status']==1){
+                $status = 'Active';
+              }
+              
+              elseif ($user['User']['status']==0){
+                $status = 'Inactive';  
+              }
+              else{
+                  $status = 'Not Defined';
+              }
+        ?>
 <h2><?php echo __('User'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
@@ -11,14 +33,14 @@
 			<?php echo h($user['User']['username']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Password'); ?></dt>
+<!--		<dt><?php echo __('Password'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['password']); ?>
 			&nbsp;
-		</dd>
+		</dd>-->
 		<dt><?php echo __('Role'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['role']); ?>
+			<?php echo $role; ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
@@ -33,7 +55,7 @@
 		</dd>
 		<dt><?php echo __('Status'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['status']); ?>
+			<?php echo $status; ?>
 			&nbsp;
 		</dd>
 	</dl>

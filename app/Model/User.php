@@ -15,6 +15,21 @@ class User extends AppModel {
      * @var array
      */
     public $validate = array(
+        'username' => array(
+            'notEmpty' => array(
+                'rule' => array('notEmpty')
+            )
+        ),
+        'password' => array(
+            'notEmpty' => array(
+                'rule' => array('notEmpty')
+            )
+        ),
+        'role' => array(
+            'notEmpty' => array(
+                'rule' => array('notEmpty')
+            )
+        ),
         'status' => array(
             'numeric' => array(
                 'rule' => array('numeric'),
