@@ -29,6 +29,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('cake.generic');
+		//echo $this->Html->css('bootstrap');
+		//echo $this->Html->css('sb-admin');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -38,12 +40,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>
-                            <?php // echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?>
-                            <?php echo $this->Html->link(__('Users'), array('controller' => 'users', 'action' => 'index')); ?>
-                            <?php echo $this->Html->link(__('SAPs'), array('controller' => 'saps', 'action' => 'index')); ?>
-                            <?php echo $this->Html->link(__('Logout'), array('controller' => 'users', 'action' => 'logout')); ?>
-                        </h1>
+                    <?php echo $this->Html->link($cakeDescription, ''); ?></h1> <div class="logout"><?php echo $this->Html->link(__('Logout'), array('controller' => 'users', 'action' => 'logout')); ?></div></div>
+                        
 		</div>
 		<div id="content">
 
