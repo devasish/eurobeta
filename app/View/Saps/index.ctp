@@ -10,7 +10,7 @@
 			<th><?php echo $this->Paginator->sort('gross_wt'); ?></th>
 			<th><?php echo $this->Paginator->sort('empty_ctn_wt'); ?></th>
 			<th><?php echo $this->Paginator->sort('cbm'); ?></th>
-			<th><?php echo $this->Paginator->sort('ctn_per_pallete'); ?></th>
+			<th><?php echo $this->Paginator->sort('ctn_per_pallet'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('status'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -26,7 +26,7 @@
 		<td><?php echo h($sap['Sap']['gross_wt']); ?>&nbsp;</td>
 		<td><?php echo h($sap['Sap']['empty_ctn_wt']); ?>&nbsp;</td>
 		<td><?php echo h($sap['Sap']['cbm']); ?>&nbsp;</td>
-		<td><?php echo h($sap['Sap']['ctn_per_pallete']); ?>&nbsp;</td>
+		<td><?php echo h($sap['Sap']['ctn_per_pallet']); ?>&nbsp;</td>
 		<td><?php echo h($sap['Sap']['created']); ?>&nbsp;</td>
 		<td><?php echo h($sap['Sap']['status']); ?>&nbsp;</td>
 		<td class="actions">
