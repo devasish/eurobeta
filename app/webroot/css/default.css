@@ -52,9 +52,11 @@ h1, h2, h3, h4 {
 }
 h1 {
 	background:#000;
-        border: 1px solid #333;
+        border: 0px solid #333;
 	color: #003d4c;
-	font-size: 100%;
+        font-weight: 400px;
+	font-size: 120%;
+        margin-top: 15px;
 }
 h2 {
         /*
@@ -144,37 +146,37 @@ div.view {
         box-shadow: 1px 1px 4px #000;
         position: fixed;
         left: 0.5%;
-        top: 55px;
+        top: 65px;
         z-index: -1;
-		border:1px solid #000;
+	border:1px solid #000;
 }
 div.form h2,
 div.index h2,
 div.view h2{
-        width: 95%;
-        height: 28px;
-        background: #0066cc;
-        padding: 2px 2% 2px 2%;
-        color: #666;
-        position: fixed;
-        top: 55px;
-        left: 0.5%;
-		color: #666;
-		background: #777;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#e00), to(#900));
+    width: 95%;
+    height: 28px;
+    background: #0066cc;
+    padding: 2px 2% 2px 2%;
+    color: #666;
+    position: fixed;
+    top: 65px;
+    left: 0.5%;
+    color: #666;
+    background: #777;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#e00), to(#900));
     background-image: -webkit-linear-gradient(top, #eee, #fff);
     background-image: -ms-linear-gradient(top, #eee, #fff);
     background-image: -o-linear-gradient(top, #fff, #eee);
     background-image: -moz-linear-gradient(top, #222, #111);
     background-image: linear-gradient(top, #222, #111);
-	border-bottom: 1px solid #eee;
-	box-shadow: 1px 1px 2px #000;
-	border:1px solid #111;
+    border-bottom: 1px solid #eee;
+    box-shadow: 1px 1px 2px #000;
+    border:1px solid #111;
 }
 div.actions {
 	position: fixed;
 	right: .1%;
-	top: 55px;
+	top: 65px;
 	width:auto;
 	z-index: -1;
 	/*background: #fff;
@@ -185,27 +187,28 @@ div.actions {
 	box-shadow:none;
 }
 div.actions h3 {
-	height: 28px;
-        background: #CCC;
-        color: #666;
-		background: #777;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#e00), to(#900));
+    height: 28px;
+    background: #CCC;
+    color: #666;
+    background: #777;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#e00), to(#900));
     background-image: -webkit-linear-gradient(top, #eee, #fff);
     background-image: -ms-linear-gradient(top, #eee, #fff);
     background-image: -o-linear-gradient(top, #fff, #eee);
     background-image: -moz-linear-gradient(top, #fff, #eee);
     background-image: linear-gradient(top, #fff, #eee);
-	border: 1px solid #ccc;
-	box-shadow: 0px 1px 2px #eee;
-	margin: 0 0 10px 1%;
+    border: 1px solid #ccc;
+    box-shadow: 0px 1px 2px #eee;
+    margin: 0 0 10px 1%;
     padding: 2px 2%;
     width: 92.5%;
 }
 div.logout{
     display: inline-block;
     float: right;
+    font-size: 1.7em;
     padding-right: 10px;
-    padding-top: 5px;
+    margin-top: 10px;
 }
 
 /** Tables **/
