@@ -41,6 +41,12 @@ class User extends AppModel {
             ),
         ),
     );
+    
+    public $hasMany = array(
+        'Transfer' => array(
+            'className' => 'Transfer'
+        )
+    );
 
     public function beforeSave($options = array()) {
         if (isset($this->data[$this->alias]['password'])) {

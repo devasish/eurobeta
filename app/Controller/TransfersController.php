@@ -49,10 +49,26 @@ class TransfersController extends AppController {
      */
     public function add() {
         if ($this->request->is('post')) {
+            
+            
+            $this->request->data['Transfer']['user_id'] = $this->Session->read('Auth.User.id');
+            $last_serial = 0;
+            $x = $this->Transfer->find('first', array(
+               'conditions' => array(
+                   'Transfer.created >=' => date('Y-m-d'),
+                   'Transfer.user_id' => $this->Session->read('Auth.User.id')
+               ),
+                'fields' => array('MAX(Transfer.serial_index) as max_index'),
+                'groupBy' => 'Transfer.user_id'
+            ));
+            $last_serial = $x[0]['max_index']+1;
+            $this->request->data['Transfer']['serial_no'] = strtoupper($this->request->data['Transfer']['sap_code']).date('dmy').sprintf('%05d', $last_serial);
+            $this->request->data['Transfer']['serial_index'] = $last_serial;
             $this->Transfer->create();
+            pr($this->request->data);
             if ($this->Transfer->save($this->request->data)) {
                 $this->Session->setFlash(__('The transfer has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(array('action' => 'view',$this->Transfer->getLastInsertId()));
             } else {
                 $this->Session->setFlash(__('The transfer could not be saved. Please, try again.'));
             }

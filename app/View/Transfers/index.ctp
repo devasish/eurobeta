@@ -35,7 +35,7 @@
 		<td><?php echo h($transfer['Transfer']['modified']); ?>&nbsp;</td>
 		<td><?php echo h($transfer['Transfer']['status']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($transfer['User']['id'], array('controller' => 'users', 'action' => 'view', $transfer['User']['id'])); ?>
+			<?php echo $this->Html->link($transfer['User']['username'], array('controller' => 'users', 'action' => 'view', $transfer['User']['id'])); ?>
 		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $transfer['Transfer']['id'])); ?>

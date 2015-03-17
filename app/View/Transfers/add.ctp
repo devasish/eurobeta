@@ -3,18 +3,16 @@
 	<fieldset>
 		<legend><?php echo __('Add Transfer'); ?></legend>
 	<?php
-		echo $this->Form->input('search_sap', array('label' => 'SAP Code'));
+		echo $this->Form->input('sap_code', array('label' => 'SAP Code'));
 		echo $this->Form->input('sap_id', array('type' => 'hidden'));
 		echo $this->Form->input('description', array('readonly' => true));
 		echo $this->Form->input('ctn_per_pallet');
-		echo $this->Form->input('net_wt');
-		echo $this->Form->input('remarks');
-		echo $this->Form->input('serial_no');
-		echo $this->Form->input('status');
-		echo $this->Form->input('user_id');
+		echo $this->Form->input('net_wt', array('readonly' => true));
+		echo $this->Form->input('remarks', array('type' => 'textarea', 'escape' => true, 'rows' => 2));
+                echo $this->Form->input('status', array('type' => 'hidden'));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('Save')); ?>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
@@ -30,11 +28,11 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#TransferSearchSap').autocomplete({
+        $('#TransferSapCode').autocomplete({
             source : 'prediction',
             select : function (event, ui) {
-                console.log(ui);
                 $('#TransferDescription').val(ui.item.data.description);
+                $('#TransferSapId').val(ui.item.data.id);
                 $('#TransferCtnPerPallet').val(ui.item.data.ctn_per_pallet);
                 $('#TransferNetWt').val(ui.item.data.net_wt);
                 $('#TransferRemarks').val(ui.item.data.remarks);
