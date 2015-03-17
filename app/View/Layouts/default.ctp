@@ -35,6 +35,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 
 		echo $this->Html->script('jquery-1.11.2.min');
 		echo $this->Html->script('jquery-ui.min');
+		echo $this->Html->script('jquery-barcode.min');
                 
 
 		echo $this->fetch('meta');
