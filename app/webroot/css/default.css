@@ -102,6 +102,7 @@ p {
     border-bottom: 1px solid #CCCCCC;
     box-shadow: 1px 1px 3px #CCCCCC;
     background:#fff;
+    height: 50px;
 }
 #header h1 a {
 	color: #000;
@@ -143,7 +144,7 @@ div.view {
         box-shadow: 1px 1px 4px #000;
         position: fixed;
         left: 0.5%;
-        top: 45px;
+        top: 55px;
         z-index: -1;
 		border:1px solid #000;
 }
@@ -156,7 +157,7 @@ div.view h2{
         padding: 2px 2% 2px 2%;
         color: #666;
         position: fixed;
-        top: 45px;
+        top: 55px;
         left: 0.5%;
 		color: #666;
 		background: #777;
@@ -173,7 +174,7 @@ div.view h2{
 div.actions {
 	position: fixed;
 	right: .1%;
-	top: 45px;
+	top: 55px;
 	width:auto;
 	z-index: -1;
 	/*background: #fff;
