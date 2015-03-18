@@ -100,9 +100,9 @@ p {
 	background: #fff;
 	clear: both;
 	color: #333;
-	padding: 10px 20px 40px 20px;
+	padding: 0px 0px 0px 0px;
 	overflow: auto;
-	height: 540px;
+	height: 600px;
 }
 #footer {
 	clear: both;
@@ -133,11 +133,12 @@ div.actions {
 	float:left;
 	width:16%;
 	padding:10px 1.5%;
-	box-shadow: 2px 3px 30px #EEEEEE;
-	background:#fff;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#fff));
+	/*box-shadow: 2px 3px 30px #EEEEEE;*/
+	background:#222;
+/*	background-image: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#fff));
 	background-image: -webkit-linear-gradient(top, #ddd, #fff);
-	background-image: -moz-linear-gradient(top, #ddd, #fff);
+	background-image: -moz-linear-gradient(top, #ddd, #fff);*/
+        height:100%;
 }
 div.actions h3 {
 	padding-top:0;
@@ -908,4 +909,20 @@ tr.total_row td{
 }
 .item-group span{
 	font-weight:bold;
+}
+
+.main-nav {
+    background: none repeat scroll 0 0 #d00000;
+    width: 100%;
+}
+.main-nav a:hover {
+    text-shadow: 4px 1px 3px #fff;
+    color: #000;
+}
+.main-nav a {
+    color: #fff;
+    text-decoration: none;
+}
+.main-nav li {
+    display: inline-block;
 }

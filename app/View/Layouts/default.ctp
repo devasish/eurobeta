@@ -13,60 +13,58 @@
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 $cakeDescription = __d('cake_dev', 'Euro Beta-V1');
 $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-	<?php echo $this->Html->charset(); ?>
-	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $this->fetch('title'); ?>
-	</title>
-	<?php
-		echo $this->Html->meta('icon');
+    <head>
+        <?php echo $this->Html->charset(); ?>
+        <title>
+            <?php echo $cakeDescription ?>:
+            <?php echo $this->fetch('title'); ?>
+        </title>
+        <?php
+        echo $this->Html->meta('icon');
 
-		//echo $this->Html->css('cake.generic');
-		echo $this->Html->css('font-awesome/css/font-awesome.min');
-		echo $this->Html->css('default');
-		echo $this->Html->css('jquery-ui.min');
-                
-		echo $this->Html->script('jquery-1.11.2.min');
-		echo $this->Html->script('jquery-ui.min');
-		echo $this->Html->script('jquery-barcode.min');
-                
+        echo $this->Html->css('cake.generic');
+        echo $this->Html->css('font-awesome/css/font-awesome.min');
+//        echo $this->Html->css('default');
+        echo $this->Html->css('jquery-ui.min');
 
-		echo $this->fetch('meta');
-		echo $this->fetch('css');
-		echo $this->fetch('script');
-	?>
-</head>
-<body>
-	<div id="container">
-		<div id="header">
-                    <h1 style="display: inline-block"><?php echo $this->Html->link($cakeDescription, ''); ?></h1> <div class="logout"><?php echo $this->Html->link('<i class="fa fa-power-off"></i>', array('controller' => 'users', 'action' => 'logout'), array('escape'=>false)); ?></div></div>
-                        
-		</div>
-		<div id="content">
+        echo $this->Html->script('jquery-1.11.2.min');
+        echo $this->Html->script('jquery-ui.min');
+        echo $this->Html->script('jquery-barcode.min');
+        echo $this->Html->script('print');
 
-			<?php echo $this->Session->flash(); ?>
 
-			<?php echo $this->fetch('content'); ?>
-		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-				);
-			?>
-			<p>
-				<?php echo $cakeVersion; ?>
-			</p>
-		</div>
-	</div>
-	<!--<?php echo $this->element('sql_dump'); ?>-->
-</body>
+        echo $this->fetch('meta');
+        echo $this->fetch('css');
+        echo $this->fetch('script');
+        ?>
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                <h1 style="display: inline-block"><?php echo $this->Html->link($cakeDescription, ''); ?></h1> 
+                <div class="logout"><?php echo $this->Html->link('<i class="fa fa-power-off"></i>', array('controller' => 'users', 'action' => 'logout'), array('escape' => false)); ?></div></div>
+
+            <div class="main-nav">
+                <ul>
+                    <li><?php echo $this->Html->link('Saps', array('controller' => 'saps', 'action' => 'index')); ?></li>
+                    <li><?php echo $this->Html->link('Transfers', array('controller' => 'transfers', 'action' => 'index')); ?></li>
+                    <li><?php echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')); ?></li>
+                </ul>
+            </div>
+            <div id="content">
+
+                <?php echo $this->Session->flash(); ?>
+
+                <?php echo $this->fetch('content'); ?>
+            </div>
+            <div id="footer">
+            </div>
+        </div>
+        <?php // echo $this->element('sql_dump'); ?>
+    </body>
 </html>

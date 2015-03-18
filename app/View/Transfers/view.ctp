@@ -1,3 +1,23 @@
+<style>
+   #print_div{
+        background: #FFF    ;
+        width: 300px; 
+        height: 300px; 
+      
+    
+    }
+    #print_div table tr td{
+        font-family: cursive; 
+        background: #ffffff;
+        color: #001;
+        border: none;
+        
+    }
+    #print_div table tr td span{
+      
+    }
+    
+</style>
 <div class="transfers view">
 <h2><?php echo __('Transfer'); ?></h2>
 	<dl>
@@ -62,8 +82,39 @@
 			&nbsp;
 		</dd>
 	</dl>
-
-<div id="barcode-div"></div>
+<div id="print_div">
+    <center>
+        EURO SME SDN BHD</br>
+        Finished Goods Slip</br>
+        <div id="barcode-div"></div>
+        <table>
+            <tr>
+                <td>SAP Code</td>
+                <td>:</td>
+                <td><?php echo h($transfer['Transfer']['sap_code']); ?></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>:</td>
+                <td><?php echo h($transfer['Transfer']['description']);  ?></td>
+            </tr>
+            <tr>
+                <td>Quantity</td>
+                <td>:</td>
+                <td><?php echo h($transfer['Transfer']['net_wt']) ;?></td>
+            </tr>
+            <tr>
+                <td>Date</td>
+                <td>:</td>
+                <td><?php echo date('d-m-y')  ;?></td>
+            </tr>
+        </table>
+        <table>
+            
+        </table>
+    </center>    
+</div>
+<button id="print_btn">Print</button>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
@@ -81,6 +132,13 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#barcode-div').barcode('1234446556', 'ean8', {barWidth:2, barHeight:30});
+        $('#barcode-div').barcode('<?php echo h($transfer['Transfer']['serial_no']); ?>', 'code93', {barWidth:1, barHeight:30});
+        
+        
+        $('#print_btn').on('click', function() {
+           printData('print_div');
+        });
     });
+    
+    
 </script>
