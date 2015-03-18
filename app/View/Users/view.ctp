@@ -62,10 +62,10 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit User'), array('action' => 'edit', $user['User']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $user['User']['id']), array(), __('Are you sure you want to delete # %s?', $user['User']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link('<i class="fa fa-edit"></i>', array('action' => 'edit', $user['User']['id']), array('escape'=>FALSE)); ?> </li>
+		<li><?php echo $this->Form->postLink('<i class="fa fa-trash"></i>', array('action' => 'delete', $user['User']['id']), array('escape'=>FALSE), __('Are you sure you want to delete # %s?', $user['User']['id'])); ?> </li>
+		<li><?php echo $this->Html->link('<i class="fa fa-list"></i>', array('action' => 'index'), array('escape'=>FALSE)); ?></li>
+                <li><?php echo $this->Html->link('<i class="fa fa-plus"></i>', array('action' => 'add'), array('escape'=>FALSE)); ?></li>
 	</ul>
 </div>
 

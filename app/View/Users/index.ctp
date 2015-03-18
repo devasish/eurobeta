@@ -5,7 +5,6 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('username'); ?></th>
-			<th><?php echo $this->Paginator->sort('password'); ?></th>
 			<th><?php echo $this->Paginator->sort('role'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -71,8 +70,6 @@
 <div class="actions">
 	<ul>
 		<li><?php echo $this->Html->link('<i class="fa fa-list"></i>', array('action' => 'index'), array('escape'=>FALSE)); ?></li>
-                <li><?php echo $this->Html->link('<i class="fa fa-plus-square"></i>', array('action' => 'add'), array('escape'=>FALSE)); ?></li>
-                <li><?php echo $this->Html->link(__('List User'), array('action' => 'index')); ?></li>
-                <li><?php echo $this->Html->link(__('List User'), array('action' => 'index')); ?></li>
+                <li><?php echo $this->Html->link('<i class="fa fa-plus"></i>', array('action' => 'add'), array('escape'=>FALSE)); ?></li>                
 	</ul>
 </div>
