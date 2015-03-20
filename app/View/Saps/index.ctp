@@ -1,5 +1,12 @@
 <div class="saps index">
 	<h2><?php echo __('Saps'); ?></h2>
+        <div class="filters">
+            <?php $url = array('controller' => 'Saps', 'action' => 'index'); ?>
+            <?php echo $this->Form->create('Filter', array('url' => $url)); ?>
+            <?php echo $this->Form->input('value', array('class' => 'date', 'label' => false, 'placeholder' => 'Search')); ?>
+            <?php echo $this->Form->input('field', array('options' => array('sapcode' => 'Sapcode', 'description' => 'Description', 'id' => 'ID'),  'label' => false)); ?>          
+            <?php echo $this->Form->end('Filter'); ?>
+        </div>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
