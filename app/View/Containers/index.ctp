@@ -8,11 +8,11 @@
 			<th><?php echo $this->Paginator->sort('seal_no'); ?></th>
 			<th><?php echo $this->Paginator->sort('empty_tare_wt'); ?></th>
 			<th><?php echo $this->Paginator->sort('type'); ?></th>
-			<th><?php echo $this->Paginator->sort('vp_ctn'); ?></th>
+			<th><?php echo $this->Paginator->sort('Container_type'); ?></th>
 			<th><?php echo $this->Paginator->sort('status'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th><?php echo $this->Paginator->sort('user_id'); ?></th>
+			<!--<th><?php echo $this->Paginator->sort('modified'); ?></th>-->
+			<!--<th><?php echo $this->Paginator->sort('user_id'); ?></th>-->
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -23,14 +23,32 @@
 		<td><?php echo h($container['Container']['container_no']); ?>&nbsp;</td>
 		<td><?php echo h($container['Container']['seal_no']); ?>&nbsp;</td>
 		<td><?php echo h($container['Container']['empty_tare_wt']); ?>&nbsp;</td>
-		<td><?php echo h($container['Container']['type']); ?>&nbsp;</td>
-		<td><?php echo h($container['Container']['vp_ctn']); ?>&nbsp;</td>
-		<td><?php echo h($container['Container']['status']); ?>&nbsp;</td>
+                <td><?php
+                foreach(Configure::read('CONT_TYPES') as $k => $v){
+                        if($k == $container['Container']['type']) {
+                            echo h($v);
+                        }
+                    }             
+                ?>&nbsp;</td>
+		<td><?php
+                    foreach(Configure::read('CONT_VP_CTN') as $k => $v){
+                        if($k == $container['Container']['vp_ctn']) {
+                            echo h($v);
+                        }
+                    }
+                ?>&nbsp;</td>
+		<td><?php
+                    foreach(Configure::read('CONT_STATUS') as $k => $v){
+                        if($k == $container['Container']['status']) {
+                            echo h($v);
+                        }
+                    }
+                ?>&nbsp;</td>
 		<td><?php echo h($container['Container']['created']); ?>&nbsp;</td>
-		<td><?php echo h($container['Container']['modified']); ?>&nbsp;</td>
-		<td>
+		<!--<td><?php echo h($container['Container']['modified']); ?>&nbsp;</td>-->
+<!--		<td>
 			<?php echo $this->Html->link($container['User']['id'], array('controller' => 'users', 'action' => 'view', $container['User']['id'])); ?>
-		</td>
+		</td>-->
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $container['Container']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $container['Container']['id'])); ?>

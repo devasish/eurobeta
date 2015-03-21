@@ -16,25 +16,41 @@
 			<?php echo h($container['Container']['seal_no']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Empty Tare Wt'); ?></dt>
+		<dt><?php echo __('Empty Tare WT'); ?></dt>
 		<dd>
 			<?php echo h($container['Container']['empty_tare_wt']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Type'); ?></dt>
 		<dd>
-			<?php echo h($container['Container']['type']); ?>
-			&nbsp;
+                    <?php
+                    foreach(Configure::read('CONT_TYPES') as $k => $v){
+                        if($k == $container['Container']['type']) {
+                            echo h($v);
+                        }
+                    }
+                    ?>
+                &nbsp;
 		</dd>
-		<dt><?php echo __('Vp Ctn'); ?></dt>
+		<dt><?php echo __('Container Type'); ?></dt>
 		<dd>
-			<?php echo h($container['Container']['vp_ctn']); ?>
-			&nbsp;
+                    <?php
+                    foreach(Configure::read('CONT_VP_CTN') as $k => $v){
+                        if($k == $container['Container']['vp_ctn']) {
+                            echo h($v);
+                        }
+                    }
+                    ?>
 		</dd>
 		<dt><?php echo __('Status'); ?></dt>
 		<dd>
-			<?php echo h($container['Container']['status']); ?>
-			&nbsp;
+                    <?php
+                    foreach(Configure::read('CONT_STATUS') as $k => $v){
+                        if($k == $container['Container']['status']) {
+                            echo h($v);
+                        }
+                    }
+                    ?>
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
