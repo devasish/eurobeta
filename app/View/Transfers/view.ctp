@@ -119,14 +119,10 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Transfer'), array('action' => 'edit', $transfer['Transfer']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Transfer'), array('action' => 'delete', $transfer['Transfer']['id']), array(), __('Are you sure you want to delete # %s?', $transfer['Transfer']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Transfers'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Transfer'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Saps'), array('controller' => 'saps', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Sap'), array('controller' => 'saps', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link('<i class="fa fa-edit"></i>'.'&nbsp;&nbsp;'. __('Edit Transfer'), array('action' => 'edit', $transfer['Transfer']['id']), array('escape' => FALSE)); ?> </li>
+		<li><?php echo $this->Form->postLink('<i class="fa fa-trash"></i>'.'&nbsp;&nbsp;'. __('Delete Transfer'), array('action' => 'delete', $transfer['Transfer']['id']), array('escape' => FALSE), __('Are you sure you want to delete # %s?', $transfer['Transfer']['id'])); ?> </li>
+		<li><?php echo $this->Html->link('<i class="fa fa-list"></i>'.'&nbsp;&nbsp;'. __('List Transfers'), array('action' => 'index'), array('escape' => FALSE)); ?> </li>
+		<li><?php echo $this->Html->link('<i class="fa fa-plus"></i>'.'&nbsp;&nbsp;'. __('New Transfer'), array('action' => 'add'), array('escape' => FALSE)); ?> </li>
 	</ul>
 </div>
 

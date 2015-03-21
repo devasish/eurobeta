@@ -389,4 +389,4 @@ Cache::config('_cake_model_', array(
 * MY CUSTOM GLOBALS
 */
 Configure::write('ROLES', array('0' => '--Select--', '1' => 'Production(F1)', '2' => 'Production(F3)', '3' => 'QA', '4' => 'Loading', '5' => 'Warehouse'));
-Configure::write('STATUS', array('0' => 'Inactive','1' => 'Active'));
+Configure::write('STATUS', array('' => '--Select--', '0' => 'Inactive','1' => 'Active'));

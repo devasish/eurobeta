@@ -10,7 +10,7 @@
 		echo $this->Form->input('empty_ctn_wt', array('value' => 0));
 		echo $this->Form->input('cbm', array('value' => 0));
 		echo $this->Form->input('ctn_per_pallet', array('value' => 0));
-		echo $this->Form->input('status', array('options' => array("1" => "Active", '0' => "Inactive")));
+		echo $this->Form->input('status', array('options' => Configure::read('STATUS')));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
@@ -19,6 +19,6 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('List Saps'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link('<i class="fa fa-list"></i>'.'&nbsp;&nbsp;'. __('Saps List'), array('action' => 'index'), array('escape'=>FALSE)); ?></li>
 	</ul>
 </div>

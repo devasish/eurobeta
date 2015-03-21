@@ -62,6 +62,6 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Sap'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link('<i class="fa fa-plus"></i>'.'&nbsp;&nbsp;'. __('New Sap'), array('action' => 'add'), array('escape'=>FALSE)); ?></li>
 	</ul>
 </div>

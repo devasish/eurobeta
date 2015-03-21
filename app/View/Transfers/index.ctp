@@ -9,7 +9,7 @@
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('ctn_per_pallet'); ?></th>
 			<th><?php echo $this->Paginator->sort('net_wt'); ?></th>
-			<th><?php echo $this->Paginator->sort('remarks'); ?></th>
+			<!--<th><?php echo $this->Paginator->sort('remarks'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('serial_no'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -29,7 +29,7 @@
 		<td><?php echo h($transfer['Transfer']['description']); ?>&nbsp;</td>
 		<td><?php echo h($transfer['Transfer']['ctn_per_pallet']); ?>&nbsp;</td>
 		<td><?php echo h($transfer['Transfer']['net_wt']); ?>&nbsp;</td>
-		<td><?php echo h($transfer['Transfer']['remarks']); ?>&nbsp;</td>
+		<!--<td><?php echo h($transfer['Transfer']['remarks']); ?>&nbsp;</td>-->
 		<td><?php echo h($transfer['Transfer']['serial_no']); ?>&nbsp;</td>
 		<td><?php echo h($transfer['Transfer']['created']); ?>&nbsp;</td>
 		<td><?php echo h($transfer['Transfer']['modified']); ?>&nbsp;</td>
@@ -63,10 +63,6 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Transfer'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Saps'), array('controller' => 'saps', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Sap'), array('controller' => 'saps', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link('<i class="fa fa-plus"></i>'.'&nbsp;&nbsp;'. __('New Transfer'), array('action' => 'add'), array('escape'=> FALSE)); ?></li>
 	</ul>
 </div>
