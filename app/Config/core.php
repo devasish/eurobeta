@@ -389,7 +389,7 @@ Cache::config('_cake_model_', array(
 * MY CUSTOM GLOBALS
 */
 Configure::write('ROLES', array('0' => '--Select--', '1' => 'Production(F1)', '2' => 'Production(F3)', '3' => 'QA', '4' => 'Loading', '5' => 'Warehouse'));
-Configure::write('STATUS', array('' => '--Select--', '0' => 'Inactive','1' => 'Active'));
+Configure::write('STATUS', array('0' => 'Inactive','1' => 'Active'));
 
 Configure::write('CONT_TYPES', array('0' => 'NOT SELECTED', '1' => '20FT', '2' => '40FT-HQ', '3' => '40FT-GB'));
 Configure::write('CONT_VP_CTN', array('0' => 'NOT SELECTED', '1' => 'CTN', '2' => 'VacPack'));
