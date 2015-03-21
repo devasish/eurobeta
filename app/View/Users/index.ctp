@@ -69,7 +69,7 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link('<i class="fa fa-list"></i>', array('action' => 'index'), array('escape'=>FALSE)); ?></li>
-                <li><?php echo $this->Html->link('<i class="fa fa-plus"></i>', array('action' => 'add'), array('escape'=>FALSE)); ?></li>                
+		<li><?php echo $this->Html->link('<i class="fa fa-list"></i>'.'&nbsp;&nbsp;'. __('Users List'), array('action' => 'index'), array('escape'=>FALSE)); ?></li>
+                <li><?php echo $this->Html->link('<i class="fa fa-plus"></i>'.'&nbsp;&nbsp;'. __('New User'), array('action' => 'add'), array('escape'=>FALSE)); ?></li>                
 	</ul>
 </div>
