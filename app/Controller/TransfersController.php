@@ -65,7 +65,6 @@ class TransfersController extends AppController {
             $this->request->data['Transfer']['serial_no'] = strtoupper($this->request->data['Transfer']['sap_code']).date('dmy').sprintf('%05d', $last_serial);
             $this->request->data['Transfer']['serial_index'] = $last_serial;
             $this->Transfer->create();
-            pr($this->request->data);
             if ($this->Transfer->save($this->request->data)) {
                 $this->Session->setFlash(__('The transfer has been saved.'));
                 return $this->redirect(array('action' => 'view',$this->Transfer->getLastInsertId()));

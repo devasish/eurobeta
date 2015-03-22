@@ -47,6 +47,7 @@ class ContainersController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+                        $this->request->data['Container']['user_id'] = $this->Session->read('Auth.User.id');
 			$this->Container->create();
 			if ($this->Container->save($this->request->data)) {
 				$this->Session->setFlash(__('The container has been saved.'));

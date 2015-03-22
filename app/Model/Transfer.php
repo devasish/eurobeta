@@ -65,14 +65,14 @@ class Transfer extends AppModel {
 			),
 		),
 		'remarks' => array(
-			'notEmpty' => array(
-				'rule' => array(),
-				//'message' => 'Your custom message here',
-				'allowEmpty' => true,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+//			'notEmpty' => array(
+//				//'rule' => array(),
+//				//'message' => 'Your custom message here',
+//				'allowEmpty' => true,
+//				'required' => false,
+//				//'last' => false, // Stop validation after this rule
+//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+//			),
 		),
 		'serial_no' => array(
 			'notEmpty' => array(
