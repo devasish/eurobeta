@@ -23,8 +23,47 @@ class TransfersController extends AppController {
      * @return void
      */
     public function index() {
-        $this->Transfer->recursive = 0;
-        $this->set('transfers', $this->Paginator->paginate());
+        $conditions = array();
+		if(($this->request->is('post') || $this->request->is('put')) && isset($this->data['Filter'])){
+			$filter_url = array();
+			$filter_url['controller'] = $this->request->params['controller'];
+			$filter_url['action']     = $this->request->params['action'];
+			$filter_url['page']       = 1;
+			foreach ($this->data['Filter'] as $name => $value){
+				if(trim($value)){
+					$filter_url[$name] = urlencode($value);
+				}
+			}
+			return $this->redirect($filter_url);
+		}else{
+			foreach ($this->request->params['named'] as $name => $value){
+				if(!in_array($name, array('page', 'sort', 'direction', 'limit'))){
+					$value = urldecode($value);
+					if($name == 'value' && strlen(trim($value)) > 0){
+						if($this->request->params['named']['field'] == 'id'){
+							$conditions['Transfer.'.$this->request->params['named']['field']] = $value;
+						}elseif($this->request->params['named']['field'] == 'description'){
+							$conditions['OR'] = array(
+								array('Transfer.description LIKE ' 	=> "%$value%"));
+						}else{
+							$conditions['Transfer.'.$this->request->params['named']['field'].' LIKE '] = "%$value%";
+						}
+					}elseif($name == 'created_by' && intval($value) > 0){
+						$conditions['Transfer.user_id'] = intval($value);
+					}
+					$this->request->data['Filter'][$name] = $value;	
+				}
+			}
+		}
+  		$this->paginate = array(
+                    'limit' 		=> 15,
+                    'order' 		=> 'Transfer.id DESC',
+                    'conditions' 	=> $conditions
+                );                
+                //$this->Transfer->recursive = 0;
+                $this->set('transfers', $this->Paginator->paginate());
+		$users = $this->Transfer->User->find('list');
+		$this->set(compact('users'));
     }
 
     /**

@@ -1,5 +1,15 @@
 <div class="transfers index">
 	<h2><?php echo __('Transfers'); ?></h2>
+        <div class="filters">
+            <ul> 
+                <li><?php $url = array('controller' => 'Transfers', 'action' => 'index'); ?></li>
+                <li><?php echo $this->Form->create('Filter', array('url' => $url)); ?></li>
+                <li><?php echo $this->Form->input('value', array('class' => 'date', 'label' => false, 'placeholder' => 'Search')); ?></li>
+                <li><?php echo $this->Form->input('field', array('options' => array('id' => 'ID','sap_code' => 'Sapcode', 'description' => 'Description', 'sap_id' => 'Sap ID', 'serial_no' => 'Serial No'),  'label' => false)); ?></li>
+                <li><?php echo $this->Form->input('created_by', array('empty' => 'All Users',  'label' => false, 'options' => $users)); ?></li>
+                <li><?php echo $this->Form->end('Filter'); ?></li>
+            </ul>
+        </div>  
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>

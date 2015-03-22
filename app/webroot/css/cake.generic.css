@@ -150,7 +150,31 @@ div.logout{
     display: inline-block; 
     font-size: 1.5em;    
 }
-
+div.filters{
+    float: left;
+    background: #eee;
+    width: 98%;
+    padding: 10px;
+}
+div.filters ul{    
+    list-style: none;
+}
+div.filters ul li{    
+    display: inline-block;
+}
+div.filters ul li input{
+    width: 400px;
+}
+div.filters ul li select{
+    width: 100px;
+}
+div.filters ul li input[type='submit']{
+    width: 100px;
+    background: #0099FF;
+    color: #FFF;
+    cursor: pointer;
+    border: none;
+}
 /** Tables **/
 table {
 	border-right:0;
