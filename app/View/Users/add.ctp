@@ -6,8 +6,8 @@
         <?php
         echo $this->Form->input('username');
         echo $this->Form->input('password');
-        echo $this->Form->input('role', array('options' => array("1" => "Administrator", '2' => "QA")));
-        echo $this->Form->input('status', array('options' => array("1" => "Active", '0' => "Inactive")));
+        echo $this->Form->input('role', array('options' => Configure::read('ROLES')));
+        echo $this->Form->input('status', array('options' => Configure::read('STATUS')));
         ?>
     </fieldset>
     <?php echo $this->Form->end(__('Submit')); ?>
@@ -15,6 +15,6 @@
 <div class="actions">
     <h3><?php echo __('Actions'); ?></h3>
     <ul>
-        <li><?php echo $this->Html->link('<i class="fa fa-list"></i>', array('action' => 'index'), array('escape'=>FALSE)); ?></li>
+        <li><?php echo $this->Html->link('<i class="fa fa-list"></i>'.'&nbsp;&nbsp;'. __('Users List'), array('action' => 'index'), array('escape'=>FALSE)); ?></li>
     </ul>
 </div>

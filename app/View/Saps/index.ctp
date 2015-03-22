@@ -1,11 +1,13 @@
 <div class="saps index">
 	<h2><?php echo __('Saps'); ?></h2>
         <div class="filters">
-            <?php $url = array('controller' => 'Saps', 'action' => 'index'); ?>
-            <?php echo $this->Form->create('Filter', array('url' => $url)); ?>
-            <?php echo $this->Form->input('value', array('class' => 'date', 'label' => false, 'placeholder' => 'Search')); ?>
-            <?php echo $this->Form->input('field', array('options' => array('sapcode' => 'Sapcode', 'description' => 'Description', 'id' => 'ID'),  'label' => false)); ?>          
-            <?php echo $this->Form->end('Filter'); ?>
+            <ul>
+            <li><?php $url = array('controller' => 'Saps', 'action' => 'index'); ?></li>
+            <li><?php echo $this->Form->create('Filter', array('url' => $url)); ?></li>
+            <li><?php echo $this->Form->input('value', array('class' => 'date', 'label' => false, 'placeholder' => 'Search')); ?></li>
+            <li><?php echo $this->Form->input('field', array('options' => array('sapcode' => 'Sapcode', 'description' => 'Description', 'id' => 'ID'),  'label' => false)); ?></li>
+            <li><?php echo $this->Form->end('Filter'); ?></li>
+            </ul>    
         </div>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
@@ -62,6 +64,6 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Sap'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link('<i class="fa fa-plus"></i>'.'&nbsp;&nbsp;'. __('New Sap'), array('action' => 'add'), array('escape'=>FALSE)); ?></li>
 	</ul>
 </div>

@@ -1,5 +1,15 @@
 <div class="transfers index">
 	<h2><?php echo __('Transfers'); ?></h2>
+        <div class="filters">
+            <ul> 
+                <li><?php $url = array('controller' => 'Transfers', 'action' => 'index'); ?></li>
+                <li><?php echo $this->Form->create('Filter', array('url' => $url)); ?></li>
+                <li><?php echo $this->Form->input('value', array('class' => 'date', 'label' => false, 'placeholder' => 'Search')); ?></li>
+                <li><?php echo $this->Form->input('field', array('options' => array('id' => 'ID','sap_code' => 'Sapcode', 'description' => 'Description', 'sap_id' => 'Sap ID', 'serial_no' => 'Serial No'),  'label' => false)); ?></li>
+                <li><?php echo $this->Form->input('created_by', array('empty' => 'All Users',  'label' => false, 'options' => $users)); ?></li>
+                <li><?php echo $this->Form->end('Filter'); ?></li>
+            </ul>
+        </div>  
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
@@ -9,7 +19,7 @@
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('ctn_per_pallet'); ?></th>
 			<th><?php echo $this->Paginator->sort('net_wt'); ?></th>
-			<th><?php echo $this->Paginator->sort('remarks'); ?></th>
+			<!--<th><?php echo $this->Paginator->sort('remarks'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('serial_no'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -29,7 +39,7 @@
 		<td><?php echo h($transfer['Transfer']['description']); ?>&nbsp;</td>
 		<td><?php echo h($transfer['Transfer']['ctn_per_pallet']); ?>&nbsp;</td>
 		<td><?php echo h($transfer['Transfer']['net_wt']); ?>&nbsp;</td>
-		<td><?php echo h($transfer['Transfer']['remarks']); ?>&nbsp;</td>
+		<!--<td><?php echo h($transfer['Transfer']['remarks']); ?>&nbsp;</td>-->
 		<td><?php echo h($transfer['Transfer']['serial_no']); ?>&nbsp;</td>
 		<td><?php echo h($transfer['Transfer']['created']); ?>&nbsp;</td>
 		<td><?php echo h($transfer['Transfer']['modified']); ?>&nbsp;</td>
@@ -63,10 +73,6 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Transfer'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Saps'), array('controller' => 'saps', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Sap'), array('controller' => 'saps', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link('<i class="fa fa-plus"></i>'.'&nbsp;&nbsp;'. __('New Transfer'), array('action' => 'add'), array('escape'=> FALSE)); ?></li>
 	</ul>
 </div>

@@ -84,6 +84,7 @@ class SapsController extends AppController {
      */
     public function add() {
         if ($this->request->is('post')) {
+            $this->request->data['Sap']['user_id'] = $this->Session->read('Auth.User.id');
             $this->Sap->create();
             if ($this->Sap->save($this->request->data)) {
                 $this->Session->setFlash(__('The sap has been saved.'));
@@ -106,6 +107,7 @@ class SapsController extends AppController {
             throw new NotFoundException(__('Invalid sap'));
         }
         if ($this->request->is(array('post', 'put'))) {
+            $this->request->data['Sap']['last_edited_by'] = $this->Session->read('Auth.User.id');
             if ($this->Sap->save($this->request->data)) {
                 $this->Session->setFlash(__('The sap has been saved.'));
                 return $this->redirect(array('action' => 'index'));

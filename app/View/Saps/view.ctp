@@ -61,9 +61,9 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Sap'), array('action' => 'edit', $sap['Sap']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Sap'), array('action' => 'delete', $sap['Sap']['id']), array(), __('Are you sure you want to delete # %s?', $sap['Sap']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Saps'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Sap'), array('action' => 'add')); ?> </li>
+                <li><?php echo $this->Html->link('<i class="fa fa-edit"></i>'.'&nbsp;&nbsp;'. __('Edit Sap'), array('action' => 'edit', $sap['Sap']['id']), array('escape'=>FALSE)); ?> </li>
+		<li><?php echo $this->Form->postLink('<i class="fa fa-trash"></i>'.'&nbsp;&nbsp;'. __('Delete Sap'), array('action' => 'delete', $sap['Sap']['id']), array('escape'=>FALSE), __('Are you sure you want to delete # %s?', $sap['Sap']['id'])); ?> </li>
+		<li><?php echo $this->Html->link('<i class="fa fa-list"></i>'.'&nbsp;&nbsp;'. __('Saps List'), array('action' => 'index'), array('escape'=>FALSE)); ?></li>
+                <li><?php echo $this->Html->link('<i class="fa fa-plus"></i>'.'&nbsp;&nbsp;'. __('New Sap'), array('action' => 'add'), array('escape'=>FALSE)); ?></li>
 	</ul>
 </div>
