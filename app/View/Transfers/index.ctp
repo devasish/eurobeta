@@ -14,7 +14,7 @@
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('sap_id'); ?></th>
+			<!--<th><?php echo $this->Paginator->sort('sap_id'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('sap_code'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('ctn_per_pallet'); ?></th>
@@ -22,9 +22,9 @@
 			<!--<th><?php echo $this->Paginator->sort('remarks'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('serial_no'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th><?php echo $this->Paginator->sort('status'); ?></th>
-			<th><?php echo $this->Paginator->sort('user_id'); ?></th>
+			<!--<th><?php echo $this->Paginator->sort('modified'); ?></th>-->
+			<!--<th><?php echo $this->Paginator->sort('status'); ?></th>-->
+			<th><?php echo 'Created By'; ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -32,9 +32,9 @@
 	<?php foreach ($transfers as $transfer): ?>
 	<tr>
 		<td><?php echo h($transfer['Transfer']['id']); ?>&nbsp;</td>
-		<td>
+<!--		<td>
 			<?php echo $this->Html->link($transfer['Sap']['id'], array('controller' => 'saps', 'action' => 'view', $transfer['Sap']['id'])); ?>
-		</td>
+		</td>-->
 		<td><?php echo h($transfer['Transfer']['sap_code']); ?>&nbsp;</td>
 		<td><?php echo h($transfer['Transfer']['description']); ?>&nbsp;</td>
 		<td><?php echo h($transfer['Transfer']['ctn_per_pallet']); ?>&nbsp;</td>
@@ -42,8 +42,8 @@
 		<!--<td><?php echo h($transfer['Transfer']['remarks']); ?>&nbsp;</td>-->
 		<td><?php echo h($transfer['Transfer']['serial_no']); ?>&nbsp;</td>
 		<td><?php echo h($transfer['Transfer']['created']); ?>&nbsp;</td>
-		<td><?php echo h($transfer['Transfer']['modified']); ?>&nbsp;</td>
-		<td><?php echo h($transfer['Transfer']['status']); ?>&nbsp;</td>
+		<!--<td><?php echo h($transfer['Transfer']['modified']); ?>&nbsp;</td>-->
+		<!--<td><?php echo h($transfer['Transfer']['status']); ?>&nbsp;</td>-->
 		<td>
 			<?php echo $this->Html->link($transfer['User']['username'], array('controller' => 'users', 'action' => 'view', $transfer['User']['id'])); ?>
 		</td>

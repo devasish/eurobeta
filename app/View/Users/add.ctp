@@ -6,8 +6,8 @@
         <?php
         echo $this->Form->input('username');
         echo $this->Form->input('password');
-        echo $this->Form->input('role', array('options' => Configure::read('ROLES')));
-        echo $this->Form->input('status', array('options' => Configure::read('STATUS')));
+        echo $this->Form->input('role', array('options' => Configure::read('ROLES'), 'empty'=>true));
+        echo $this->Form->input('status', array('options' => Configure::read('STATUS'), 'empty'=>true));
         ?>
     </fieldset>
     <?php echo $this->Form->end(__('Submit')); ?>
