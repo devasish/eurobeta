@@ -390,7 +390,7 @@ Cache::config('_cake_model_', array(
 */
 define('SITE_URL', 'http://localhost/eurobeta/');
 
-Configure::write('ROLES', array('0' => '--Select--', '1' => 'Production(F1)', '2' => 'Production(F3)', '3' => 'QA', '4' => 'Loading', '5' => 'Warehouse'));
+Configure::write('ROLES', array('1' => 'Production(F1)', '2' => 'Production(F3)', '3' => 'QA', '4' => 'Loading', '5' => 'Warehouse'));
 Configure::write('STATUS', array('0' => 'Inactive','1' => 'Active'));
 
 Configure::write('CONT_TYPES', array('1' => '20FT', '2' => '40FT-HQ', '3' => '40FT-GB'));
