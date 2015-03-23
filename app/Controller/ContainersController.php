@@ -37,6 +37,7 @@ class ContainersController extends AppController {
 			throw new NotFoundException(__('Invalid container'));
 		}
 		$options = array('conditions' => array('Container.' . $this->Container->primaryKey => $id));
+                $this->Container->recursive = 2;
 		$this->set('container', $this->Container->find('first', $options));
 	}
 
