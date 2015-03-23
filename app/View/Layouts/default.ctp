@@ -42,6 +42,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         echo $this->fetch('css');
         echo $this->fetch('script');
         ?>
+        <script type="text/javascript">
+            var SITE_URL = '<?= SITE_URL ?>';
+        </script>
     </head>
     <body>
         <div id="container">
