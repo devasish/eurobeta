@@ -91,7 +91,7 @@
             <td>no of ctn</td>
             <td>remarks</td>
             <td>
-                <a href="javascript:void(0)">Edit</a>
+                <?php echo $this->Html->link(__('Edit'), array('controller' => 'pallet_checklists', 'action' => 'edit', $pallet['id'])) ?>
             </td>
         </tr>
 

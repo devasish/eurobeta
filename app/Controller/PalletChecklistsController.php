@@ -61,7 +61,8 @@ class PalletChecklistsController extends AppController {
             $this->PalletChecklist->create();
             if ($this->PalletChecklist->saveAll($this->request->data)) {
                 $this->Session->setFlash(__('The pallet checklist has been saved.'));
-//                return $this->redirect(array('action' => 'index'));
+                
+                return $this->redirect(array('action' => 'edit', $this->PalletChecklist->getLastInsertID()));
             } else {
                 $this->Session->setFlash(__('The pallet checklist could not be saved. Please, try again.'));
             }
@@ -82,9 +83,9 @@ class PalletChecklistsController extends AppController {
             throw new NotFoundException(__('Invalid pallet checklist'));
         }
         if ($this->request->is(array('post', 'put'))) {
-            if ($this->PalletChecklist->save($this->request->data)) {
+            if ($this->PalletChecklist->saveAll($this->request->data)) {
                 $this->Session->setFlash(__('The pallet checklist has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(array('action' => 'edit', $id));
             } else {
                 $this->Session->setFlash(__('The pallet checklist could not be saved. Please, try again.'));
             }

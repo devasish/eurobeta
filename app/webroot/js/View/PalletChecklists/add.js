@@ -28,6 +28,8 @@ $(document).ready(function () {
                 $('#PalletChecklistCbm').val(ui.item.data.cbm);
 //                $('#PalletChecklistEmptyCtnWt').val(ui.item.data.empty_ctn_wt);
                 $('#PalletChecklistSingleEmptyCtnWt').val(ui.item.data.empty_ctn_wt);
+                
+                $('.loads-input:first').trigger('blur');
             }
         });
         
@@ -76,10 +78,25 @@ $(document).ready(function () {
         });
         
         $('body').on('click', '.del_load', function () {
+            if (!confirm('Do you really want to delete?')) {
+                return;
+            } 
             $(this).parents('tr:first').fadeOut(500, function () {
+                var id = $(this).find('input.loads_id_input').val();
+                if (id > 0) {
+                    $.ajax({
+                        url : SITE_URL + 'pallet_loads/delete/' + id,
+                        type: 'post',
+                        success: function (response) {
+                            
+                        },
+                        error : function (jqXhr, textSt, error) {
+                            console.error(error);
+                        }
+                    });
+                }
                 $(this).remove();
                 re_arrange();
-                
                 go_check()
             })
         });

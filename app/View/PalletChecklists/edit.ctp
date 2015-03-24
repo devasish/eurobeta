@@ -19,21 +19,25 @@
                         
                         <?php foreach ($this->Form->value('PalletLoad') as $k => $palletLoad) :?>
                         <tr>
-                            <td><?php echo $x++; ?></td>
-                            <td><?php echo $this->Form->input('PalletLoad.' . $row_index . '.quantity', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads-input', 'data-index' => '0')); ?></td>
-                            <td><?php echo $this->Form->input('PalletLoad.' . $row_index . '.wt_with_pallet', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads-input', 'data-index' => '0')); ?></td>
-                            <td><?php echo $this->Form->input('PalletLoad.' . $row_index . '.wt_per_ctn', array('label' => FALSE, 'div' => FALSE, 'readonly' => true , 'data-index' => '0', 'class' => 'loads_wt_per_ctn')); ?></td>
                             <td>
-                                &nbsp;
+                                <?php echo $x++; ?>
+                                <?php echo $this->Form->input('PalletLoad.' . $row_index . '.id', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads_id_input', 'data-index' => $row_index)); ?>
+                            </td>
+                            <td><?php echo $this->Form->input('PalletLoad.' . $row_index . '.quantity', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads-input', 'data-index' => $row_index)); ?></td>
+                            <td><?php echo $this->Form->input('PalletLoad.' . $row_index . '.wt_with_pallet', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads-input', 'data-index' => $row_index)); ?></td>
+                            <td><?php echo $this->Form->input('PalletLoad.' . $row_index . '.wt_per_ctn', array('label' => FALSE, 'div' => FALSE, 'readonly' => true , 'data-index' => $row_index, 'class' => 'loads_wt_per_ctn')); ?></td>
+                            <td>
+                                <a href="javascript:void(0)" id="del_load_<?php echo $row_index; ?>" class="del_load">Delete</a>
                             </td>
                         </tr>
+                        <?php $row_index ++;?>
                         <?php endforeach; ?>
                     </table>
                     <table>
                         <tr>
                             <td width="7%">&nbsp;</td>
-                            <td width="27%"><?php echo $this->Form->input('total_quantity', array('label' => FALSE, 'div' => FALSE)); ?></td>
-                            <td width="27%"><?php echo $this->Form->input('total_wt_with_pallet', array('label' => FALSE, 'div' => FALSE)); ?></td>
+                            <td width="27%"><?php echo $this->Form->input('total_quantity', array('label' => FALSE, 'div' => FALSE, 'readonly' => true)); ?></td>
+                            <td width="27%"><?php echo $this->Form->input('total_wt_with_pallet', array('label' => FALSE, 'div' => FALSE, 'readonly' => true)); ?></td>
                             <td width="27%">&nbsp;</td>
                             <td>
                                 &nbsp;
@@ -45,20 +49,21 @@
             <td>
                 <div class="right-panel">
                         <?php
+                        echo $this->Form->input('id', array('type' => 'hidden'));
                         echo $this->Form->input('container_id', array('type' => 'hidden', 'value' => $this->Form->value('Container.id')));
                         echo $this->Form->input('sap_id', array('type' => 'hidden'));
                         echo $this->Form->input('sap_code');
-                        echo $this->Form->input('sap_desc');
-                        echo $this->Form->input('product_cust_wt');
-                        echo $this->Form->input('no_of_pallet');
-                        echo $this->Form->input('empty_pallet_wt');
-                        echo $this->Form->input('single_empty_ctn_wt', array('type' => 'hidden'));
-                        echo $this->Form->input('empty_ctn_wt');
-                        echo $this->Form->input('cbm');
-                        echo $this->Form->input('net_product_wt');
-                        echo $this->Form->input('net_wt_per_ctn');
-                        echo $this->Form->input('gross_wt_per_ctn');
-                        echo $this->Form->input('diff');
+                        echo $this->Form->input('sap_desc', array('readonly' => true));
+                        echo $this->Form->input('product_cust_wt', array('readonly' => true));
+                        echo $this->Form->input('no_of_pallet', array('readonly' => true));
+                        echo $this->Form->input('empty_pallet_wt', array('readonly' => true));
+                        echo $this->Form->input('single_empty_ctn_wt', array('type' => 'hidden', 'readonly' => true));
+                        echo $this->Form->input('empty_ctn_wt', array('readonly' => true));
+                        echo $this->Form->input('cbm', array('readonly' => true));
+                        echo $this->Form->input('net_product_wt', array('readonly' => true));
+                        echo $this->Form->input('net_wt_per_ctn', array('readonly' => true));
+                        echo $this->Form->input('gross_wt_per_ctn', array('readonly' => true));
+                        echo $this->Form->input('diff', array('readonly' => true));
                         ?>
                 </div>
             </td>
