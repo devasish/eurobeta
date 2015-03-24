@@ -93,4 +93,21 @@ class Sap extends AppModel {
 			),
 		),
 	);
+        
+        public $belongsTo = array(
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'user_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Editor' => array(
+			'className' => 'User',
+			'foreignKey' => 'last_edited_by',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
 }

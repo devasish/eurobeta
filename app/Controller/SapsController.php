@@ -74,6 +74,7 @@ class SapsController extends AppController {
             throw new NotFoundException(__('Invalid sap'));
         }
         $options = array('conditions' => array('Sap.' . $this->Sap->primaryKey => $id));
+        $this->Sap->recursive = 3;
         $this->set('sap', $this->Sap->find('first', $options));
     }
 
@@ -110,7 +111,7 @@ class SapsController extends AppController {
             $this->request->data['Sap']['last_edited_by'] = $this->Session->read('Auth.User.id');
             if ($this->Sap->save($this->request->data)) {
                 $this->Session->setFlash(__('The sap has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(array('action' => 'view',$id));
             } else {
                 $this->Session->setFlash(__('The sap could not be saved. Please, try again.'));
             }

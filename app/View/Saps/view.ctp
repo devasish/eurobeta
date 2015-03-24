@@ -53,9 +53,25 @@
 		</dd>
 		<dt><?php echo __('Status'); ?></dt>
 		<dd>
-			<?php echo h($sap['Sap']['status']); ?>
-			&nbsp;
+                    <?php
+                    foreach (Configure::read('STATUS') as $k => $v) {
+                        if ($k == $sap['Sap']['status']) {
+                            echo h($v);
+                        }
+                    }
+                    ?>
+		&nbsp;
 		</dd>
+                <dt><?php echo __('Created By'); ?></dt>
+                <dd>
+                    <?php echo $this->Html->link($sap['User']['username'], array('controller' => 'users', 'action' => 'view', $sap['Sap']['user_id'])); ?>
+                    &nbsp;
+                </dd>
+                <dt><?php echo __('Last Edited By'); ?></dt>
+                <dd>
+                    <?php echo $this->Html->link($sap['Editor']['username'], array('controller' => 'users', 'action' => 'view', $sap['Sap']['last_edited_by'])); ?>
+                    &nbsp;
+                </dd>
 	</dl>
 </div>
 <div class="actions">
@@ -63,7 +79,7 @@
 	<ul>
                 <li><?php echo $this->Html->link('<i class="fa fa-edit"></i>'.'&nbsp;&nbsp;'. __('Edit Sap'), array('action' => 'edit', $sap['Sap']['id']), array('escape'=>FALSE)); ?> </li>
 		<li><?php echo $this->Form->postLink('<i class="fa fa-trash"></i>'.'&nbsp;&nbsp;'. __('Delete Sap'), array('action' => 'delete', $sap['Sap']['id']), array('escape'=>FALSE), __('Are you sure you want to delete # %s?', $sap['Sap']['id'])); ?> </li>
-		<li><?php echo $this->Html->link('<i class="fa fa-list"></i>'.'&nbsp;&nbsp;'. __('Saps List'), array('action' => 'index'), array('escape'=>FALSE)); ?></li>
+		<li><?php echo $this->Html->link('<i class="fa fa-list"></i>'.'&nbsp;&nbsp;'. __('List Saps'), array('action' => 'index'), array('escape'=>FALSE)); ?></li>
                 <li><?php echo $this->Html->link('<i class="fa fa-plus"></i>'.'&nbsp;&nbsp;'. __('New Sap'), array('action' => 'add'), array('escape'=>FALSE)); ?></li>
 	</ul>
 </div>
