@@ -52,10 +52,16 @@ class PalletChecklistsController extends AppController {
             throw new NotFoundException(__('Invalid Container ID Provided'));
         }
         if ($this->request->is('post')) {
+            
+            foreach ($this->request->data['PalletLoad'] as $key => $val) {
+                $this->request->data['PalletLoad'][$key]['user_id'] = $this->Session->read('Auth.User.id');
+            }
+            
+            $this->request->data['PalletChecklist']['user_id'] = $this->Session->read('Auth.User.id');
             $this->PalletChecklist->create();
-            if ($this->PalletChecklist->save($this->request->data)) {
+            if ($this->PalletChecklist->saveAll($this->request->data)) {
                 $this->Session->setFlash(__('The pallet checklist has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+//                return $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The pallet checklist could not be saved. Please, try again.'));
             }
