@@ -19,6 +19,6 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link('<i class="fa fa-list"></i>'.'&nbsp;&nbsp;'. __('Saps List'), array('action' => 'index'), array('escape'=>FALSE)); ?></li>
+		<li><?php echo $this->Html->link('<i class="fa fa-list"></i>'.'&nbsp;&nbsp;'. __('List Saps'), array('action' => 'index'), array('escape'=>FALSE)); ?></li>
 	</ul>
 </div>
