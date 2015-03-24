@@ -1,5 +1,14 @@
 <div class="containers index">
 	<h2><?php echo __('Containers'); ?></h2>
+        <div class="filters">
+            <ul>
+            <li><?php $url = array('controller' => 'Containers', 'action' => 'index'); ?></li>
+            <li><?php echo $this->Form->create('Filter', array('url' => $url)); ?></li>
+            <li><?php echo $this->Form->input('value', array('class' => 'date', 'label' => false, 'placeholder' => 'Search')); ?></li>
+            <li><?php echo $this->Form->input('field', array('options' => array('id' => 'ID', 'container_no' => 'Container No', 'seal_no' => 'Seal No', 'type' => 'Type', 'status' => 'Status'),  'label' => false)); ?></li>
+            <li><?php echo $this->Form->end('Filter'); ?></li>
+            </ul>    
+        </div>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
