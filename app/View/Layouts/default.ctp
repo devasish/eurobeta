@@ -54,6 +54,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 <div class="logout"><?php echo $this->Html->link('<i class="fa fa-power-off"></i>', array('controller' => 'users', 'action' => 'logout'), array('escape' => false)); ?></div></div>
 
             <div class="main-nav">
+                <?php if ($this->Session->read('Auth.User.id')): ?>
                 <ul>
                     <li><?php echo $this->Html->link('Saps', array('controller' => 'saps', 'action' => 'index')); ?></li>
                     <li><?php echo $this->Html->link('Transfers', array('controller' => 'transfers', 'action' => 'index')); ?></li>
@@ -61,6 +62,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                       <!--<li><?php echo $this->Html->link('Pallet Checklist', array('controller' => 'pallet_checklists', 'action' => 'index')); ?></li>-->
                     <li><?php echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')); ?></li>
                 </ul>
+                <?php endif; ?>
             </div>
             <div id="content">
                 <?php echo $this->Session->flash(); ?>
