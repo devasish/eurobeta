@@ -58,7 +58,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     <li><?php echo $this->Html->link('Saps', array('controller' => 'saps', 'action' => 'index')); ?></li>
                     <li><?php echo $this->Html->link('Transfers', array('controller' => 'transfers', 'action' => 'index')); ?></li>
                     <li><?php echo $this->Html->link('Loading Advices', array('controller' => 'containers', 'action' => 'index')); ?></li>
-                    <li><?php echo $this->Html->link('Pallet Checklist', array('controller' => 'pallet_checklists', 'action' => 'index')); ?></li>
+                      <!--<li><?php echo $this->Html->link('Pallet Checklist', array('controller' => 'pallet_checklists', 'action' => 'index')); ?></li>-->
                     <li><?php echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')); ?></li>
                 </ul>
             </div>
