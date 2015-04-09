@@ -1,0 +1,53 @@
+.label-danger a, .label-warning a, .label-info a, .label-success a{
+    color: #FFF;
+    outline: 0;
+}
+.label-danger a:hover, .label-warning a:hover, .label-info a:hover, .label-success a:hover{
+    color: #FFF;
+    text-decoration: underline;
+    outline: 0;
+}
+.label-danger a:focus, .label-warning a:focus, .label-info a:focus, .label-success a:focus{
+    color: #FFF;
+    outline: 0;
+}
+.pagination > .info{
+    padding-left: 10px;
+    font-size: 12px;
+    color: #9fadbb;
+}
+dl {
+	line-height: 2em;
+	margin: 0em 0em;
+	width: 60%;
+}
+dl dd:nth-child(4n+2),
+dl dt:nth-child(4n+1) {
+	background: #f4f4f4;
+}
+
+dt {
+	font-weight: bold;
+	padding-left: 4px;
+        padding: 2px;
+	vertical-align: top;
+	width: 10em;
+}
+dd {
+	margin-left: 10em;
+        padding: 2px;
+        color: #285e8e;
+	margin-top: -24px;
+	vertical-align: top;
+}
+.filters{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.filters li{
+    display: inline-block;    
+}
+.srch-btn button{
+    margin-top: -5px;
+}

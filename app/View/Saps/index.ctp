@@ -1,77 +1,115 @@
-<div class="saps index">
-	<h2><?php echo __('Saps'); ?></h2>
-        <div class="filters">
-            <ul>
-            <li><?php $url = array('controller' => 'Saps', 'action' => 'index'); ?></li>
-            <li><?php echo $this->Form->create('Filter', array('url' => $url)); ?></li>
-            <li><?php echo $this->Form->input('value', array('class' => 'date', 'label' => false, 'placeholder' => 'Search')); ?></li>
-            <li><?php echo $this->Form->input('field', array('options' => array('sapcode' => 'Sapcode', 'description' => 'Description', 'id' => 'ID'),  'label' => false)); ?></li>
-            <li><?php echo $this->Form->end('Filter'); ?></li>
-            </ul>    
-        </div>
-	<table cellpadding="0" cellspacing="0">
-	<thead>
-	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('sapcode'); ?></th>
-			<th><?php echo $this->Paginator->sort('description'); ?></th>
-			<th><?php echo $this->Paginator->sort('net_wt'); ?></th>
-			<!--<th><?php echo $this->Paginator->sort('gross_wt'); ?></th>-->
-			<!--<th><?php echo $this->Paginator->sort('empty_ctn_wt'); ?></th>-->
-			<th><?php echo $this->Paginator->sort('cbm'); ?></th>
-			<!--<th><?php echo $this->Paginator->sort('ctn_per_pallet'); ?></th>-->
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('status'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	</thead>
-	<tbody>
-	<?php foreach ($saps as $sap): ?>
-	<tr>
-		<td><?php echo h($sap['Sap']['id']); ?>&nbsp;</td>
-		<td><?php echo h($sap['Sap']['sapcode']); ?>&nbsp;</td>
-		<td><?php echo h($sap['Sap']['description']); ?>&nbsp;</td>
-		<td><?php echo h($sap['Sap']['net_wt']); ?>&nbsp;</td>
-  		<!--<td><?php echo h($sap['Sap']['gross_wt']); ?>&nbsp;</td>-->
-		<!--<td><?php echo h($sap['Sap']['empty_ctn_wt']); ?>&nbsp;</td>-->
-		<td><?php echo h($sap['Sap']['cbm']); ?>&nbsp;</td>
-		<!--<td><?php echo h($sap['Sap']['ctn_per_pallet']); ?>&nbsp;</td>-->
-		<td><?php echo h($sap['Sap']['created']); ?>&nbsp;</td>
-                <td>
-                    <?php
-                        foreach (Configure::read('STATUS') as $k => $v) {
-                            if ($k == $sap['Sap']['status']) {
-                                echo h($v);
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+</div><!--/.row-->
+
+<br/><br/>
+
+<div class="row">
+            <div class="col-xs-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">List Saps</h3>
+                  <div class="box-tools">
+                    <div class="input-group"> 
+                        <ul class="filters">  
+                            <li><?php $url = array('controller' => 'Saps', 'action' => 'index'); ?></li>
+                            <li><?php echo $this->Form->create('Filter', array('url' => $url)); ?></li>  
+                            <li><?php echo $this->Form->input('value', array('class' => 'date form-control input-sm', 'label' => false, 'placeholder' => 'Search')); ?></li>
+                            <li><?php echo $this->Form->input('field', array('options' => array('sapcode' => 'Sapcode', 'description' => 'Description', 'id' => 'ID'),  'label' => false, 'class' => 'form-control input-sm')); ?></li>
+                        </ul>
+                        <div class="input-group-btn srch-btn">
+                            <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  <table class="table table-hover">
+                    <tr>
+                        <th><?php echo $this->Paginator->sort('id'); ?></th>
+                        <th><?php echo $this->Paginator->sort('sapcode'); ?></th>
+                        <th><?php echo $this->Paginator->sort('description'); ?></th>
+                        <th><?php echo $this->Paginator->sort('net_wt'); ?></th>
+                        <th><?php echo $this->Paginator->sort('cbm'); ?></th>                        
+                        <th><?php echo $this->Paginator->sort('created'); ?></th>
+                        <th><?php echo $this->Paginator->sort('status'); ?></th>
+                        <th class="actions"><?php echo __('Actions'); ?></th>
+                    </tr>
+
+                    <?php foreach ($saps as $sap): ?>
+                    <tr>
+                        <td><?php echo h($sap['Sap']['id']); ?>&nbsp;</td>
+                        <td><?php echo h($sap['Sap']['sapcode']); ?>&nbsp;</td>
+                        <td><?php echo h($sap['Sap']['description']); ?>&nbsp;</td>
+                        <td><?php echo h($sap['Sap']['net_wt']); ?>&nbsp;</td>
+                        <td><?php echo h($sap['Sap']['cbm']); ?>&nbsp;</td>
+                        <td><?php echo h($sap['Sap']['created']); ?>&nbsp;</td>
+                        <td>
+                            <?php
+                            foreach (Configure::read('STATUS') as $k => $v) {
+                                if ($k == $sap['Sap']['status']) {
+                                    echo h($v);
+                                }
                             }
-                        }
-                        ?>
-                </td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $sap['Sap']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $sap['Sap']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $sap['Sap']['id']), array(), __('Are you sure you want to delete # %s?', $sap['Sap']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</tbody>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link('<i class="fa fa-plus"></i>'.'&nbsp;&nbsp;'. __('New Sap'), array('action' => 'add'), array('escape'=>FALSE)); ?></li>
-	</ul>
-</div>
+                            ?>
+                        </td>
+                        <td>
+                            <span class="label label-info"><?php echo $this->Html->link(__('View'), array('action' => 'view', $sap['Sap']['id'])); ?></span>
+
+                            <span class="label label-warning"><?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $sap['Sap']['id'])); ?></span>
+
+                            <span class="label label-danger"><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $sap['Sap']['id']), array(), __('Are you sure you want to delete # %s?', $sap['Sap']['id'])); ?></span>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                  </table>
+                </div><!-- /.box-body -->         
+                <div class="box-footer clearfix">
+                  <ul class="pagination pagination-sm no-margin pull-left">
+                    <li><?php echo $this->Paginator->prev('<i class="fa fa-angle-double-left"></i>'.'&nbsp;' . __('previous'), array('escape'=>FALSE), null, array('class' => 'prev disabled')); ?></li>
+                    <li><?php echo $this->Paginator->numbers(array('separator' => '')); ?></li>                    
+                    <li><?php echo $this->Paginator->next(__('next') .'&nbsp;'. ' <i class="fa fa-angle-double-right"></i>', array('escape'=>FALSE), null, array('class' => 'next disabled')); ?></li>
+                    <li class="info">
+                        <?php
+                        echo $this->Paginator->counter(array(
+                            'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+                        ));
+                        ?></li>
+                  </ul>                    
+                </div>              
+              </div><!-- /.box -->
+            </div>
+          </div>
+<script>
+    $(function () {
+        $('#hover, #striped, #condensed').click(function () {
+            var classes = 'table';
+
+            if ($('#hover').prop('checked')) {
+                classes += ' table-hover';
+            }
+            if ($('#condensed').prop('checked')) {
+                classes += ' table-condensed';
+            }
+            $('#table-style').bootstrapTable('destroy')
+                .bootstrapTable({
+                    classes: classes,
+                    striped: $('#striped').prop('checked')
+                });
+        });
+    });
+
+    function rowStyle(row, index) {
+        var classes = ['active', 'success', 'info', 'warning', 'danger'];
+
+        if (index % 2 === 0 && index / 2 < classes.length) {
+            return {
+                classes: classes[index / 2]
+            };
+        }
+        return {};
+    }
+</script>

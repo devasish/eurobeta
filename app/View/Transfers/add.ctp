@@ -1,25 +1,45 @@
-<div class="transfers form">
-<?php echo $this->Form->create('Transfer'); ?>
-	<fieldset>
-		<legend><?php echo __('Add Transfer'); ?></legend>
-	<?php
-		echo $this->Form->input('sap_code', array('label' => 'SAP Code'));
-		echo $this->Form->input('sap_id', array('type' => 'hidden'));
-		echo $this->Form->input('description', array('readonly' => true));
-		echo $this->Form->input('ctn_per_pallet', array('readonly' => true,'required' => false, 'label' =>'<b>Ctn Per Pallet<font color=red>*</font></b> <a id="editCtnPerPallet" href="javascript:void(0)" style="font-size:18px; color: #111111" title="Edit Ctn Per Pallet" ><i class="fa fa-edit"></i></a>'));
-		echo $this->Form->input('net_wt', array('readonly' => true));
-		echo $this->Form->input('remarks', array('type' => 'textarea','escape' => true, 'rows' => 2));
-                echo $this->Form->input('status', array('type' => 'hidden'));
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Save')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Html->link('<i class="fa fa-list"></i>'.'&nbsp;&nbsp;'. __('List Transfers'), array('action' => 'index'), array('escape' => FALSE)); ?></li>
-	</ul>
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+</div><!--/.row-->
+<br/><br/>
+<div class="row">
+    <div class="col-lg-12">
+            <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <?php echo __('Make Transfer'); ?>                         
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-6">
+                            <?php echo $this->Form->create('Transfer'); ?>
+                            <div class="form-group">
+                                <?php echo $this->Form->input('sap_code', array('label' => 'SAP Code', 'class' => 'form-control')); ?>
+                            </div>
+                            <div class="form-group">
+                                <?php echo $this->Form->input('sap_id', array('type' => 'hidden', 'class' => 'form-control')); ?>
+                            </div>
+                            <div class="form-group">
+                                <?php echo $this->Form->input('description', array('readonly' => true, 'class' => 'form-control')); ?>
+                            </div>
+                            <div class="form-group">
+                                <?php echo $this->Form->input('ctn_per_pallet', array('readonly' => true,'required' => false, 'label' =>'<b>Ctn Per Pallet<font color=red>*</font></b> <a id="editCtnPerPallet" href="javascript:void(0)" style="font-size:18px; color: #111111" title="Edit Ctn Per Pallet" ><i class="fa fa-edit"></i></a>', 'class' => 'form-control')); ?>
+                            </div>
+                            <div class="form-group">
+                                <?php echo $this->Form->input('net_wt', array('readonly' => true, 'class' => 'form-control')); ?>
+                            </div>
+                            <div class="form-group">
+                                <?php echo $this->Form->input('remarks', array('type' => 'textarea','escape' => true, 'rows' => 2, 'class' => 'form-control')); ?>
+                            </div>
+                            <div class="form-group">
+                                <?php echo $this->Form->input('status', array('type' => 'hidden', 'class' => 'form-control')); ?>
+                            </div>                            
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+            </div>
+    </div>
 </div>
 
 <script type="text/javascript">
