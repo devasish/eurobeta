@@ -70,7 +70,7 @@
                             <td><?php echo h($container['Container']['created']); ?>&nbsp;</td>
 
                             <td>
-                                <span class="label label-info"><?php echo $this->Html->link(__('View'), array('action' => 'view', $container['Container']['id'])); ?></span>
+                                <span class="label label-info"><?php echo $this->Html->link(__('Load'), array('action' => 'view', $container['Container']['id'])); ?></span>
 
                                 <span class="label label-warning"><?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $container['Container']['id'])); ?></span>
 
