@@ -35,25 +35,25 @@
                         <tr>
                             <td>
                                 <?php echo $x++; ?>
-    <?php echo $this->Form->input('PalletLoad.' . $row_index . '.id', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads_id_input', 'data-index' => $row_index)); ?>
+    <?php echo $this->Form->input('PalletLoad.' . $row_index . '.id', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads_id_input form-control', 'data-index' => $row_index)); ?>
                             </td>
-                            <td><?php echo $this->Form->input('PalletLoad.' . $row_index . '.quantity', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads-input', 'data-index' => $row_index)); ?></td>
-                            <td><?php echo $this->Form->input('PalletLoad.' . $row_index . '.wt_with_pallet', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads-input', 'data-index' => $row_index)); ?></td>
-                            <td><?php echo $this->Form->input('PalletLoad.' . $row_index . '.wt_per_ctn', array('label' => FALSE, 'div' => FALSE, 'readonly' => true, 'data-index' => $row_index, 'class' => 'loads_wt_per_ctn')); ?></td>
+                            <td><?php echo $this->Form->input('PalletLoad.' . $row_index . '.quantity', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads-input form-control', 'data-index' => $row_index)); ?></td>
+                            <td><?php echo $this->Form->input('PalletLoad.' . $row_index . '.wt_with_pallet', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads-input form-control', 'data-index' => $row_index)); ?></td>
+                            <td><?php echo $this->Form->input('PalletLoad.' . $row_index . '.wt_per_ctn', array('label' => FALSE, 'div' => FALSE, 'readonly' => true, 'data-index' => $row_index, 'class' => 'loads_wt_per_ctn form-control')); ?></td>
                             <td>
                                 <a href="javascript:void(0)" id="del_load_<?php echo $row_index; ?>" class="del_load">Delete</a>
                             </td>
                         </tr>
                         <?php $row_index++; ?>
-<?php endforeach; ?>
+                        <?php endforeach; ?>
                 </table>
             </div><!-- /.box-body -->         
             <div class="box-footer clearfix">
                 <table>
                     <tr>
-                        <td width="7%">&nbsp;</td>
-                        <td width="27%"><?php echo $this->Form->input('total_quantity', array('label' => FALSE, 'div' => FALSE, 'readonly' => true)); ?></td>
-                        <td width="27%"><?php echo $this->Form->input('total_wt_with_pallet', array('label' => FALSE, 'div' => FALSE, 'readonly' => true)); ?></td>
+                        <td width="8%">&nbsp;</td>
+                        <td width="27%" style="padding-right: 7px;"><?php echo $this->Form->input('total_quantity', array('label' => FALSE, 'div' => FALSE, 'readonly' => true, 'class'=>'form-control')); ?></td>
+                        <td width="27%" style="padding-left: 7px;"><?php echo $this->Form->input('total_wt_with_pallet', array('label' => FALSE, 'div' => FALSE, 'readonly' => true, 'class'=>'form-control')); ?></td>
                         <td width="27%">&nbsp;</td>
                         <td>
                             &nbsp;
@@ -77,40 +77,40 @@
                                 <?php echo $this->Form->input('sap_id', array('type' => 'hidden')); ?>
                             </div>
                             <div class="form-group">
-                                <?php echo $this->Form->input('sap_code'); ?>
+                                <?php echo $this->Form->input('sap_code', array('class'=>'form-control lg-input')); ?>
                             </div>
                             <div class="form-group">
-                                <?php echo $this->Form->input('sap_desc', array('readonly' => true)); ?>
+                                <?php echo $this->Form->input('sap_desc', array('readonly' => true, 'class'=>'form-control')); ?>
                             </div>                            
                             <div class="form-group">
-                                <?php echo $this->Form->input('product_cust_wt', array('readonly' => true)); ?>
+                                <?php echo $this->Form->input('product_cust_wt', array('readonly' => true, 'class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
-                                <?php  echo $this->Form->input('no_of_pallet', array('readonly' => true)); ?>
+                                <?php  echo $this->Form->input('no_of_pallet', array('readonly' => true, 'class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
-                                <?php echo $this->Form->input('empty_pallet_wt', array('readonly' => true)); ?>
+                                <?php echo $this->Form->input('empty_pallet_wt', array('readonly' => true, 'class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
-                                <?php echo $this->Form->input('single_empty_ctn_wt', array('type' => 'hidden', 'readonly' => true)); ?>
+                                <?php echo $this->Form->input('single_empty_ctn_wt', array('type' => 'hidden', 'readonly' => true, 'class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
-                                <?php echo $this->Form->input('empty_ctn_wt', array('readonly' => true)); ?>
+                                <?php echo $this->Form->input('empty_ctn_wt', array('readonly' => true, 'class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
-                                <?php echo $this->Form->input('cbm', array('readonly' => true)); ?>
+                                <?php echo $this->Form->input('cbm', array('readonly' => true, 'class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
-                                <?php echo $this->Form->input('net_product_wt', array('readonly' => true)); ?>
+                                <?php echo $this->Form->input('net_product_wt', array('readonly' => true, 'class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
-                                <?php echo $this->Form->input('net_wt_per_ctn', array('readonly' => true)); ?>
+                                <?php echo $this->Form->input('net_wt_per_ctn', array('readonly' => true, 'class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
-                                <?php echo $this->Form->input('gross_wt_per_ctn', array('readonly' => true)); ?>
+                                <?php echo $this->Form->input('gross_wt_per_ctn', array('readonly' => true, 'class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
-                                <?php echo $this->Form->input('diff', array('readonly' => true)); ?>
+                                <?php echo $this->Form->input('diff', array('readonly' => true, 'class'=>'form-control')); ?>
                             </div>                            
                         </div>
                     </div>
