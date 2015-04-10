@@ -105,10 +105,10 @@ class TransfersController extends AppController {
             $this->request->data['Transfer']['serial_index'] = $last_serial;
             $this->Transfer->create();
             if ($this->Transfer->save($this->request->data)) {
-                $this->Session->setFlash(__('The transfer has been saved.'));
+                $this->Session->setFlash(__('The transfer has been saved.'), 'flash_success');
                 return $this->redirect(array('action' => 'view',$this->Transfer->getLastInsertId()));
             } else {
-                $this->Session->setFlash(__('The transfer could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The transfer could not be saved. Please, try again.'), 'flash_warning');
             }
         }
         $saps = $this->Transfer->Sap->find('list');
@@ -129,10 +129,10 @@ class TransfersController extends AppController {
         }
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Transfer->save($this->request->data)) {
-                $this->Session->setFlash(__('The transfer has been saved.'));
+                $this->Session->setFlash(__('The transfer has been saved.'), 'flash_success');
                 return $this->redirect(array('action' => 'index'));
             } else {
-                $this->Session->setFlash(__('The transfer could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The transfer could not be saved. Please, try again.'), 'flash_warning');
             }
         } else {
             $options = array('conditions' => array('Transfer.' . $this->Transfer->primaryKey => $id));
@@ -157,9 +157,9 @@ class TransfersController extends AppController {
         }
         $this->request->allowMethod('post', 'delete');
         if ($this->Transfer->delete()) {
-            $this->Session->setFlash(__('The transfer has been deleted.'));
+            $this->Session->setFlash(__('The transfer has been deleted.'), 'flash_delete');
         } else {
-            $this->Session->setFlash(__('The transfer could not be deleted. Please, try again.'));
+            $this->Session->setFlash(__('The transfer could not be deleted. Please, try again.'), 'flash_warning');
         }
         return $this->redirect(array('action' => 'index'));
     }

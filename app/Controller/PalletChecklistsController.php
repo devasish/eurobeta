@@ -60,11 +60,11 @@ class PalletChecklistsController extends AppController {
             $this->request->data['PalletChecklist']['user_id'] = $this->Session->read('Auth.User.id');
             $this->PalletChecklist->create();
             if ($this->PalletChecklist->saveAll($this->request->data)) {
-                $this->Session->setFlash(__('The pallet checklist has been saved.'));
+                $this->Session->setFlash(__('The pallet checklist has been saved.'), 'flash_success');
                 
                 return $this->redirect(array('action' => 'edit', $this->PalletChecklist->getLastInsertID()));
             } else {
-                $this->Session->setFlash(__('The pallet checklist could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The pallet checklist could not be saved. Please, try again.'), 'flash_warning');
             }
         }
         $this->set('container_no', $container_no);
@@ -84,10 +84,10 @@ class PalletChecklistsController extends AppController {
         }
         if ($this->request->is(array('post', 'put'))) {
             if ($this->PalletChecklist->saveAll($this->request->data)) {
-                $this->Session->setFlash(__('The pallet checklist has been saved.'));
+                $this->Session->setFlash(__('The pallet checklist has been saved.'), 'flash_success');
                 return $this->redirect(array('action' => 'edit', $id));
             } else {
-                $this->Session->setFlash(__('The pallet checklist could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The pallet checklist could not be saved. Please, try again.'), 'flash_warning');
             }
         } else {
             $options = array('conditions' => array('PalletChecklist.' . $this->PalletChecklist->primaryKey => $id));
@@ -113,9 +113,9 @@ class PalletChecklistsController extends AppController {
         }
         $this->request->allowMethod('post', 'delete');
         if ($this->PalletChecklist->delete()) {
-            $this->Session->setFlash(__('The pallet checklist has been deleted.'));
+            $this->Session->setFlash(__('The pallet checklist has been deleted.'), 'flash_delete');
         } else {
-            $this->Session->setFlash(__('The pallet checklist could not be deleted. Please, try again.'));
+            $this->Session->setFlash(__('The pallet checklist could not be deleted. Please, try again.'), 'flash_warning');
         }
         return $this->redirect(array('action' => 'index'));
     }

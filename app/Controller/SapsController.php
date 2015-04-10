@@ -88,10 +88,10 @@ class SapsController extends AppController {
             $this->request->data['Sap']['user_id'] = $this->Session->read('Auth.User.id');
             $this->Sap->create();
             if ($this->Sap->save($this->request->data)) {
-                $this->Session->setFlash(__('The sap has been saved.'));
+                $this->Session->setFlash(__('The sap has been saved.'), 'flash_success');
                 return $this->redirect(array('action' => 'index'));
             } else {
-                $this->Session->setFlash(__('The sap could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The sap could not be saved. Please, try again.'), 'flash_warning');
             }
         }
     }
@@ -110,10 +110,10 @@ class SapsController extends AppController {
         if ($this->request->is(array('post', 'put'))) {
             $this->request->data['Sap']['last_edited_by'] = $this->Session->read('Auth.User.id');
             if ($this->Sap->save($this->request->data)) {
-                $this->Session->setFlash(__('The sap has been saved.'));
+                $this->Session->setFlash(__('The sap has been saved.'), 'flash_success');
                 return $this->redirect(array('action' => 'view',$id));
             } else {
-                $this->Session->setFlash(__('The sap could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The sap could not be saved. Please, try again.'), 'flash_warning');
             }
         } else {
             $options = array('conditions' => array('Sap.' . $this->Sap->primaryKey => $id));
@@ -135,9 +135,9 @@ class SapsController extends AppController {
         }
         $this->request->allowMethod('post', 'delete');
         if ($this->Sap->delete()) {
-            $this->Session->setFlash(__('The sap has been deleted.'));
+            $this->Session->setFlash(__('The sap has been deleted.'), 'flash_warning');
         } else {
-            $this->Session->setFlash(__('The sap could not be deleted. Please, try again.'));
+            $this->Session->setFlash(__('The sap could not be deleted. Please, try again.'), 'flash_warning');
         }
         return $this->redirect(array('action' => 'index'));
     }

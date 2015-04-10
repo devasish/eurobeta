@@ -41,6 +41,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         echo $this->Html->script('jquery-barcode.min');
         echo $this->Html->script('print');
         echo $this->Html->script('common');
+        echo $this->Html->script('common_flash');
         
 
         echo $this->fetch('meta');
@@ -61,12 +62,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 </div>
             </div><!-- /.container-fluid -->
         </nav>
-        <div class="row">
+        
             
                 <?php echo $this->fetch('content'); ?>
 
                 <?php echo $this->Session->flash(); ?>
-        </div>
+        
         
         <?php
         echo $this->Html->script('bootstrap.min');

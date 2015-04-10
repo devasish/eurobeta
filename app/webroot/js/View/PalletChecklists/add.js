@@ -41,6 +41,7 @@ $(document).ready(function () {
                     .attr('type', 'number')
                     .attr('data-index', row_index)
                     .addClass('loads-input')
+                    .addClass('form-control')
                     .attr('required', true);
             var wtWithPallet = $('<input>')
                     .attr('id', 'PalletLoad' + row_index + 'WtWithPallet')
@@ -48,6 +49,7 @@ $(document).ready(function () {
                     .attr('type', 'number')
                     .attr('data-index', row_index)
                     .addClass('loads-input')
+                    .addClass('form-control')
                     .attr('required', true);
             var wtPerCtn = $('<input>')
                     .attr('id', 'PalletLoad' + row_index + 'WtPerCtn')
@@ -55,6 +57,7 @@ $(document).ready(function () {
                     .attr('data-index', row_index)
                     .attr('type', 'number')
                     .addClass('loads_wt_per_ctn dddd')
+                    .addClass('form-control')
                     .attr('required', true)
                     .prop('readonly', 'readonly');
             $('<tr>')

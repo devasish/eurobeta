@@ -91,10 +91,10 @@ class ContainersController extends AppController {
                         $this->request->data['Container']['user_id'] = $this->Session->read('Auth.User.id');
 			$this->Container->create();
 			if ($this->Container->save($this->request->data)) {
-				$this->Session->setFlash(__('The container has been saved.'));
+				$this->Session->setFlash(__('The container has been saved.'), 'flash_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The container could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The container could not be saved. Please, try again.'), 'flash_warning');
 			}
 		}
 		$users = $this->Container->User->find('list');
@@ -114,10 +114,10 @@ class ContainersController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Container->save($this->request->data)) {
-				$this->Session->setFlash(__('The container has been saved.'));
+				$this->Session->setFlash(__('The container has been saved.', 'flash_success'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The container could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The container could not be saved. Please, try again.'), 'flash_warning');
 			}
 		} else {
 			$options = array('conditions' => array('Container.' . $this->Container->primaryKey => $id));
@@ -141,9 +141,9 @@ class ContainersController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Container->delete()) {
-			$this->Session->setFlash(__('The container has been deleted.'));
+			$this->Session->setFlash(__('The container has been deleted.'), 'flash_delete');
 		} else {
-			$this->Session->setFlash(__('The container could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The container could not be deleted. Please, try again.'), 'warning');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

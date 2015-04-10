@@ -49,10 +49,10 @@ class PalletLoadsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->PalletLoad->create();
 			if ($this->PalletLoad->save($this->request->data)) {
-				$this->Session->setFlash(__('The pallet load has been saved.'));
+				$this->Session->setFlash(__('The pallet load has been saved.'), 'flash_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The pallet load could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The pallet load could not be saved. Please, try again.'), 'flash_warning');
 			}
 		}
 		$palletChecklists = $this->PalletLoad->PalletChecklist->find('list');
@@ -73,10 +73,10 @@ class PalletLoadsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->PalletLoad->save($this->request->data)) {
-				$this->Session->setFlash(__('The pallet load has been saved.'));
+				$this->Session->setFlash(__('The pallet load has been saved.'), 'flash_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The pallet load could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The pallet load could not be saved. Please, try again.'), 'flash_warning');
 			}
 		} else {
 			$options = array('conditions' => array('PalletLoad.' . $this->PalletLoad->primaryKey => $id));
@@ -101,9 +101,9 @@ class PalletLoadsController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->PalletLoad->delete()) {
-			$this->Session->setFlash(__('The pallet load has been deleted.'));
+			$this->Session->setFlash(__('The pallet load has been deleted.'), 'flash_delete');
 		} else {
-			$this->Session->setFlash(__('The pallet load could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The pallet load could not be deleted. Please, try again.'), 'flash_warning');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
