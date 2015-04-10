@@ -1,6 +1,6 @@
 $(document).ready(function () {
         
-        $('.palletChecklists').on('blur', '.loads-input', function() {
+        $('body').on('blur', '.loads-input', function() {
             var this_ = $(this);
             var row_index = $(this).data('index');
             var empty_pallet_wt = 20;
