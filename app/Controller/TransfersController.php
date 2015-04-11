@@ -173,13 +173,13 @@ class TransfersController extends AppController {
             'conditions' => array(
                 'Sap.sapcode LIKE' => "%$qStr%"
             ),
-            'limit' => 5
+            'limit' => 7
         ));
         $s = array();
         
         foreach ($saps as $key => $sap) {
             
-            $s[$key]['label'] = $sap['Sap']['description'];
+            $s[$key]['label'] = $sap['Sap']['sapcode']. ' (' .$sap['Sap']['description']. ')';
             $s[$key]['value'] = $sap['Sap']['sapcode'];
             $s[$key]['data'] = $sap['Sap'];
         }

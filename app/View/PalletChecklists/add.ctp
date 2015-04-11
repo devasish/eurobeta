@@ -84,6 +84,9 @@
                                 <?php echo $this->Form->input('single_empty_ctn_wt', array('type' => 'hidden', 'readonly' => true, 'class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
+                                <?php echo $this->Form->input('empty_ctn_wt', array('readonly' => true, 'class'=>'form-control')); ?>
+                            </div>
+                            <div class="form-group">
                                 <?php echo $this->Form->input('cbm', array('readonly' => true, 'class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
