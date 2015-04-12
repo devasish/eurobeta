@@ -142,7 +142,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     </ul>
                 </li>
             </ul>
-            <div class="attribution">Template by <a href="#">Medialoot</a></div>
+            <div class="attribution">&copy; euro sme sdn bhd  <?php echo date('Y'); ?></div>
         </div><!--/.sidebar-->
         <?php endif; ?>
         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
