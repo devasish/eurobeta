@@ -45,7 +45,7 @@
                 <table>
                     <tr>
                         <td width="8%"><b>Total</b></td>
-                        <td width="27%" style="padding-right: 7px;"><?php echo $this->Form->input('total_quantity', array('label' => FALSE, 'div' => FALSE, 'readonly' => true, 'class'=>'form-control')); ?></td>
+                        <td width="27%" style="padding-right: 7px;"><?php echo $this->Form->input('no_of_ctn', array('label' => FALSE, 'div' => FALSE, 'readonly' => true, 'class'=>'form-control')); ?></td>
                         <td width="27%" style="padding-left: 7px;"><?php echo $this->Form->input('total_wt_with_pallet', array('label' => FALSE, 'div' => FALSE, 'readonly' => true, 'class'=>'form-control')); ?></td>
                         <td width="27%">&nbsp;</td>
                         <td>
@@ -100,7 +100,10 @@
                                 <?php echo $this->Form->input('gross_wt_per_ctn', array('readonly' => true, 'class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
-                                <?php echo $this->Form->input('diff', array('readonly' => true, 'class'=>'form-control', 'label' => 'Diff (%)')); ?>
+                                <?php echo $this->Form->input('diff', array('type' => 'hidden', 'class'=>'form-control')); ?>
+                            </div>
+                            <div class="form-group">
+                                <?php echo $this->Form->input('diff_perc', array('readonly' => true, 'class'=>'form-control', 'label' => 'Diff (%)')); ?>
                             </div>
                             
                         </div>
