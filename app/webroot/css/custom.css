@@ -54,3 +54,21 @@ dd {
 .lg-input{
     width: 200px;
 }
+.action-link li a{outline:0;}
+.action-link li a:hover {
+    text-decoration: none;
+    outline: 0;
+    color: #5f6468;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+/* Form errors */
+
+form .error-message {	        
+    background-color: #ffff99;
+	margin-top: 3px;
+	padding-left: 4px;
+	padding-right: 0;
+        color: #cd0a0a;
+        font-size: x-small; 
+}

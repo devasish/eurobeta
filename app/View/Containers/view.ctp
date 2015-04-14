@@ -1,7 +1,10 @@
 <div class="row">
-    <ol class="breadcrumb">
+    <ol class="breadcrumb action-link">
         <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-        <li class="active">Dashboard</li>
+        <li><?php echo $this->Html->link('<i class="fa fa-edit"></i>' . '&nbsp;&nbsp;' . __('Edit Container'), array('action' => 'edit', $container['Container']['id']), array('escape' => FALSE)); ?> </li>
+        <li><?php echo $this->Form->postLink('<i class="fa fa-trash"></i>' . '&nbsp;&nbsp;' . __('Delete Container'), array('action' => 'delete', $container['Container']['id']), array('escape' => FALSE), __('Are you sure you want to delete # %s?', $container['Container']['id'])); ?> </li>
+        <li><?php echo $this->Html->link('<i class="fa fa-list"></i>' . '&nbsp;&nbsp;' . __('Containers List'), array('action' => 'index'), array('escape' => FALSE)); ?> </li>
+        <li><?php echo $this->Html->link('<i class="fa fa-plus"></i>' . '&nbsp;&nbsp;' . __('New Container'), array('action' => 'add'), array('escape' => FALSE)); ?> </li>
     </ol>
 </div><!--/.row-->
 <br/><br/>
@@ -87,18 +90,18 @@
 </div>
 
 <div class="row">
-            <div class="col-xs-12">
-              <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title"><?php echo __('Related Pallet Checklist'); ?></h3>
-                  <div class="box-tools">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title"><?php echo __('Related Pallet Checklist'); ?></h3>
+                <div class="box-tools">
                     <div class="input-group"> 
-                        <span class="label label-success"><?php echo $this->Html->link('<i class="fa fa-cart-plus"></i>'. __('Add New'), array('controller' => 'pallet_checklists', 'action' => 'add', $container['Container']['id'], $container['Container']['container_no']), array('escape'=>FALSE)) ?></span>
-                      </div>
+                        <span class="label label-success"><?php echo $this->Html->link('<i class="fa fa-cart-plus"></i>' . __('Add New'), array('controller' => 'pallet_checklists', 'action' => 'add', $container['Container']['id'], $container['Container']['container_no']), array('escape' => FALSE)) ?></span>
                     </div>
-                </div><!-- /.box-header -->
-                <div class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
+                </div>
+            </div><!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
                     <tr>
                         <th>Serial</th>
                         <th>Product Desc</th>
@@ -122,12 +125,12 @@
                             </td>
                         </tr>
                     <?php endforeach; ?>
-                  </table>                    
-                </div><!-- /.box-body -->                                     
-              </div><!-- /.box -->
-              <br/><br/>
-            </div>
-          </div>
+                </table>                    
+            </div><!-- /.box-body -->                                     
+        </div><!-- /.box -->
+        <br/><br/>
+    </div>
+</div>
 <script>
     $(function () {
         $('#hover, #striped, #condensed').click(function () {

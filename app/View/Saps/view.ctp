@@ -1,7 +1,10 @@
 <div class="row">
-    <ol class="breadcrumb">
+    <ol class="breadcrumb action-link">
         <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-        <li class="active">Dashboard</li>
+        <li><?php echo $this->Html->link('<i class="fa fa-edit"></i>' . '&nbsp;&nbsp;' . __('Edit Sap'), array('action' => 'edit', $sap['Sap']['id']), array('escape' => FALSE)); ?> </li>
+        <li><?php echo $this->Form->postLink('<i class="fa fa-trash"></i>' . '&nbsp;&nbsp;' . __('Delete Sap'), array('action' => 'delete', $sap['Sap']['id']), array('escape' => FALSE), __('Are you sure you want to delete # %s?', $sap['Sap']['id'])); ?> </li>
+        <li><?php echo $this->Html->link('<i class="fa fa-list"></i>' . '&nbsp;&nbsp;' . __('List Saps'), array('action' => 'index'), array('escape' => FALSE)); ?></li>
+        <li><?php echo $this->Html->link('<i class="fa fa-plus"></i>' . '&nbsp;&nbsp;' . __('New Sap'), array('action' => 'add'), array('escape' => FALSE)); ?></li>
     </ol>
 </div><!--/.row-->
 <br/><br/>
