@@ -90,18 +90,18 @@
 </div>
 
 <div class="row">
-            <div class="col-xs-12">
-              <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title"><?php echo __('Related Pallet Checklist'); ?></h3>
-                  <div class="box-tools">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title"><?php echo __('Related Pallet Checklist'); ?></h3>
+                <div class="box-tools">
                     <div class="input-group"> 
-                        <span class="label label-success"><?php echo $this->Html->link('<i class="fa fa-cart-plus"></i>'. __('Add New'), array('controller' => 'pallet_checklists', 'action' => 'add', $container['Container']['id'], $container['Container']['container_no']), array('escape'=>FALSE)) ?></span>
-                      </div>
+                        <span class="label label-success"><?php echo $this->Html->link('<i class="fa fa-cart-plus"></i>' . __('Add New'), array('controller' => 'pallet_checklists', 'action' => 'add', $container['Container']['id'], $container['Container']['container_no']), array('escape' => FALSE)) ?></span>
                     </div>
-                </div><!-- /.box-header -->
-                <div class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
+                </div>
+            </div><!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
                     <tr>
                         <th>Serial</th>
                         <th>Product Desc</th>
@@ -125,12 +125,12 @@
                             </td>
                         </tr>
                     <?php endforeach; ?>
-                  </table>                    
-                </div><!-- /.box-body -->                                     
-              </div><!-- /.box -->
-              <br/><br/>
-            </div>
-          </div>
+                </table>                    
+            </div><!-- /.box-body -->                                     
+        </div><!-- /.box -->
+        <br/><br/>
+    </div>
+</div>
 <script>
     $(function () {
         $('#hover, #striped, #condensed').click(function () {
