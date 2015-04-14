@@ -1,7 +1,7 @@
 <div class="row">
     <ol class="breadcrumb">
         <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-        <li class="active">Report</li>
+        <li><a href="#">Report</a></li>
         <li class="active">CTN Loading Report</li>
     </ol>
 </div><!--/.row-->

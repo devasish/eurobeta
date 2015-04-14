@@ -58,10 +58,6 @@
                         </td>
                         <td>
                             <span class="label label-info"><?php echo $this->Html->link(__('View'), array('action' => 'view', $sap['Sap']['id'])); ?></span>
-
-                            <span class="label label-warning"><?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $sap['Sap']['id'])); ?></span>
-
-                            <span class="label label-danger"><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $sap['Sap']['id']), array(), __('Are you sure you want to delete # %s?', $sap['Sap']['id'])); ?></span>
                         </td>
                     </tr>
                     <?php endforeach; ?>

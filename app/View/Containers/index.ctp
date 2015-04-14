@@ -71,10 +71,6 @@
 
                             <td>
                                 <span class="label label-info"><?php echo $this->Html->link(__('Load'), array('action' => 'view', $container['Container']['id'])); ?></span>
-
-                                <span class="label label-warning"><?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $container['Container']['id'])); ?></span>
-
-                                <span class="label label-danger"><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete',$container['Container']['id']), array(), __('Are you sure you want to delete # %s?', $container['Container']['id'])); ?></span>
                             </td>
                         </tr>
                     <?php endforeach; ?>

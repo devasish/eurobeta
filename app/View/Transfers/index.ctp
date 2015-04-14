@@ -54,10 +54,6 @@
                         </td>
                         <td>
                             <span class="label label-info"><?php echo $this->Html->link(__('View'), array('action' => 'view', $transfer['Transfer']['id'])); ?></span>
-
-                            <span class="label label-warning"><?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $transfer['Transfer']['id'])); ?></span>
-
-                            <span class="label label-danger"><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $transfer['Transfer']['id']), array(), __('Are you sure you want to delete # %s?', $transfer['Transfer']['id'])); ?></span>
                         </td>
                     </tr>
                     <?php endforeach; ?>
