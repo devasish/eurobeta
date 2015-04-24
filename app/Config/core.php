@@ -397,3 +397,4 @@ Configure::write('STATUS', array('1' => 'Active','0' => 'Inactive'
 Configure::write('CONT_TYPES', array('1' => '20FT', '2' => '40FT-HQ', '3' => '40FT-GB'));
 Configure::write('CONT_VP_CTN', array('1' => 'CTN', '2' => 'VacPack'));
 Configure::write('CONT_STATUS', array('0' => 'Open', '1' => 'In Progress', '2' => 'Closed'));
+Configure::write('SHIFT', array('0' => 'Morning', '1' => 'Night'));

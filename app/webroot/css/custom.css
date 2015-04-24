@@ -1,3 +1,88 @@
+.login-bg{
+    /*background:  url('../img/login_bg.png') repeat center;*/
+    background:  url('../img/4.jpg') no-repeat left top;
+}
+.login-panel-body{
+    background:  url('../img/login_panel_bg_sm.jpg') no-repeat center;
+    width: 400px;
+    height: 249px;
+    margin: auto;
+    box-shadow: 5px 5px 30px #333; 
+    border-radius: 10px;
+}
+.trnsp-input1{
+    left: 451px;
+    position: fixed;
+    top: 137px;
+    width: 249px;
+}
+.trnsp-input1 input, .trnsp-input2 input{
+    height: 34px;
+    border-radius: 5px;
+    background: transparent;
+    color: #FFF;
+    border: none;
+}
+.trnsp-input1 input:focus, .trnsp-input2 input:focus{
+    border: 1px solid #FFF;
+}
+.trnsp-input2{
+    left: 451px;
+    position: fixed;
+    top: 202px;
+    width: 249px;
+}
+.login-checkbox{
+    left: 455px;
+    position: fixed;
+    top: 250px;
+}
+.login-checkbox label{
+    color: #FFF;
+    padding-right: 65px;
+}
+.login-checkbox label input{
+    padding-right:  30px;
+}
+.forgot{
+    left: 725px;
+    position: fixed;
+    top: 200px;    
+}
+.register{
+    left: 725px;
+    position: fixed;
+    top: 239px;    
+}
+.help{
+    left: 725px;
+    position: fixed;
+    top: 275px;    
+}
+.forgot a, .register a, .help a{
+    color: #FFF;
+    font-size: 10px;
+    outline: 0;
+}
+.forgot a:hover, .register a:hover, .help a:hover{
+    color: yellow;
+    outline: 0;
+}
+.forgot a:focus, .register a:focus, .help a:focus{
+    color: yellow;
+    outline: 0;
+}
+.pos{
+    position: fixed;
+    top: 280px;
+    left: 400px;
+
+}
+.pos1{
+    position: fixed;
+    top: 365px;
+
+}
 .label-danger a, .label-warning a, .label-info a, .label-success a{
     color: #FFF;
     outline: 0;

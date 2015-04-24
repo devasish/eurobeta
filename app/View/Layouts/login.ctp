@@ -47,23 +47,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         echo $this->fetch('meta');
         echo $this->fetch('css');
         echo $this->fetch('script');
-        ?>
+        ?>        
         <script type="text/javascript">
             var SITE_URL = '<?= SITE_URL ?>';
         </script>
     </head>
-    <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    
-                    <a class="navbar-brand" href="#"><span><?php echo $cakeDescription; ?></span> Admin</a>
-                                        
-                </div>
-            </div><!-- /.container-fluid -->
-        </nav>
-        
-            
+    <body class="login-bg">           
                 <?php echo $this->fetch('content'); ?>
 
                 <?php echo $this->Session->flash(); ?>
