@@ -57,7 +57,7 @@
             source : SITE_URL + 'customers/prediction',
             select : function (event, ui) {
                 $('#SapCustomerId').val(ui.item.id);
-                console.log(ui);
+                //console.log(ui);
             }
         });
     })

@@ -139,8 +139,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                 <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Create New User', array('controller' => 'users', 'action' => 'add'), array('escape' => FALSE)); ?>
                             </li>                        
                         </ul>
-                    </li>
-                    <li role="presentation" class="divider"></li>
+                    </li>                    
                     <li class="parent">
                         <a href="javascript:void(0)">
                             <span class="glyphicon glyphicon-adjust"></span>Control Panel<span data-toggle="collapse" href="#sub-item-6" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
@@ -149,9 +148,21 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <li>
                                 <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'New Customer', array('controller' => 'customers', 'action' => 'add'), array('escape' => FALSE)); ?>
                             </li>
-                            <li>
+                            <!--<li>
                                 <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'List of Customer', array('controller' => 'customers', 'action' => 'index'), array('escape' => FALSE)); ?>
-                            </li>					
+                            </li>-->
+                            <li>
+                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Create Loader', array('controller' => 'loaders', 'action' => 'add'), array('escape' => FALSE)); ?>
+                            </li>
+                            <!--<li>
+                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Loaders List', array('controller' => 'loaders', 'action' => 'index'), array('escape' => FALSE)); ?>
+                            </li>-->
+                            <li>
+                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Create Cheaker', array('controller' => 'checkers', 'action' => 'add'), array('escape' => FALSE)); ?>
+                            </li>
+                            <!--<li>
+                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Checkers List', array('controller' => 'checkers', 'action' => 'index'), array('escape' => FALSE)); ?>
+                            </li>-->
                         </ul>
                     </li>
                 </ul>

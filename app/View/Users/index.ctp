@@ -63,11 +63,7 @@
                             <td><?php echo h($user['User']['created']); ?></td>
                             <td><?php echo $status; ?></td>
                             <td>
-                                <span class="label label-info"><?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?></span>
-                                
-                                <span class="label label-warning"><?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?></span>
-
-                                <span class="label label-danger"><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id']), array(), __('Are you sure you want to delete # %s?', $user['User']['id'])); ?></span>
+                                <span class="label label-info"><?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?></span>                                                                
                             </td>
                         </tr>
                     <?php endforeach; ?>
