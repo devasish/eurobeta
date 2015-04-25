@@ -92,9 +92,9 @@
                     var json = $.parseJSON(r);
                     
                     if ($('#loading_ana_table tr#t_head').find('th').length == 0) {
-                        var htds = '<th>SAP</th>';
+                        var htds = '<th>SAP</th><th>Description</th>';
                         var grCols = '<td>Loaded CTN</td><td>Loaded WT</td><td>AVG Loading WT</td><td>DIFF %</td>';
-                        var colHeads = '<td>&nbsp;</td>';
+                        var colHeads = '<td colspan="2">&nbsp;</td>';
                         
                         $.each(json.gr_dates, function(i, v) {
                             htds += '<th colspan="4">' + v + '</th>';
@@ -106,7 +106,8 @@
                     }
                     
                     
-                    var tds = '<td>SAP GOES HERE</td>';
+                    var tds = '<td>' + json.sapcode + '</td>';
+                    tds += '<td>' + json.sapdesc + '</td>';
                     $.each(json.data, function(i, v) {
                         tds += '<td>' + v.total_no_of_ctn + '</td>';
                         tds += '<td>' + v.total_net_product_wt + '</td>';

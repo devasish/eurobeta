@@ -44,9 +44,7 @@
                             <div class="form-group">
                                 <?php echo $this->Form->input('remarks', array('class'=>'form-control')); ?>
                             </div>
-                            <div class="form-group">
-                                <?php echo $this->Form->input('serial_no', array('class'=>'form-control')); ?>
-                            </div>
+                            
                             <div class="form-group">
                                 <?php echo $this->Form->input('status', array('options'=> Configure::read('STATUS'),'class'=>'form-control')); ?>
                             </div> 
