@@ -149,4 +149,15 @@ class Transfer extends AppModel {
 			'order' => ''
 		)
 	);
+        
+        
+        public function report_1_data($date) {
+            $sql = "(SELECT "
+                    . "sap_id "
+                    . "SUM(ctn_per_pallet) AS total_ctn_per_pallet, "
+                    . "SUM(net_wt) AS total_net_wt,"
+                    . "FROM transfers "
+                    . "WHERE 1 or transfer_date = '$date' AND  "
+                    . "GROUP BY sap_id ";
+        }
 }

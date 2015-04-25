@@ -40,9 +40,11 @@ class ReportsController extends AppController {
                             $conditions['Sap.' . $this->request->params['named']['field'] . ' LIKE '] = "%$value%";
                         }
                     } elseif($name == 'cal_from' && !empty ($value)) {
-                        $conditions['PalletChecklist.created >='] = date('Y-m-d', strtotime(str_replace('-', '/', $value)));
+                        $dateObj = DateTime::createFromFormat('d-m-Y', $value);
+                        $conditions['PalletChecklist.created >='] = $dateObj->format('Y-m-d');
                     } elseif($name == 'cal_to' && !empty ($value)) {
-                        $conditions['PalletChecklist.created <='] = date('Y-m-d', strtotime(str_replace('-', '/', $value))).' 23:59:59';
+                        $dateObj = DateTime::createFromFormat('d-m-Y', $value);
+                        $conditions['PalletChecklist.created <='] = $dateObj->format('Y-m-d') . ' 23:59:59';
                     } 
                     
                     $this->request->data['Filter'][$name] = $value;
@@ -77,10 +79,19 @@ class ReportsController extends AppController {
         $this->set('palletLoads', $this->Paginator->paginate('PalletChecklist'));
     }
 
+    /**
+     * CTN LOADING REPORT
+     * This is ctn loading report for a particular Product
+     * This function loads the view...then data is loaded by ajax
+     */
     public function ctn_loading_report() {
         // loads the view only
     }
 
+    /**
+     * CTN LOADING REPORT
+     * This function sends the data to the view by ajax
+     */
     public function ctn_loading_report_data() {
         $this->layout = 'ajax';
         $this->loadModel('PalletChecklist');
@@ -95,6 +106,11 @@ class ReportsController extends AppController {
         $this->set('arr', $res);
     }
 
+    
+    /**
+     * LOADING ANALYSIS
+     * This function loads the view only
+     */
     public function loading_analysis() {
         $this->loadModel('PalletChecklist');
         $x = $this->PalletChecklist->find('all', array(
@@ -115,6 +131,12 @@ class ReportsController extends AppController {
 //        pr($x);
     }
 
+    /**
+     * LOADING ANALYSIS
+     * This function counts the number of SAP code exits in the given daterange.
+     * then for each sap id data is loaded by successive ajax call
+     * @return type
+     */
     public function loading_analysis_data_count() {
         $this->autoRender = false;
         $this->request->onlyAllow('ajax');
@@ -144,6 +166,11 @@ class ReportsController extends AppController {
         return json_encode($result);
     }
 
+    /**
+     * LOADING ANAYLYSIS
+     * Loads data for each sap successively
+     * @return type
+     */
     public function loading_analysis_data() {
         $this->autoRender = false;
         $this->request->onlyAllow('ajax');
@@ -226,6 +253,11 @@ class ReportsController extends AppController {
         }
 
         return json_encode($arr);
+    }
+    
+    
+    public function transfer_report_1() {
+        $this->loadModel('Transfer');
     }
 
 }
