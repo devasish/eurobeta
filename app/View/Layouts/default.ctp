@@ -51,8 +51,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <script type="text/javascript">
             var SITE_URL = '<?= SITE_URL ?>';
         </script>
+
     </head>
     <body>
+
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -146,19 +148,19 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         </a>
                         <ul class="children collapse" id="sub-item-6">
                             <!--<li>
-                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'New Customer', array('controller' => 'customers', 'action' => 'add'), array('escape' => FALSE)); ?>
+                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'New Customer', array('controller' => 'customers', 'action' => 'add'), array('escape' => FALSE)); ?>
                             </li>-->
                             <li>
                                 <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'List of Customer', array('controller' => 'customers', 'action' => 'index'), array('escape' => FALSE)); ?>
                             </li>
                             <!--<li>
-                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Create Loader', array('controller' => 'loaders', 'action' => 'add'), array('escape' => FALSE)); ?>
+                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Create Loader', array('controller' => 'loaders', 'action' => 'add'), array('escape' => FALSE)); ?>
                             </li>-->
                             <li>
                                 <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Loaders List', array('controller' => 'loaders', 'action' => 'index'), array('escape' => FALSE)); ?>
                             </li>
                             <!--<li>
-                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Create Cheaker', array('controller' => 'checkers', 'action' => 'add'), array('escape' => FALSE)); ?>
+                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Create Cheaker', array('controller' => 'checkers', 'action' => 'add'), array('escape' => FALSE)); ?>
                             </li>-->
                             <li>
                                 <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Checkers List', array('controller' => 'checkers', 'action' => 'index'), array('escape' => FALSE)); ?>
@@ -183,27 +185,66 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         ?>
 
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $('#transferDate').datepicker({
                 });
 
-                !function($) {
-                    $(document).on("click", "ul.nav li.parent > a > span.icon", function() {
+                !function ($) {
+                    $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
                         $(this).find('em:first').toggleClass("glyphicon-minus");
                     });
                     $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
                 }(window.jQuery);
 
-                $(window).on('resize', function() {
+                $(window).on('resize', function () {
                     if ($(window).width() > 768)
                         $('#sidebar-collapse').collapse('show')
                 })
-                $(window).on('resize', function() {
+                $(window).on('resize', function () {
                     if ($(window).width() <= 767)
                         $('#sidebar-collapse').collapse('hide')
                 })
 
             });
+        </script>
+        <script>
+            function exportTableToCSV($table, filename) {
+
+                var $rows = $table.find('tr:has(td)'),
+                        // Temporary delimiter characters unlikely to be typed by keyboard
+                        // This is to avoid accidentally splitting the actual contents
+                        tmpColDelim = String.fromCharCode(11), // vertical tab character
+                        tmpRowDelim = String.fromCharCode(0), // null character
+
+                        // actual delimiter characters for CSV format
+                        colDelim = '","',
+                        rowDelim = '"\r\n"',
+                        // Grab text from table into CSV formatted string
+                        csv = '"' + $rows.map(function (i, row) {
+                            var $row = $(row),
+                                    $cols = $row.find('td');
+
+                            return $cols.map(function (j, col) {
+                                var $col = $(col),
+                                        text = $col.text();
+
+                                return text.replace('"', '""'); // escape double quotes
+
+                            }).get().join(tmpColDelim);
+
+                        }).get().join(tmpRowDelim)
+                        .split(tmpRowDelim).join(rowDelim)
+                        .split(tmpColDelim).join(colDelim) + '"',
+                        // Data URI
+                        csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+
+                $(this)
+                        .attr({
+                            'download': filename,
+                            'href': csvData,
+                            'target': '_blank'
+                        });
+            }
         </script>
         <!--<?php echo $this->element('sql_dump'); ?>-->
     </body>
