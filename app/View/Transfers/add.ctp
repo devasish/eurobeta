@@ -30,6 +30,18 @@
                                 <?php echo $this->Form->input('net_wt', array('readonly' => true, 'class' => 'form-control')); ?>
                             </div>
                             <div class="form-group">
+                                <label>Transfer Date</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <?php echo $this->Form->input('transfer_date', array('class'=>'form-control pull-right', 'id'=>'transferDate', 'type'=>'text', 'label'=>FALSE)); ?>  
+                                </div><!-- /.input group -->
+                            </div>
+                            <div class="form-group">
+                                <?php echo $this->Form->input('shift', array('options' => Configure::read('SHIFT'), 'label' => 'Shift', 'class' => 'form-control')); ?>
+                            </div>
+                            <div class="form-group">
                                 <?php echo $this->Form->input('remarks', array('type' => 'textarea','escape' => true, 'rows' => 2, 'class' => 'form-control')); ?>
                             </div>
                             <div class="form-group">

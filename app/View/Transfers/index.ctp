@@ -35,7 +35,8 @@
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('ctn_per_pallet'); ?></th>
 			<th><?php echo $this->Paginator->sort('net_wt'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>			
+			<th><?php echo $this->Paginator->sort('transfer_date'); ?></th>			
+			<th><?php echo $this->Paginator->sort('shift'); ?></th>			
 			<th><?php echo 'Created By'; ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
                     </tr>
@@ -48,7 +49,8 @@
                         <td><?php echo h($transfer['Transfer']['description']); ?>&nbsp;</td>
                         <td><?php echo h($transfer['Transfer']['ctn_per_pallet']); ?>&nbsp;</td>
                         <td><?php echo h($transfer['Transfer']['net_wt']); ?>&nbsp;</td>
-                        <td><?php echo h($transfer['Transfer']['created']); ?>&nbsp;</td>                        
+                        <td><?php echo h($transfer['Transfer']['transfer_date']); ?>&nbsp;</td>                       
+                        <td><?php echo h($transfer['Transfer']['shift'] == 0 ? 'Morning' : 'Night'); ?>&nbsp;</td>                        
                         <td>
                             <?php echo $this->Html->link($transfer['User']['username'], array('controller' => 'users', 'action' => 'view', $transfer['User']['id'])); ?>
                         </td>

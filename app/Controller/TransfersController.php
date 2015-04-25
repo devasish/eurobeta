@@ -104,6 +104,8 @@ class TransfersController extends AppController {
             $this->request->data['Transfer']['serial_no'] = strtoupper($this->request->data['Transfer']['sap_code']).date('dmy').sprintf('%05d', $last_serial);
             $this->request->data['Transfer']['serial_index'] = $last_serial;
             $this->Transfer->create();
+            $transdate = date('Y-m-d', strtotime($this->request->data['Transfer']['transfer_date']));
+            $this->request->data['Transfer']['transfer_date'] = $transdate;
             if ($this->Transfer->save($this->request->data)) {
                 $this->Session->setFlash(__('The transfer has been saved.'), 'flash_success');
                 return $this->redirect(array('action' => 'view',$this->Transfer->getLastInsertId()));
@@ -128,6 +130,8 @@ class TransfersController extends AppController {
             throw new NotFoundException(__('Invalid transfer'));
         }
         if ($this->request->is(array('post', 'put'))) {
+            $updtransdate = date('Y-m-d', strtotime($this->request->data['Transfer']['transfer_date']));
+            $this->request->data['Transfer']['transfer_date'] = $updtransdate;
             if ($this->Transfer->save($this->request->data)) {
                 $this->Session->setFlash(__('The transfer has been saved.'), 'flash_success');
                 return $this->redirect(array('action' => 'index'));
@@ -135,8 +139,10 @@ class TransfersController extends AppController {
                 $this->Session->setFlash(__('The transfer could not be saved. Please, try again.'), 'flash_warning');
             }
         } else {
-            $options = array('conditions' => array('Transfer.' . $this->Transfer->primaryKey => $id));
+            $options = array('conditions' => array('Transfer.' . $this->Transfer->primaryKey => $id));              
             $this->request->data = $this->Transfer->find('first', $options);
+            $settransdate = date('d-m-Y', strtotime($this->request->data['Transfer']['transfer_date']));
+            $this->request->data['Transfer']['transfer_date'] = $settransdate;           
         }
         $saps = $this->Transfer->Sap->find('list');
         $users = $this->Transfer->User->find('list');

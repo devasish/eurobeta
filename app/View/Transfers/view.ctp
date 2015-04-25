@@ -115,6 +115,15 @@
                         <?php echo h($transfer['Transfer']['net_wt']); ?>
                         &nbsp;
                     </dd>
+                    <dt><?php echo __('Transfer Date'); ?></dt>
+                    <dd>
+                        <?php echo h($transfer['Transfer']['transfer_date']); ?>
+                        &nbsp;
+                    </dd>
+                    <dt><?php echo __('Shift'); ?></dt>
+                    <dd>
+                        <?php echo h($transfer['Transfer']['shift'] == 0 ? 'Morning' : 'Night'); ?>
+                    </dd>
                     <dt><?php echo __('Remarks'); ?></dt>
                     <dd>
                         <?php echo h($transfer['Transfer']['remarks']); ?>
