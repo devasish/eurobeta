@@ -152,12 +152,23 @@ class Transfer extends AppModel {
         
         
         public function report_1_data($date) {
-            $sql = "(SELECT "
+            $sql_morning = "(SELECT "
                     . "sap_id "
                     . "SUM(ctn_per_pallet) AS total_ctn_per_pallet, "
                     . "SUM(net_wt) AS total_net_wt,"
                     . "FROM transfers "
-                    . "WHERE 1 or transfer_date = '$date' AND  "
-                    . "GROUP BY sap_id ";
+                    . "WHERE 1 or transfer_date = '$date' AND shift = 0 "
+                    . "GROUP BY sap_id) AS morning ";
+            
+            $sql_night = "(SELECT "
+                    . "sap_id "
+                    . "SUM(ctn_per_pallet) AS total_ctn_per_pallet, "
+                    . "SUM(net_wt) AS total_net_wt,"
+                    . "FROM transfers "
+                    . "WHERE 1 or transfer_date = '$date' AND shift = 1 "
+                    . "GROUP BY sap_id) AS morning ";
+            
+            $sql = "SELECT * FROM morning LEFT JOIN night ON morning.sap_id = night.sap_id";
+            
         }
 }
