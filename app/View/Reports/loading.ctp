@@ -32,7 +32,7 @@
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover" id="loading_report_table">
-                        <?php if (!empty($this->Form->value('Filter.cal_from'))): ?>
+                        <?php if (!empty($this->request->data['Filter']['cal_from'])): ?>
                       <tr>
                           <td colspan="9" class="text-center">LOADING REPORT FROM <?php echo h($this->Form->value('Filter.cal_from'))?> TO <?php echo h($this->Form->value('Filter.cal_to'))?></td>
                       </tr>
