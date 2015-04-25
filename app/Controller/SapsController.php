@@ -135,7 +135,7 @@ class SapsController extends AppController {
         }
         $this->request->allowMethod('post', 'delete');
         if ($this->Sap->delete()) {
-            $this->Session->setFlash(__('The sap has been deleted.'), 'flash_warning');
+            $this->Session->setFlash(__('The sap has been deleted.'), 'flash_delete');
         } else {
             $this->Session->setFlash(__('The sap could not be deleted. Please, try again.'), 'flash_warning');
         }
