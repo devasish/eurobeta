@@ -35,14 +35,9 @@
                             <div class="form-group">
                                 <?php echo $this->Form->input('remarks', array('class'=>'form-control')); ?>
                             </div>
-                            <div class="form-group">
-                                <?php echo $this->Form->input('serial_no', array('class'=>'form-control')); ?>
-                            </div>
+                            
                             <div class="form-group">
                                 <?php echo $this->Form->input('status', array('class'=>'form-control')); ?>
-                            </div> 
-                            <div class="form-group">
-                                <?php echo $this->Form->input('user_id', array('class'=>'form-control')); ?>
                             </div> 
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>

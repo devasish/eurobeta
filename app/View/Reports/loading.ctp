@@ -14,10 +14,13 @@
                 <div class="box-header">
                   <h3 class="box-title">Loading Report</h3>
                   <div class="box-tools">
+                      <?php $url = array('controller' => 'Reports', 'action' => 'loading'); ?>
+                        <?php echo $this->Form->create('Filter', array('url' => $url)); ?>
                     <div class="input-group"> 
+                        
                         <ul class="filters">  
-                            <li><?php $url = array('controller' => 'Users', 'action' => 'index'); ?></li>
-                            <li><?php echo $this->Form->create('Filter', array('url' => $url)); ?></li>  
+                            <li><?php echo $this->Form->input('cal_from', array('class' => 'date form-control input-sm', 'label' => false, 'placeholder' => 'From')); ?></li>
+                            <li><?php echo $this->Form->input('cal_to', array('class' => 'date form-control input-sm', 'label' => false, 'placeholder' => 'To')); ?></li>
                             <li><?php echo $this->Form->input('value', array('class' => 'date form-control input-sm', 'label' => false, 'placeholder' => 'Search')); ?></li>
                             <li><?php echo $this->Form->input('field', array('options' => array('sapcode' => 'SAP Code', 'description' => 'SAP Description'), 'label' => false, 'class' => 'form-control input-sm')); ?></li>
                         </ul>
@@ -33,10 +36,12 @@
                         <th><?php echo $this->Paginator->sort('Sap.sapcode'); ?></th>
 			<th><?php echo $this->Paginator->sort('Sap.description'); ?></th>
 			<th>T. CTN</th>
+                        <th>L. Weight</th>
 			<th>N. Weight</th>
 			<th>Diff. Kg.</th>
 			<th>Diff. %</th>
 			<th>AVG WT/CTN</th>
+			<th>Loaded on</th>
                     </tr>
                    <?php foreach ($palletLoads as $palletLoad): ?>
                         <tr>
@@ -44,11 +49,13 @@
                             <td><?php echo h($palletLoad['Sap']['description']); ?></td>
                             <td><?php echo h($palletLoad[0]['total_no_of_ctn']); ?></td>
                             <td><?php echo h($palletLoad[0]['total_net_product_wt']); ?></td>
+                            <td><?php echo h($palletLoad[0]['net_cust_product_wt']); ?></td>
                             <td><?php echo h($palletLoad[0]['total_diff']); ?></td>
-                            <td><?php echo h($palletLoad[0]['total_diff_perc']); ?></td>
-                            <td><?php echo h($palletLoad[0]['avg_net_wt_per_ctn']); ?></td>
+                            <td><?php echo h(round($palletLoad[0]['total_diff'] / $palletLoad[0]['net_cust_product_wt'] * 100, 2)); ?></td>
+                            <td><?php echo h(round($palletLoad[0]['total_net_product_wt'] / $palletLoad[0]['total_no_of_ctn'], 2)); ?></td>
+                            <td><?php echo h($palletLoad['PalletChecklist']['created']); ?></td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php endforeach;  ?>
                   </table>
                 </div>
                 <div class="box-footer clearfix">
@@ -68,3 +75,9 @@
             </div>
           </div>
 
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#FilterCalFrom').datepicker({dateFormat: 'dd-mm-yyyy'});
+        $('#FilterCalTo').datepicker({dateFormat: 'dd-mm-yyyy'});
+    });
+</script>
