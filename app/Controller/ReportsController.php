@@ -258,6 +258,8 @@ class ReportsController extends AppController {
     
     public function transfer_report_1() {
         $this->loadModel('Transfer');
+        
+        $transfers = $this->Transfer->report_1_data('2015-04-12');
+        $this->set('transfers', $transfers);
     }
-
 }
