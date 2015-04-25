@@ -1,6 +1,5 @@
 
     <div class="login-panel-body">
-        <?php echo $this->Session->flash('auth'); ?>
         <?php echo $this->Form->create('User'); ?>
         <fieldset>
             <div class="trnsp-input1">

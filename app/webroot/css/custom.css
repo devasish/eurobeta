@@ -1,63 +1,61 @@
 .login-bg{
     /*background:  url('../img/login_bg.png') repeat center;*/
-    background:  url('../img/4.jpg') no-repeat left top;
+    background:   #DDD url('../img/4.png') no-repeat left top;
 }
 .login-panel-body{
     background:  url('../img/login_panel_bg_sm.jpg') no-repeat center;
     width: 400px;
     height: 249px;
     margin: auto;
-    box-shadow: 5px 5px 30px #333; 
+    margin-top: 70px;
+    box-shadow: 5px 5px 30px #555; 
     border-radius: 10px;
 }
 .trnsp-input1{
-    left: 451px;
-    position: fixed;
-    top: 137px;
-    width: 249px;
+    margin-left: 14px;
+    margin-top: 87px;
+    position: relative;
+    width: 248px;
 }
 .trnsp-input1 input, .trnsp-input2 input{
     height: 34px;
     border-radius: 5px;
-    background: transparent;
+    background: transparent!important;
     color: #FFF;
     border: none;
 }
 .trnsp-input1 input:focus, .trnsp-input2 input:focus{
     border: 1px solid #FFF;
 }
-.trnsp-input2{
-    left: 451px;
-    position: fixed;
-    top: 202px;
-    width: 249px;
+.trnsp-input2{    
+    margin-left: 14px;
+    margin-top: 31px;
+    position: relative;
+    width: 248px;
 }
 .login-checkbox{
-    left: 455px;
-    position: fixed;
-    top: 250px;
+    margin-left: 14px;
+    margin-top: 15px;
+    position: relative;
+    width: 245px;
 }
 .login-checkbox label{
     color: #FFF;
-    padding-right: 65px;
-}
-.login-checkbox label input{
-    padding-right:  30px;
 }
 .forgot{
-    left: 725px;
-    position: fixed;
-    top: 200px;    
+    margin-left: 284px;
+    margin-top: -83px;
+    position: relative;    
 }
 .register{
-    left: 725px;
-    position: fixed;
-    top: 239px;    
+    margin-left: 284px;
+    margin-top: 18px;
+    position: relative;    
 }
 .help{
-    left: 725px;
-    position: fixed;
-    top: 275px;    
+    margin-left: 284px;
+    margin-top: 16px;
+    position: relative;
 }
 .forgot a, .register a, .help a{
     color: #FFF;
@@ -80,7 +78,7 @@
 }
 .pos1{
     position: fixed;
-    top: 365px;
+    top: 405px;
 
 }
 .label-danger a, .label-warning a, .label-info a, .label-success a{
