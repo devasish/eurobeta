@@ -261,5 +261,5 @@ class ReportsController extends AppController {
         
         $transfers = $this->Transfer->report_1_data('2015-04-12');
         $this->set('transfers', $transfers);
-    }
+    }    
 }

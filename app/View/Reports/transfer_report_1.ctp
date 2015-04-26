@@ -31,7 +31,7 @@
                 </div>
             </div><!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
-                <table class="table table-hover table-striped table-bordered table-condensed" id="loading_report_table">
+                <table class="table table-hover table-striped table-bordered table-condensed" id="transfer_report_table">
                     <?php if (!empty($this->request->data['Filter']['cal_from'])): ?>
                         <tr>
                             <td colspan="9" class="text-center">TRANSFER REPORT <?php echo h($this->Form->value('Filter.cal_from')) ?> TO <?php echo h($this->Form->value('Filter.cal_to')) ?></td>
@@ -68,8 +68,8 @@
                         <?php
                         $sums['morning']['ctn'] += $transfer['morning']['total_ctn_per_pallet'];
                         $sums['morning']['mt'] += $transfer['sap']['net_wt'] * $transfer['morning']['total_ctn_per_pallet'];
-                        $sums['night']['ctn'] += $transfer['morning']['total_ctn_per_pallet'];
-                        $sums['night']['mt'] += $transfer['sap']['net_wt'] * $transfer['morning']['total_ctn_per_pallet'];
+                        $sums['night']['ctn'] += $transfer['night']['total_ctn_per_pallet'];
+                        $sums['night']['mt'] += $transfer['sap']['net_wt'] * $transfer['night']['total_ctn_per_pallet'];
                         $total_ctn = $transfer['morning']['total_ctn_per_pallet'] + $transfer['night']['total_ctn_per_pallet'];
                         $total_mt = $transfer['sap']['net_wt'] *  ($transfer['morning']['total_ctn_per_pallet'] + $transfer['night']['total_ctn_per_pallet']);
                         
@@ -116,7 +116,7 @@
         $('#FilterCalTo').datepicker({format: 'dd-mm-yyyy'});
 
         $("#export_to_csv").on('click', function (event) {
-            exportTableToCSV.apply(this, [$('#loading_report_table'), 'export.csv']);
+            exportTableToCSV.apply(this, [$('#transfer_report_table'), 'export.csv']);
         });
     });
 </script>
