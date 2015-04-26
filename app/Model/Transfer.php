@@ -150,25 +150,39 @@ class Transfer extends AppModel {
 		)
 	);
         
-        
-        public function report_1_data($date) {
+        /**
+         * Report data by per product id 
+         * @param type $date
+         * @return type
+         */
+        public function report_1_data($params = array()) {
+            $where = '';
+            $where .= !empty($params['cal_from']) ? ' AND transfer_date >= ' . $params['cal_from'] : '';
+            $where .= !empty($params['cal_from']) ? ' AND transfer_date <= ' . $params['cal_to'].' 23:59:59' : '';
             $sql_morning = "(SELECT "
-                    . "sap_id "
-                    . "SUM(ctn_per_pallet) AS total_ctn_per_pallet, "
-                    . "SUM(net_wt) AS total_net_wt,"
-                    . "FROM transfers "
-                    . "WHERE 1 or transfer_date = '$date' AND shift = 0 "
-                    . "GROUP BY sap_id) AS morning ";
+                    . " sap_id,"
+                    . " SUM(ctn_per_pallet) AS total_ctn_per_pallet, "
+                    . " ROUND(SUM(net_wt),2) AS total_net_wt"
+                    . " FROM transfers "
+                    . " WHERE 1 " . $where . " AND shift = 0 "
+                    . " GROUP BY sap_id) AS morning ";
             
             $sql_night = "(SELECT "
-                    . "sap_id "
-                    . "SUM(ctn_per_pallet) AS total_ctn_per_pallet, "
-                    . "SUM(net_wt) AS total_net_wt,"
-                    . "FROM transfers "
-                    . "WHERE 1 or transfer_date = '$date' AND shift = 1 "
-                    . "GROUP BY sap_id) AS morning ";
+                    . " sap_id,"
+                    . " SUM(ctn_per_pallet) AS total_ctn_per_pallet, "
+                    . " ROUND(SUM(net_wt),2) AS total_net_wt"
+                    . " FROM transfers "
+                    . " WHERE 1 " . $where . " AND shift = 1 "
+                    . " GROUP BY sap_id) AS night ";
             
-            $sql = "SELECT * FROM morning LEFT JOIN night ON morning.sap_id = night.sap_id";
+            $sql = "SELECT "
+                    . " sap.*, morning.*, night.* "
+                    . " FROM " . $sql_morning . " "
+                    . " LEFT JOIN " . $sql_night . " ON morning.sap_id = night.sap_id "
+                    . " LEFT JOIN saps AS sap ON morning.sap_id = sap.id";
             
+            $data = $this->query($sql);
+            
+            return $data;
         }
 }
