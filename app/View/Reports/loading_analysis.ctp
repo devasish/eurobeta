@@ -2,7 +2,8 @@
     <ol class="breadcrumb">
         <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
         <li><a href="#">Report</a></li>
-        <li class="active">CTN Loading Report</li>
+        <li class="active">Loading Analysis Report</li>
+        <li><a href="javascript:void(0)" id="export_to_csv"><span class="glyphicon glyphicon-export"></span> Export</a></li>
     </ol>
 </div><!--/.row-->
 
@@ -12,7 +13,7 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">CTN Loading Report</h3>
+                <h3 class="box-title">Loading Analysis Report</h3>
                 <div class="box-tools">
                     <div class="input-group"> 
                         <ul class="filters">  
@@ -149,5 +150,17 @@
                 }
             });
         }
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#FilterCalFrom').datepicker({format: 'dd-mm-yyyy'});
+        $('#FilterCalTo').datepicker({format: 'dd-mm-yyyy'});
+
+        $("#export_to_csv").on('click', function(event) {
+            var date = new Date();
+            var filename = 'loading-analysis-report-' + date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
+            exportTableToCSV.apply(this, [$('#loading_ana_table'), filename + '.csv']);
+        });
     });
 </script>
