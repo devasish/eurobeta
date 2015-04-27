@@ -257,9 +257,44 @@ class ReportsController extends AppController {
     
     
     public function transfer_report_1() {
-        $this->loadModel('Transfer');
-        
+        $this->loadModel('Transfer');       
         $transfers = $this->Transfer->report_1_data('2015-04-12');
         $this->set('transfers', $transfers);
-    }    
+    }
+    
+    
+    public function transfer_report_2() {
+        $this->loadModel('Transfer');
+        $transfers['morning'] = $this->Transfer->find('all', array(
+            'conditions' => array('Transfer.shift' => 0),
+            'recursive' => 0,
+            'fields' => array(
+                'serial_no',
+                'sap_code',
+                'description',
+                'ctn_per_pallet',
+                'net_wt',
+                'shift'
+            ),
+            'order' => array('Transfer.created ASC', 'Transfer.sap_id DESC')
+        ));
+        
+        $transfers['nignt'] = $this->Transfer->find('all', array(
+            'conditions' => array('Transfer.shift' => 1),
+            'recursive' => 0,
+            'fields' => array(
+                'serial_no',
+                'sap_code',
+                'description',
+                'ctn_per_pallet',
+                'net_wt',
+                'shift'
+            ),
+            'order' => array('Transfer.created ASC', 'Transfer.sap_id DESC')
+        ));
+        $this->set('transfers', $transfers);
+//        pr($transfers);
+        
+        
+    }
 }

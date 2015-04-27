@@ -3,6 +3,7 @@
         <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
         <li><a href="#">Report</a></li>
         <li class="active">Transfer</li>
+        <li><a href="javascript:void(0)" id="export_to_csv"><span class="glyphicon glyphicon-export"></span>  Export</a></li>
     </ol>
 </div><!--/.row-->
 
@@ -108,15 +109,15 @@
     </div>
 </div>
 
-<a href="javascript:void(0)" id="export_to_csv" class="btn btn-info">Export</a>
-
 <script type="text/javascript">
     $(document).ready(function () {
         $('#FilterCalFrom').datepicker({format: 'dd-mm-yyyy'});
         $('#FilterCalTo').datepicker({format: 'dd-mm-yyyy'});
 
         $("#export_to_csv").on('click', function (event) {
-            exportTableToCSV.apply(this, [$('#transfer_report_table'), 'export.csv']);
+            var date = new Date();
+            var filename = 'transfer-report-1' + '-' + date.getDate() + '-' + (date.getMonth()+1) + '-' + date.getFullYear();
+            exportTableToCSV.apply(this, [$('#transfer_report_table'), filename + '.csv']);
         });
     });
 </script>

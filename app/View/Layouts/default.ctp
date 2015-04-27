@@ -130,7 +130,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             </li> 
                             <li>
                                 <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Loading Analysis', array('controller' => 'reports', 'action' => 'loading_analysis'), array('escape' => FALSE)); ?>
-                            </li> 
+                            </li>
+                            <li>
+                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Transfer Report 1', array('controller' => 'reports', 'action' => 'transfer_report_1'), array('escape' => FALSE)); ?>
+                            </li>
+                            <li>
+                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Transfer Report 2', array('controller' => 'reports', 'action' => 'transfer_report_2'), array('escape' => FALSE)); ?>
+                            </li>
                         </ul>
                     </li>    
                     <li role="presentation" class="divider"></li>
