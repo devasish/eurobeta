@@ -22,44 +22,55 @@ class SapsController extends AppController {
      *
      * @return void
      */
-    public function index() {    
+    public function index() {
         $conditions = array();
-		if(($this->request->is('post') || $this->request->is('put')) && isset($this->data['Filter'])){
-			$filter_url = array();
-			$filter_url['controller'] = $this->request->params['controller'];
-			$filter_url['action']     = $this->request->params['action'];
-			$filter_url['page']       = 1;
-			foreach ($this->data['Filter'] as $name => $value){
-				if(trim($value)){
-					$filter_url[$name] = urlencode($value);
-				}
-			}
-			return $this->redirect($filter_url);
-		}else{
-			foreach ($this->request->params['named'] as $name => $value){
-				if(!in_array($name, array('page', 'sort', 'direction', 'limit'))){
-					$value = urldecode($value);
-					if($name == 'value' && strlen(trim($value)) > 0){
-						if($this->request->params['named']['field'] == 'id'){
-							$conditions['Sap.'.$this->request->params['named']['field']] = $value;
-						}elseif($this->request->params['named']['field'] == 'description'){
-							$conditions['OR'] = array(
-								array('Sap.description LIKE ' 	=> "%$value%"));
-						}else{
-							$conditions['Sap.'.$this->request->params['named']['field'].' LIKE '] = "%$value%";
-						}
-					}else
-					$this->request->data['Filter'][$name] = $value;	
-				}
-			}
-		}
-  		$this->paginate = array(
-                    'limit' 		=> 15,
-                    'order' 		=> 'Sap.id DESC',
-                    'conditions' 	=> $conditions
-                );                
-                //$this->Sap->recursive = 0;
-                $this->set('saps', $this->Paginator->paginate());		
+        if (($this->request->is('post') || $this->request->is('put')) && isset($this->data['Filter'])) {
+            $filter_url = array();
+            $filter_url['controller'] = $this->request->params['controller'];
+            $filter_url['action'] = $this->request->params['action'];
+            $filter_url['page'] = 1;
+            foreach ($this->data['Filter'] as $name => $value) {
+                if (trim($value)) {
+                    if ($name == 'cal_from' || $name == 'cal_to') {
+                        $filter_url[$name] = urlencode(str_replace('/', '-', $value));
+                    } else {
+                        $filter_url[$name] = urlencode($value);
+                    }
+                }
+            }
+            return $this->redirect($filter_url);
+        } else {
+            foreach ($this->request->params['named'] as $name => $value) {
+                if (!in_array($name, array('page', 'sort', 'direction', 'limit'))) {
+                    $value = urldecode($value);
+                    if ($name == 'value' && strlen(trim($value)) > 0) {
+                        if ($this->request->params['named']['field'] == 'id') {
+                            $conditions['Sap.' . $this->request->params['named']['field']] = $value;
+                        } elseif ($this->request->params['named']['field'] == 'description') {
+                            $conditions['OR'] = array(
+                                array('Sap.description LIKE ' => "%$value%"));
+                        } else {
+                            $conditions['Sap.' . $this->request->params['named']['field'] . ' LIKE '] = "%$value%";
+                        }
+                    }elseif($name == 'cal_from' && !empty ($value)) {
+                        $dateObj = DateTime::createFromFormat('d-m-Y', $value);
+                        $conditions['Sap.created >='] = $dateObj->format('Y-m-d');
+                    } elseif($name == 'cal_to' && !empty ($value)) {
+                        $dateObj = DateTime::createFromFormat('d-m-Y', $value);
+                        $conditions['Sap.created <='] = $dateObj->format('Y-m-d') . ' 23:59:59';
+                    }
+                    else
+                        $this->request->data['Filter'][$name] = $value;
+                }
+            }
+        }
+        $this->paginate = array(
+            'limit' => 9,
+            'order' => 'Sap.id DESC',
+            'conditions' => $conditions
+        );
+        //$this->Sap->recursive = 0;
+        $this->set('saps', $this->Paginator->paginate());
     }
 
     /**
@@ -111,7 +122,7 @@ class SapsController extends AppController {
             $this->request->data['Sap']['last_edited_by'] = $this->Session->read('Auth.User.id');
             if ($this->Sap->save($this->request->data)) {
                 $this->Session->setFlash(__('The sap has been saved.'), 'flash_success');
-                return $this->redirect(array('action' => 'view',$id));
+                return $this->redirect(array('action' => 'view', $id));
             } else {
                 $this->Session->setFlash(__('The sap could not be saved. Please, try again.'), 'flash_warning');
             }
@@ -141,4 +152,5 @@ class SapsController extends AppController {
         }
         return $this->redirect(array('action' => 'index'));
     }
+
 }

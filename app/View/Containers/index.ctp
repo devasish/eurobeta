@@ -13,10 +13,13 @@
                 <div class="box-header">
                   <h3 class="box-title">Containers List</h3>
                   <div class="box-tools">
+                    
+                    <?php $url = array('controller' => 'Containers', 'action' => 'index'); ?>  
+                    <?php echo $this->Form->create('Filter', array('url' => $url)); ?>
                     <div class="input-group"> 
-                        <ul class="filters">  
-                            <li><?php $url = array('controller' => 'Containers', 'action' => 'index'); ?></li>
-                            <li><?php echo $this->Form->create('Filter', array('url' => $url)); ?></li>  
+                        <ul class="filters">
+                            <li><?php echo $this->Form->input('cal_from', array('class' => 'date form-control input-sm', 'label' => false, 'placeholder' => 'From')); ?></li>
+                            <li><?php echo $this->Form->input('cal_to', array('class' => 'date form-control input-sm', 'label' => false, 'placeholder' => 'To')); ?></li>
                             <li><?php echo $this->Form->input('value', array('class' => 'date form-control input-sm', 'label' => false, 'placeholder' => 'Search')); ?></li>
                             <li><?php echo $this->Form->input('field', array('options' => array('id' => 'ID', 'container_no' => 'Container No', 'seal_no' => 'Seal No', 'type' => 'Type', 'status' => 'Status'),  'label' => false, 'class' => 'form-control input-sm')); ?></li>
                         </ul>
@@ -93,32 +96,8 @@
             </div>
           </div>
 <script>
-    $(function () {
-        $('#hover, #striped, #condensed').click(function () {
-            var classes = 'table';
-
-            if ($('#hover').prop('checked')) {
-                classes += ' table-hover';
-            }
-            if ($('#condensed').prop('checked')) {
-                classes += ' table-condensed';
-            }
-            $('#table-style').bootstrapTable('destroy')
-                .bootstrapTable({
-                    classes: classes,
-                    striped: $('#striped').prop('checked')
-                });
-        });
+    $(document).ready(function() {
+        $('#FilterCalFrom').datepicker({format: 'dd-mm-yyyy'});
+        $('#FilterCalTo').datepicker({format: 'dd-mm-yyyy'});
     });
-
-    function rowStyle(row, index) {
-        var classes = ['active', 'success', 'info', 'warning', 'danger'];
-
-        if (index % 2 === 0 && index / 2 < classes.length) {
-            return {
-                classes: classes[index / 2]
-            };
-        }
-        return {};
-    }
 </script>
