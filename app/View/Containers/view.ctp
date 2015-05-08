@@ -80,7 +80,7 @@
                     </dd>
                     <dt><?php echo __('User'); ?></dt>
                     <dd>
-                        <?php echo $this->Html->link($container['User']['id'], array('controller' => 'users', 'action' => 'view', $container['User']['id'])); ?>
+                        <?php echo $this->Html->link($container['User']['username'], array('controller' => 'users', 'action' => 'view', $container['User']['id'])); ?>
                         &nbsp;
                     </dd>
                 </dl>
