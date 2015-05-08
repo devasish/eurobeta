@@ -4,7 +4,7 @@
     }
     #print_div{
         background:#FFF    ;
-        width: 450px; 
+        width: 390px; 
         height: 385px; 
         border: 1px solid #123456;
         padding: 15px;
@@ -78,7 +78,7 @@
 <br/><br/>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div class="panel panel-info">
             <div class="panel-heading">
                 <?php echo __('Transfer'); ?>
@@ -164,7 +164,7 @@
             </div>                 
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div id="print_div">  
             <div>
                 <center>

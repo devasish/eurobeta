@@ -34,6 +34,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         echo $this->Html->css('box');
         echo $this->Html->css('datepicker3');
         echo $this->Html->css('styles');
+        echo $this->Html->css('menu');
         echo $this->Html->css('jquery-ui.min');
 
         echo $this->Html->script('jquery-1.11.2.min');
@@ -66,7 +67,88 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     </button>
                     <a class="navbar-brand" href="#"><span><?php echo $cakeDescription; ?></span> Admin</a>
                     <?php if ($this->Session->read('Auth.User.id')): ?>
-                        <ul class="user-menu">
+                        <nav id="primary_nav_wrap"><!-- Main Menu starts -->
+                            <ul>
+                                <li class="<?php echo (($this->params['controller'] === 'pages') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
+                                    <?php echo $this->Html->link('<span class="glyphicon glyphicon-dashboard"></span>' . '&nbsp;&nbsp;' . 'Dashboard', array('controller' => 'pages', 'action' => 'index'), array('escape' => FALSE)); ?>
+                                </li>
+
+                                <li class="parent <?php echo (($this->params['controller'] === 'saps') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
+                                    <?php echo $this->Html->link('<span class="glyphicon glyphicon-list"></span>' . '&nbsp;&nbsp;' . 'Saps', array('controller' => 'saps', 'action' => 'index'), array('escape' => FALSE)); ?>
+                                    <ul>
+                                        <li>
+                                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'New Sap', array('controller' => 'saps', 'action' => 'add'), array('escape' => FALSE)); ?>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="parent <?php echo (($this->params['controller'] === 'transfers') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
+                                    <?php echo $this->Html->link('<span class="glyphicon glyphicon-stats"></span>' . '&nbsp;&nbsp;' . 'Transfers', array('controller' => 'transfers', 'action' => 'index'), array('escape' => FALSE)); ?>
+                                    <ul>
+                                        <li>
+                                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Make Transfer', array('controller' => 'transfers', 'action' => 'add'), array('escape' => FALSE)); ?>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="parent <?php echo (($this->params['controller'] === 'containers') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
+                                    <?php echo $this->Html->link('<span class="glyphicon glyphicon-info-sign"></span>' . '&nbsp;&nbsp;' . 'Loading Advice', array('controller' => 'containers', 'action' => 'index'), array('escape' => FALSE)); ?>
+                                    <ul>
+                                        <li>
+                                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Add New Cointainer', array('controller' => 'containers', 'action' => 'add'), array('escape' => FALSE)); ?>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li><a href="javascript:void(0)">
+                                        <span class="glyphicon glyphicon-registration-mark"></span>&nbsp;&nbsp;Reports
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Loading Report', array('controller' => 'reports', 'action' => 'loading'), array('escape' => FALSE)); ?>
+                                        </li>
+                                        <li>
+                                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'CTN Loading Report', array('controller' => 'reports', 'action' => 'ctn_loading_report'), array('escape' => FALSE)); ?>
+                                        </li> 
+                                        <li>
+                                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Loading Analysis', array('controller' => 'reports', 'action' => 'loading_analysis'), array('escape' => FALSE)); ?>
+                                        </li>
+                                        <li>
+                                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Transfer Report 1', array('controller' => 'reports', 'action' => 'transfer_report_1'), array('escape' => FALSE)); ?>
+                                        </li>
+                                        <li>
+                                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Transfer Report 2', array('controller' => 'reports', 'action' => 'transfer_report_2'), array('escape' => FALSE)); ?>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="parent <?php echo (($this->params['controller'] === 'users') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
+                                    <?php echo $this->Html->link('<span class="glyphicon glyphicon-user"></span>' . '&nbsp;&nbsp;' . 'Users', array('controller' => 'users', 'action' => 'index'), array('escape' => FALSE)); ?>
+                                    <ul>
+                                        <li>
+                                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Create New User', array('controller' => 'users', 'action' => 'add'), array('escape' => FALSE)); ?>
+                                        </li>                        
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <span class="glyphicon glyphicon-adjust"></span>&nbsp;&nbsp;Control Panel 
+                                    </a>
+                                    <ul>                                        
+                                        <li>
+                                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'List of Customer', array('controller' => 'customers', 'action' => 'index'), array('escape' => FALSE)); ?>
+                                        </li>                                        
+                                        <li>
+                                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Loaders List', array('controller' => 'loaders', 'action' => 'index'), array('escape' => FALSE)); ?>
+                                        </li>                                        
+                                        <li>
+                                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Checkers List', array('controller' => 'checkers', 'action' => 'index'), array('escape' => FALSE)); ?>
+                                        </li>
+                                    </ul>
+                                </li>                                
+                            </ul>
+                        </nav><!-- Main Menu end -->
+
+                        <ul class="user-menu">                            
                             <li class="dropdown pull-right">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php print ucfirst($this->Session->read('Auth.User.username')); ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
@@ -80,105 +162,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 </div>
             </div><!-- /.container-fluid -->
         </nav>
-        <?php if ($this->Session->read('Auth.User.id')): ?>
-            <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-                <form role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                </form>
-                <ul class="nav menu">
-
-                    <li class="<?php echo (($this->params['controller'] === 'pages') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
-                        <?php echo $this->Html->link('<span class="glyphicon glyphicon-dashboard"></span>' . '&nbsp;' . 'Dashboard', array('controller' => 'pages', 'action' => 'index'), array('escape' => FALSE)); ?>
-                    </li>
-
-                    <li class="parent <?php echo (($this->params['controller'] === 'saps') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
-                        <?php echo $this->Html->link('<span class="glyphicon glyphicon-list"></span>' . '&nbsp;' . 'Saps' . '<span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>', array('controller' => 'saps', 'action' => 'index'), array('escape' => FALSE)); ?>               
-                        <ul class="children collapse" id="sub-item-1">
-                            <li>
-                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'New Sap', array('controller' => 'saps', 'action' => 'add'), array('escape' => FALSE)); ?>
-                            </li>                        
-                        </ul>
-                    </li>
-                    <li class="parent <?php echo (($this->params['controller'] === 'transfers') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
-                        <?php echo $this->Html->link('<span class="glyphicon glyphicon-stats"></span>' . '&nbsp;' . 'Transfers' . '<span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>', array('controller' => 'transfers', 'action' => 'index'), array('escape' => FALSE)); ?>                    
-                        <ul class="children collapse" id="sub-item-2">
-                            <li>
-                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Make Transfer', array('controller' => 'transfers', 'action' => 'add'), array('escape' => FALSE)); ?>
-                            </li>                        					
-                        </ul>
-                    </li>
-                    <li class="parent <?php echo (($this->params['controller'] === 'containers') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
-                        <?php echo $this->Html->link('<span class="glyphicon glyphicon-info-sign"></span>' . '&nbsp;' . 'Loading Advice' . '<span data-toggle="collapse" href="#sub-item-3" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>', array('controller' => 'containers', 'action' => 'index'), array('escape' => FALSE)); ?>                    
-                        <ul class="children collapse" id="sub-item-3">
-                            <li>
-                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Add New Cointainer', array('controller' => 'containers', 'action' => 'add'), array('escape' => FALSE)); ?>
-                            </li>                        
-                        </ul>
-                    </li>
-                    <li class="parent">
-                        <a href="javascript:void(0)">
-                            <span class="glyphicon glyphicon-registration-mark"></span> Reports<span data-toggle="collapse" href="#sub-item-5" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
-                        </a>
-                        <ul class="children collapse" id="sub-item-5">
-                            <li>
-                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Loading Report', array('controller' => 'reports', 'action' => 'loading'), array('escape' => FALSE)); ?>
-                            </li>
-                            <li>
-                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'CTN Loading Report', array('controller' => 'reports', 'action' => 'ctn_loading_report'), array('escape' => FALSE)); ?>
-                            </li> 
-                            <li>
-                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Loading Analysis', array('controller' => 'reports', 'action' => 'loading_analysis'), array('escape' => FALSE)); ?>
-                            </li>
-                            <li>
-                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Transfer Report 1', array('controller' => 'reports', 'action' => 'transfer_report_1'), array('escape' => FALSE)); ?>
-                            </li>
-                            <li>
-                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Transfer Report 2', array('controller' => 'reports', 'action' => 'transfer_report_2'), array('escape' => FALSE)); ?>
-                            </li>
-                        </ul>
-                    </li>    
-                    <li role="presentation" class="divider"></li>
-                    <li class="parent <?php echo (($this->params['controller'] === 'users') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
-                        <?php echo $this->Html->link('<span class="glyphicon glyphicon-user"></span>' . '&nbsp;' . 'Users' . '<span data-toggle="collapse" href="#sub-item-4" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> ', array('controller' => 'users', 'action' => 'index'), array('escape' => FALSE)); ?>
-                        <ul class="children collapse" id="sub-item-4">
-                            <li>
-                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Create New User', array('controller' => 'users', 'action' => 'add'), array('escape' => FALSE)); ?>
-                            </li>                        
-                        </ul>
-                    </li>                    
-                    <li class="parent">
-                        <a href="javascript:void(0)">
-                            <span class="glyphicon glyphicon-adjust"></span>Control Panel<span data-toggle="collapse" href="#sub-item-6" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
-                        </a>
-                        <ul class="children collapse" id="sub-item-6">
-                            <!--<li>
-                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'New Customer', array('controller' => 'customers', 'action' => 'add'), array('escape' => FALSE)); ?>
-                            </li>-->
-                            <li>
-                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'List of Customer', array('controller' => 'customers', 'action' => 'index'), array('escape' => FALSE)); ?>
-                            </li>
-                            <!--<li>
-                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Create Loader', array('controller' => 'loaders', 'action' => 'add'), array('escape' => FALSE)); ?>
-                            </li>-->
-                            <li>
-                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Loaders List', array('controller' => 'loaders', 'action' => 'index'), array('escape' => FALSE)); ?>
-                            </li>
-                            <!--<li>
-                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Create Cheaker', array('controller' => 'checkers', 'action' => 'add'), array('escape' => FALSE)); ?>
-                            </li>-->
-                            <li>
-                                <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Checkers List', array('controller' => 'checkers', 'action' => 'index'), array('escape' => FALSE)); ?>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <div class="attribution">&copy; euro sme sdn bhd  <b style="color: #006dcc"><?php echo date('Y'); ?></b></div>
-            </div><!--/.sidebar-->
-        <?php endif; ?>
-        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-
+        <!--<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">-->
+        <div class="col-sm-12 col-sm-offset-0 col-lg-12 col-lg-offset-0 main">
+        
             <?php echo $this->fetch('content'); ?>
 
             <?php echo $this->Session->flash(); ?>
@@ -191,22 +177,22 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         ?>
 
         <script type="text/javascript">
-            $(document).ready(function () {
+            $(document).ready(function() {
                 $('#transferDate').datepicker({
                 });
 
-                !function ($) {
-                    $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+                !function($) {
+                    $(document).on("click", "ul.nav li.parent > a > span.icon", function() {
                         $(this).find('em:first').toggleClass("glyphicon-minus");
                     });
                     $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
                 }(window.jQuery);
 
-                $(window).on('resize', function () {
+                $(window).on('resize', function() {
                     if ($(window).width() > 768)
                         $('#sidebar-collapse').collapse('show')
                 })
-                $(window).on('resize', function () {
+                $(window).on('resize', function() {
                     if ($(window).width() <= 767)
                         $('#sidebar-collapse').collapse('hide')
                 })
@@ -226,19 +212,19 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         colDelim = '","',
                         rowDelim = '"\r\n"',
                         // Grab text from table into CSV formatted string
-                        csv = '"' + $rows.map(function (i, row) {
-                            var $row = $(row),
-                                    $cols = $row.find('td');
+                        csv = '"' + $rows.map(function(i, row) {
+                    var $row = $(row),
+                            $cols = $row.find('td');
 
-                            return $cols.map(function (j, col) {
-                                var $col = $(col),
-                                        text = $col.text();
+                    return $cols.map(function(j, col) {
+                        var $col = $(col),
+                                text = $col.text();
 
-                                return text.replace('"', '""'); // escape double quotes
+                        return text.replace('"', '""'); // escape double quotes
 
-                            }).get().join(tmpColDelim);
+                    }).get().join(tmpColDelim);
 
-                        }).get().join(tmpRowDelim)
+                }).get().join(tmpRowDelim)
                         .split(tmpRowDelim).join(rowDelim)
                         .split(tmpColDelim).join(colDelim) + '"',
                         // Data URI
@@ -246,10 +232,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
                 $(this)
                         .attr({
-                            'download': filename,
-                            'href': csvData,
-                            'target': '_blank'
-                        });
+                    'download': filename,
+                    'href': csvData,
+                    'target': '_blank'
+                });
             }
         </script>
         <!--<?php echo $this->element('sql_dump'); ?>-->
