@@ -15,11 +15,12 @@
             <div class="box-header">
                 <h3 class="box-title">Transfer Report</h3>
                 <div class="box-tools">
-                    <?php $url = array('controller' => 'Reports', 'action' => 'loading'); ?>
+                    <?php $url = array('controller' => 'Reports', 'action' => 'transfer_report_1'); ?>
                     <?php echo $this->Form->create('Filter', array('url' => $url)); ?>
                     <div class="input-group"> 
 
                         <ul class="filters">  
+                            <li><?php echo $this->Form->input('factory', array('class' => 'form-control input-sm', 'label' => false, 'options' => array('' => 'Factory', '1' => 'F1', '2' => 'F3'))); ?></li>
                             <li><?php echo $this->Form->input('cal_from', array('class' => 'date form-control input-sm', 'label' => false, 'placeholder' => 'From')); ?></li>
                             <li><?php echo $this->Form->input('cal_to', array('class' => 'date form-control input-sm', 'label' => false, 'placeholder' => 'To')); ?></li>
                             <li><?php echo $this->Form->input('value', array('class' => 'date form-control input-sm', 'label' => false, 'placeholder' => 'Search')); ?></li>

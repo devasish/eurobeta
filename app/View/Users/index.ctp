@@ -45,6 +45,8 @@
                         } else {
                             $role = 'Not Defined';
                         }
+                        
+                        $role = Configure::read('ROLES')[$user['User']['role']];
 
                         if ($user['User']['status'] == 1) {
                             $status = 'Active';

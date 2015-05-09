@@ -257,16 +257,111 @@ class ReportsController extends AppController {
     
     
     public function transfer_report_1() {
+        $params = array();
+        if (($this->request->is('post') || $this->request->is('put')) && isset($this->data['Filter'])) {
+            $filter_url = array();
+            $filter_url['controller'] = $this->request->params['controller'];
+            $filter_url['action'] = $this->request->params['action'];
+            $filter_url['page'] = 1;
+            foreach ($this->data['Filter'] as $name => $value) {
+                if (trim($value)) {
+                    if ($name == 'cal_from' || $name == 'cal_to') {
+                        $filter_url[$name] = urlencode(str_replace('/','-' ,$value));
+                    }else {
+                        $filter_url[$name] = urlencode($value);
+                    }
+                }
+            }
+            return $this->redirect($filter_url);
+        } else {
+            foreach ($this->request->params['named'] as $name => $value) {
+                if (!in_array($name, array('page', 'sort', 'direction', 'limit'))) {
+                    $value = urldecode($value);
+                    if ($name == 'value' && strlen(trim($value)) > 0) {
+                        if ($this->request->params['named']['field'] == 'sapcode') {
+                            $params['sapcode'] = $value;
+                        } elseif ($this->request->params['named']['field'] == 'description') {
+                           $params['description'] = $value;
+                        }
+                    } elseif($name == 'cal_from' && !empty ($value)) {
+                        $dateObj = DateTime::createFromFormat('d-m-Y', $value);
+                        $params['cal_from'] = $dateObj->format('Y-m-d');
+                    } elseif($name == 'cal_to' && !empty ($value)) {
+                        $dateObj = DateTime::createFromFormat('d-m-Y', $value);
+                        $params['cal_to'] = $dateObj->format('Y-m-d');
+                        
+                    } elseif ($name == 'factory') {
+                        $params['factory'] = $value;
+                    }
+                    
+                    $this->request->data['Filter'][$name] = $value;
+                    
+                }
+            }
+        }
+        
         $this->loadModel('Transfer');       
-        $transfers = $this->Transfer->report_1_data('2015-04-12');
+        $transfers = $this->Transfer->report_1_data($params);
         $this->set('transfers', $transfers);
     }
     
     
     public function transfer_report_2() {
+        $conditions = array();
+        if (($this->request->is('post') || $this->request->is('put')) && isset($this->data['Filter'])) {
+            $filter_url = array();
+            $filter_url['controller'] = $this->request->params['controller'];
+            $filter_url['action'] = $this->request->params['action'];
+            $filter_url['page'] = 1;
+            foreach ($this->data['Filter'] as $name => $value) {
+                if (trim($value)) {
+                    if ($name == 'cal_from' || $name == 'cal_to') {
+                        $filter_url[$name] = urlencode(str_replace('/','-' ,$value));
+                    }else {
+                        $filter_url[$name] = urlencode($value);
+                    }
+                }
+            }
+            return $this->redirect($filter_url);
+        } else {
+            foreach ($this->request->params['named'] as $name => $value) {
+                if (!in_array($name, array('page', 'sort', 'direction', 'limit'))) {
+                    $value = urldecode($value);
+                    if ($name == 'value' && strlen(trim($value)) > 0) {
+                        if ($this->request->params['named']['field'] == 'id') {
+                            $conditions['Sap.' . $this->request->params['named']['field']] = $value;
+                        } elseif ($this->request->params['named']['field'] == 'description') {
+                            $conditions['OR'] = array(
+                                array('Sap.description LIKE ' => "%$value%"));
+                        } else {
+                            $conditions['Sap.' . $this->request->params['named']['field'] . ' LIKE '] = "%$value%";
+                        }
+                    } elseif($name == 'cal_from' && !empty ($value)) {
+                        $dateObj = DateTime::createFromFormat('d-m-Y', $value);
+                        $conditions['Transfer.transfer_date >='] = $dateObj->format('Y-m-d');
+                    } elseif($name == 'cal_to' && !empty ($value)) {
+                        $dateObj = DateTime::createFromFormat('d-m-Y', $value);
+                        $conditions['Transfer.transfer_date <='] = $dateObj->format('Y-m-d') . ' 23:59:59';
+                    } elseif ($name == 'factory') {
+                        $conditions['User.role'] = $value;
+                    }
+                    
+                    $this->request->data['Filter'][$name] = $value;
+                    
+                }
+            }
+        }
+        
+        $conditions_m = $conditions;
+        $conditions_m['Transfer.shift'] = 0;
+        
+        $conditions_n = $conditions;
+        $conditions_n['Transfer.shift'] = 1;
+        
         $this->loadModel('Transfer');
         $transfers['morning'] = $this->Transfer->find('all', array(
-            'conditions' => array('Transfer.shift' => 0),
+            //'conditions' => array('Transfer.shift' => 0),
+            'conditions' => $conditions_m,
             'recursive' => 0,
             'fields' => array(
                 'serial_no',
@@ -280,7 +375,8 @@ class ReportsController extends AppController {
         ));
         
         $transfers['nignt'] = $this->Transfer->find('all', array(
-            'conditions' => array('Transfer.shift' => 1),
+            //'conditions' => array('Transfer.shift' => 1),
+            'conditions' => $conditions_n,
             'recursive' => 0,
             'fields' => array(
                 'serial_no',
