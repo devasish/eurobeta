@@ -113,7 +113,11 @@
                         tds += '<td>' + v.total_no_of_ctn + '</td>';
                         tds += '<td>' + v.total_net_product_wt + '</td>';
                         tds += '<td>' + Custom.round((v.total_net_product_wt / (v.total_no_of_ctn > 0 ? v.total_no_of_ctn : 1)), 2) + '</td>';
-                        tds += '<td>' + v.total_diff_perc + '</td>';
+                        var cls = 'text-success';
+                        if (Math.abs(v.total_diff_perc) >= 10) {
+                            cls = 'text-danger';
+                        }
+                        tds += '<td class="'+ cls +'">' + v.total_diff_perc + '</td>';
                     });
                     
                     $('<tr>').html(tds).appendTo('#loading_ana_table');

@@ -57,7 +57,14 @@
                             <td><?php echo h($palletLoad[0]['total_net_product_wt']); ?></td>
                             <td><?php echo h($palletLoad[0]['net_cust_product_wt']); ?></td>
                             <td><?php echo h($palletLoad[0]['total_diff']); ?></td>
-                            <td><?php echo h(round($palletLoad[0]['total_diff'] / $palletLoad[0]['net_cust_product_wt'] * 100, 2)); ?></td>
+                            <?php 
+                            $diff_perc = round($palletLoad[0]['total_diff'] / $palletLoad[0]['net_cust_product_wt'] * 100, 2);
+                            $cls = 'text-success';
+                            if (abs($diff_perc) >= 10) {
+                                $cls = 'text-danger';
+                            }
+                            ?>
+                            <td class="<?php echo $cls; ?>"><?php echo $diff_perc; ?></td>
                             <td><?php echo h(round($palletLoad[0]['total_net_product_wt'] / $palletLoad[0]['total_no_of_ctn'], 2)); ?></td>
                             <td><?php echo h($palletLoad['PalletChecklist']['created']); ?></td>
                         </tr>

@@ -53,7 +53,7 @@ class ReportsController extends AppController {
             }
         }
 
-
+        $conditions['Container.status'] = '2'; // Consider only closed container
 
 
         $this->loadModel('Sap');
@@ -73,7 +73,7 @@ class ReportsController extends AppController {
             'recursive' => 0,
             'conditions' => $conditions,
             'group' => array('PalletChecklist.sap_id'),
-            'limit' => 20
+            'limit' => 100
         );
 
         $this->set('palletLoads', $this->Paginator->paginate('PalletChecklist'));
@@ -98,7 +98,12 @@ class ReportsController extends AppController {
 
         $sap_code = $this->request->data['sapcode'];
 
-        $res = $this->PalletChecklist->find('all', array('conditions' => array('sap_code' => $sap_code)));
+        $res = $this->PalletChecklist->find('all', 
+                array(
+                    'conditions' => array('sap_code' => $sap_code, 'Container.status' => 2),
+                    'recursive' => 0
+                    )
+                );
 
 
         $s = array();
@@ -188,8 +193,9 @@ class ReportsController extends AppController {
         $this->loadModel('PalletChecklist');
         $sap = $this->PalletChecklist->find('first', array(
             'conditions' => array(
-                'PalletChecklist.created >=' => $from,
-                'PalletChecklist.created <=' => $to
+                'PalletChecklist.created >='    => $from,
+                'PalletChecklist.created <='    => $to,
+                'Container.status'              => 2
             ),
             'fields' => 'DISTINCT PalletChecklist.sap_id',
             'recursive' => 0,
