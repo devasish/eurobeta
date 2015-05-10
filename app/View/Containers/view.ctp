@@ -61,13 +61,36 @@
                     <dt><?php echo __('Status'); ?></dt>
                     <dd>
                         <?php
-                        foreach (Configure::read('CONT_STATUS') as $k => $v) {
-                            if ($k == $container['Container']['status']) {
-                                echo h($v);
-                            }
-                        }
+//                        foreach (Configure::read('CONT_STATUS') as $k => $v) {
+//                            if ($k == $container['Container']['status']) {
+//                                echo h($v);
+//                            }
+//                        }
+                        ?>
+                        <span>
+                            <select id="status_select" data-contid="<?php echo $container['Container']['id'] ; ?>">
+                                <?php foreach (Configure::read('CONT_STATUS') as $k => $v) : ?>
+                                <?php $selected = ($k == $container['Container']['status']) ? 'selected' : '';  ?>
+                                <option <?php echo $selected; ?> value="<?php echo $k ?>">
+                                    <?php echo $v ?>
+                                </option>
+                                <?php endforeach;?>
+                            </select>
+                        </span>
+                        <a href="javascript:void(0)" id="go_change_status">Save</a>
+                    </dd>
+                    <dt><?php echo __('Destination'); ?></dt>
+                    <dd>
+                        <?php
+                        echo !empty(Configure::read('CONT_DESTINATION')[$container['Container']['destination']]) ? Configure::read('CONT_DESTINATION')[$container['Container']['destination']] : 'NOT SET';
+//                        foreach (Configure::read('CONT_DESTINATION') as $k => $v) {
+//                            if ($k == $container['Container']['destination']) {
+//                                echo h($v);
+//                            }
+//                        }
                         ?>
                     </dd>
+                    
                     <dt><?php echo __('Created'); ?></dt>
                     <dd>
                         <?php echo h($container['Container']['created']); ?>
@@ -96,7 +119,9 @@
                 <h3 class="box-title"><?php echo __('Related Pallet Checklist'); ?></h3>
                 <div class="box-tools">
                     <div class="input-group"> 
+                        <?php if ($container['Container']['status'] != 2): ?>
                         <span class="label label-success"><?php echo $this->Html->link('<i class="fa fa-cart-plus"></i>' . __('Add New'), array('controller' => 'pallet_checklists', 'action' => 'add', $container['Container']['id'], $container['Container']['container_no']), array('escape' => FALSE)) ?></span>
+                        <?php endif;?>
                     </div>
                 </div>
             </div><!-- /.box-header -->
@@ -117,11 +142,13 @@
                             <td><?php echo $x++; ?></td>
                             <td><?php echo h($pallet['sap_desc']) ?></td>
                             <td><?php echo h($pallet['sap_code']) ?></td>
-                            <td>no of ctn</td>
+                            <td><?php echo h($pallet['no_of_ctn']) ?></td>
                             <td>remarks</td>
-
-                            <td>                                
+                            
+                            <td>
+                                <?php if ($container['Container']['status'] != 2): ?>
                                 <span class="label label-warning"><?php echo $this->Html->link(__('Edit'), array('controller' => 'pallet_checklists', 'action' => 'edit', $pallet['id'])) ?></span>
+                                <?php endif;?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -133,31 +160,24 @@
 </div>
 <script>
     $(function () {
-        $('#hover, #striped, #condensed').click(function () {
-            var classes = 'table';
-
-            if ($('#hover').prop('checked')) {
-                classes += ' table-hover';
-            }
-            if ($('#condensed').prop('checked')) {
-                classes += ' table-condensed';
-            }
-            $('#table-style').bootstrapTable('destroy')
-                .bootstrapTable({
-                    classes: classes,
-                    striped: $('#striped').prop('checked')
-                });
+        $('#go_change_status').click(function () {
+            var st = $('#status_select').val();
+            var id = $('#status_select').data('contid');
+            var data = {status : st, id: id};
+            $.ajax({
+                url: SITE_URL + 'containers/change_status',
+                data: data,
+                success: function(r) {
+                    var json = $.parseJSON(r);
+                    if (json.success) {
+                       alert('Status Changed Successfully');
+                       window.location.reload();
+                    } else {
+                        alert('Error!! Status Not Changed');
+                    }
+                }
+            })
         });
     });
 
-    function rowStyle(row, index) {
-        var classes = ['active', 'success', 'info', 'warning', 'danger'];
-
-        if (index % 2 === 0 && index / 2 < classes.length) {
-            return {
-                classes: classes[index / 2]
-            };
-        }
-        return {};
-    }
 </script>

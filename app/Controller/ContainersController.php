@@ -159,5 +159,29 @@ class ContainersController extends AppController {
         }
         return $this->redirect(array('action' => 'index'));
     }
+    
+    public function change_status() {
+        $result             = array('success' => false);
+        $result['query']    = $this->params->query;
+        
+        $this->layout       = 'ajax';
+        $this->autoRender   = false;
+        
+        $status         = $this->params->query['status'];
+        $id             = $this->params->query['id'];
+        
+        $this->Container->id = $id;
+        
+        if (!$this->Container->exists()) {
+            echo json_encode($result);
+            return;
+        }
+        
+        $x = $this->Container->saveField('status', $status);
+        $result['success'] = true;
+        
+        
+        echo json_encode($result);
+    }
 
 }

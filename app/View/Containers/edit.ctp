@@ -35,6 +35,9 @@
                             <div class="form-group">
                                 <?php echo $this->Form->input('status', array('options' => Configure::read('CONT_STATUS'), 'empty' => true, 'class'=>'form-control')); ?>
                             </div>                            
+                            <div class="form-group">
+                                <?php echo $this->Form->input('destination', array('options' => Configure::read('CONT_DESTINATION'), 'empty' => true, 'class'=>'form-control')); ?>
+                            </div>                            
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </div>
