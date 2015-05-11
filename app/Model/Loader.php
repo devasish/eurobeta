@@ -11,6 +11,7 @@ class Loader extends AppModel {
  *
  * @var array
  */
+        public $displayField = 'loader_name';
 	public $validate = array(
 		'loader_name' => array(
 			'notEmpty' => array(

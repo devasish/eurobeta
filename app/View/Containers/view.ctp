@@ -16,6 +16,7 @@
                <?php echo __('Container'); ?>
             </div>
             <div class="panel-body">
+                <div class="pull-left col-md-6">
                 <dl>
                     <dt><?php echo __('Id'); ?></dt>
                     <dd>
@@ -61,12 +62,14 @@
                     <dt><?php echo __('Status'); ?></dt>
                     <dd>
                         <?php
-//                        foreach (Configure::read('CONT_STATUS') as $k => $v) {
-//                            if ($k == $container['Container']['status']) {
-//                                echo h($v);
-//                            }
-//                        }
+                        foreach (Configure::read('CONT_STATUS') as $k => $v) {
+                            if ($k == $container['Container']['status']) {
+                                echo h($v);
+                            }
+                        }
                         ?>
+                        
+                        <!--
                         <span>
                             <select id="status_select" data-contid="<?php echo $container['Container']['id'] ; ?>">
                                 <?php foreach (Configure::read('CONT_STATUS') as $k => $v) : ?>
@@ -78,16 +81,13 @@
                             </select>
                         </span>
                         <a href="javascript:void(0)" id="go_change_status">Save</a>
+                        --->
+                        
                     </dd>
                     <dt><?php echo __('Destination'); ?></dt>
                     <dd>
                         <?php
                         echo !empty(Configure::read('CONT_DESTINATION')[$container['Container']['destination']]) ? Configure::read('CONT_DESTINATION')[$container['Container']['destination']] : 'NOT SET';
-//                        foreach (Configure::read('CONT_DESTINATION') as $k => $v) {
-//                            if ($k == $container['Container']['destination']) {
-//                                echo h($v);
-//                            }
-//                        }
                         ?>
                     </dd>
                     
@@ -107,6 +107,27 @@
                         &nbsp;
                     </dd>
                 </dl>
+                </div>
+                <div class="pull-right col-md-4">
+                    <?php echo $this->Form->create('Container', array('url' => array('controller' => 'containers', 'action' => 'update_container'))); ?>
+                    <?php echo $this->Form->input('id', array('value' => $container['Container']['id'])); ?>
+                    <div class="form-group">
+                        <?php echo $this->Form->input('loader_id', array('class'=>'form-control', 'empty' => true, 'selected' => $container['Container']['loader_id'], 'required' => true)); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->Form->input('checker_id', array('class'=>'form-control', 'empty' => true, 'selected' => $container['Container']['checker_id'], 'required' => true)); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->Form->input('status', array('options' => Configure::read('CONT_STATUS'), 'class'=>'form-control', 'selected' => $container['Container']['status'], 'required' => true)); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->Form->input('remarks', array('class'=>'form-control', 'selected' => $container['Container']['status'], 'type' => 'textarea', 'rows' => 1, 'value' => $container['Container']['remarks'])); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->Form->end('Save'); ?>
+                    </div>
+                    
+                </div>
             </div>
         </div>
     </div>

@@ -11,6 +11,7 @@ class Checker extends AppModel {
  *
  * @var array
  */
+        public $displayField = 'checker_name';
 	public $validate = array(
 		'checker_name' => array(
 			'notEmpty' => array(

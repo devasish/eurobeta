@@ -10,7 +10,11 @@
     <div class="col-xs-8">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title"><?php echo __('Add Pallet Checklist to Container # ' . $container_no); ?></h3>
+                <h3 class="box-title">
+                    <?php echo __('Add Pallet Checklist to Container # '); 
+                     echo $this->Html->link($container_no, array('controller' => 'containers', 'action' => 'view', $container_id));
+                    ?>
+                </h3>
                 <div class="box-tools">
                     <div class="input-group"> 
                         

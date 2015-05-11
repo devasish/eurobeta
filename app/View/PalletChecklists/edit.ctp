@@ -11,7 +11,13 @@
     <div class="col-xs-8">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title"><?php echo __('Edit Pallet Checklist to Container # ' . $this->Form->value('Container.container_no')); ?></h3>
+                <h3 class="box-title">
+                    <?php 
+                    echo __('Edit Pallet Checklist to Container # '); 
+                    echo $this->Html->link($this->Form->value('Container.container_no'), array('controller' => 'containers', 'action' => 'view', $this->Form->value('Container.id')))
+                    ?>
+                    
+                </h3>
                 <div class="box-tools">
                     <div class="input-group"> 
                         

@@ -91,6 +91,12 @@ class ContainersController extends AppController {
         $options = array('conditions' => array('Container.' . $this->Container->primaryKey => $id));
         $this->Container->recursive = 2;
         $this->set('container', $this->Container->find('first', $options));
+        
+        $this->loadModel('Loader');
+        $this->loadModel('Checker');
+        
+        $this->set('loaders', $this->Loader->find('list'));
+        $this->set('checkers', $this->Checker->find('list'));
     }
 
     /**
@@ -126,7 +132,7 @@ class ContainersController extends AppController {
         }
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Container->save($this->request->data)) {
-                $this->Session->setFlash(__('The container has been saved.', 'flash_success'));
+                $this->Session->setFlash(__('The container has been saved.'), 'flash_success');
                 return $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The container could not be saved. Please, try again.'), 'flash_warning');
@@ -160,7 +166,11 @@ class ContainersController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
     
-    public function change_status() {
+    /**
+     * 
+     * @return type
+     */
+    public function change_statusXXX() {
         $result             = array('success' => false);
         $result['query']    = $this->params->query;
         
@@ -182,6 +192,18 @@ class ContainersController extends AppController {
         
         
         echo json_encode($result);
+    }
+    
+    
+    public function update_container() {
+        if ($this->request->is(array('post', 'put'))) {
+            if ($this->Container->save($this->request->data)) {
+                $this->Session->setFlash(__('The container has been updated.'), 'flash_success');
+                return $this->redirect(array('action' => 'view', $this->request->data['Container']['id']));
+            } else {
+                $this->Session->setFlash(__('The container could not be updated. Please, try again.'), 'flash_warning');
+            }
+        }
     }
 
 }
