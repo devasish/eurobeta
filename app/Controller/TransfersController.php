@@ -116,9 +116,11 @@ class TransfersController extends AppController {
             $last_serial = $x[0]['max_index'] + 1;
             $this->request->data['Transfer']['serial_no'] = strtoupper($this->request->data['Transfer']['sap_code']) . date('dmy') . sprintf('%05d', $last_serial);
             $this->request->data['Transfer']['serial_index'] = $last_serial;
+            
+            $dateObj = DateTime::createFromFormat('d-m-Y', $this->request->data['Transfer']['transfer_date']);
+
+            $this->request->data['Transfer']['transfer_date'] = $dateObj->format('Y-m-d');
             $this->Transfer->create();
-            $transdate = date('Y-m-d', strtotime($this->request->data['Transfer']['transfer_date']));
-            $this->request->data['Transfer']['transfer_date'] = $transdate;
             if ($this->Transfer->save($this->request->data)) {
                 $this->Session->setFlash(__('The transfer has been saved.'), 'flash_success');
                 return $this->redirect(array('action' => 'view', $this->Transfer->getLastInsertId()));
@@ -190,7 +192,11 @@ class TransfersController extends AppController {
 
         $saps = $this->Sap->find('all', array(
             'conditions' => array(
-                'Sap.sapcode LIKE' => "%$qStr%"
+                'OR' => array(
+                    'Sap.sapcode LIKE' => "%$qStr%",
+                    'Sap.description LIKE' => "%$qStr%",
+                )
+                
             ),
             'limit' => 7
         ));

@@ -87,7 +87,8 @@
                     <dt><?php echo __('Destination'); ?></dt>
                     <dd>
                         <?php
-                        echo !empty(Configure::read('CONT_DESTINATION')[$container['Container']['destination']]) ? Configure::read('CONT_DESTINATION')[$container['Container']['destination']] : 'NOT SET';
+                        $destn = Configure::read('CONT_DESTINATION');
+                        echo !empty($destn[$container['Container']['destination']]) ? $destn[$container['Container']['destination']] : 'NOT SET';
                         ?>
                     </dd>
                     
@@ -119,6 +120,9 @@
                     </div>
                     <div class="form-group">
                         <?php echo $this->Form->input('status', array('options' => Configure::read('CONT_STATUS'), 'class'=>'form-control', 'selected' => $container['Container']['status'], 'required' => true)); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->Form->input('load_date', array('type' => 'text', 'class'=>'form-control', 'required' => true)); ?>
                     </div>
                     <div class="form-group">
                         <?php echo $this->Form->input('remarks', array('class'=>'form-control', 'selected' => $container['Container']['status'], 'type' => 'textarea', 'rows' => 1, 'value' => $container['Container']['remarks'])); ?>
@@ -199,6 +203,8 @@
                 }
             })
         });
+        
+        $('#ContainerLoadDate').datepicker({format: 'dd-mm-yyyy'})
     });
 
 </script>

@@ -197,6 +197,8 @@ class ContainersController extends AppController {
     
     public function update_container() {
         if ($this->request->is(array('post', 'put'))) {
+            $dateObj = DateTime::createFromFormat('d-m-Y', $this->request->data['Container']['load_date']);
+            $this->request->data['Container']['load_date'] = $dateObj->format('Y-m-d');
             if ($this->Container->save($this->request->data)) {
                 $this->Session->setFlash(__('The container has been updated.'), 'flash_success');
                 return $this->redirect(array('action' => 'view', $this->request->data['Container']['id']));

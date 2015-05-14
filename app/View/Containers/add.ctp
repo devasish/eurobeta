@@ -24,10 +24,10 @@
                                 <?php echo $this->Form->input('empty_tare_wt', array('class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
-                                <?php echo $this->Form->input('type', array('options' => Configure::read('CONT_TYPES'), 'empty' => true, 'class'=>'form-control')); ?>
+                                <?php echo $this->Form->input('type', array('options' => Configure::read('CONT_TYPES'), 'empty' => true, 'class'=>'form-control', 'label' => '<span style="color:#090;">Container Type</span>')); ?>
                             </div>                            
                             <div class="form-group">
-                                <?php echo $this->Form->input('vp_ctn', array('options' => Configure::read('CONT_VP_CTN'), 'empty' => true, 'class'=>'form-control')); ?>
+                                <?php echo $this->Form->input('vp_ctn', array('options' => Configure::read('CONT_VP_CTN'), 'empty' => true, 'class'=>'form-control', 'label' => '<span style="color:#090;">Product Type</span>')); ?>
                             </div>
                             
                             <!--

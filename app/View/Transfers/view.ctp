@@ -5,7 +5,7 @@
     #print_div{
         background:#FFF    ;
         width: 390px; 
-        height: 385px; 
+        height: 450px; 
         border: 1px solid #123456;
         padding: 15px;
         border-radius: 5px;
@@ -85,7 +85,7 @@
             </div>
             <div class="panel-body">
                 <dl class="bar-details">
-                    <dt><?php echo __('Id'); ?></dt>
+<!--                    <dt><?php echo __('Id'); ?></dt>
                     <dd>
                         <?php echo h($transfer['Transfer']['id']); ?>
                         &nbsp;
@@ -94,7 +94,7 @@
                     <dd>
                         <?php echo $this->Html->link($transfer['Sap']['id'], array('controller' => 'saps', 'action' => 'view', $transfer['Sap']['id'])); ?>
                         &nbsp;
-                    </dd>
+                    </dd>-->
                     <dt><?php echo __('Sap Code'); ?></dt>
                     <dd>
                         <?php echo h($transfer['Transfer']['sap_code']); ?>
@@ -175,7 +175,7 @@
                         <tr>
                             <td style="text-align: right;">SAP Code</td>
                             <td>:</td>
-                            <td style="text-align: left; padding-left: 5px;"><b><?php echo h($transfer['Transfer']['sap_code']); ?></b></td>
+                            <td style="text-align: left; padding-left: 5px;"><b style="font-size:20px;"><?php echo h($transfer['Transfer']['sap_code']); ?></b></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">Description</td>
@@ -185,25 +185,53 @@
                         <tr>
                             <td style="text-align: right;">Ctn Per Pallet</td>
                             <td>:</td>
-                            <td style="text-align: left; padding-left: 5px;"><?php echo h($transfer['Transfer']['ctn_per_pallet']); ?></td>
+                            <td style="text-align: left; padding-left: 5px;"><b style="font-size:20px;"><?php echo h($transfer['Transfer']['ctn_per_pallet']); ?></b></td>
                         </tr>
                         <tr>
-                            <td style="text-align: right;">Quantity</td>
+                            <td style="text-align: right;">Net Weight</td>
                             <td>:</td>
                             <td style="text-align: left; padding-left: 5px;"><?php echo h($transfer['Transfer']['net_wt']); ?></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">Date</td>
                             <td>:</td>
-                            <td style="text-align: left; padding-left: 5px;"><?php echo date('d-m-y'); ?></td>
+                            <td style="text-align: left; padding-left: 5px;"><b style="font-size:20px;"><?php echo date('d-m-y'); ?></b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;">Remarks</td>
+                            <td>:</td>
+                            <td style="text-align: left; padding-left: 5px;">
+                                <?php 
+                                echo !empty($transfer['Transfer']['remarks']) ? h($transfer['Transfer']['remarks']) : "--"; 
+                                ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;">User</td>
+                            <td>:</td>
+                            <td style="text-align: left; padding-left: 5px;"><?php echo h($transfer['User']['username']); ?></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;">Shift</td>
+                            <td>:</td>
+                            <td style="text-align: left; padding-left: 5px;">
+                                <?php 
+                                echo $transfer['Transfer']['shift'] == 1 ? "Night" : "Morning"; 
+                                ?>
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="3">
                                 <table width="325px" style="margin-top: 20px;" >
                                     <tr>
-                                        <td style=" width: 40%;padding: 10px; border: 1px solid #23300f;border-radius: 4px;text-align: center;background: #d9edf7;color: #900;font-size: 20px;">QA Stamp</td>
-                                        <td></td>
-                                        <td style=" width: 40%;padding: 10px; border: 1px solid #23300f;border-radius: 4px;text-align: center;background: #d9edf7;color: #900;font-size: 20px;" >Prod Stamp</td>
+<!--                                        <td style=" width: 30%;padding-bottom: 10px; border-bottom:1px solid #23300f; text-align: center;color: #000; font-size: 20px;">QA Stamp</td>
+                                        <td style="padding-bottom: 10px; border-bottom:1px solid #23300f; text-align: center;color: #000; font-size: 20px;">QA Stamp</td>
+                                        <td style=" width: 30%;padding-bottom: 10px; border-bottom:1px solid #23300f; text-align: center;color: #000; font-size: 20px;">QA Stamp</td>-->
+                                        <td style="text-align:center;">QA Verification <br/>_______________</td>
+                                        <td style="text-align:center;">Production <br/>_______________</td>
+                                        <td style="text-align:center;">Warehouse <br/>_______________</td>
+                                        
+                                        
                                     </tr>
                                 </table>
                             </td>
@@ -229,7 +257,7 @@
                         <tr>
                             <td style="text-align: right;">SAP Code</td>
                             <td>:</td>
-                            <td style="text-align: left; padding-left: 5px;"><b><?php echo h($transfer['Transfer']['sap_code']); ?></b></td>
+                            <td style="text-align: left; padding-left: 5px;"><b style="font-size:20px;"><?php echo h($transfer['Transfer']['sap_code']); ?></b></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">Description</td>
@@ -239,25 +267,48 @@
                         <tr>
                             <td style="text-align: right;">Ctn Per Pallet</td>
                             <td>:</td>
-                            <td style="text-align: left; padding-left: 5px;"><?php echo h($transfer['Transfer']['ctn_per_pallet']); ?></td>
+                            <td style="text-align: left; padding-left: 5px;"><b style="font-size:20px;"><?php echo h($transfer['Transfer']['ctn_per_pallet']); ?></b></td>
                         </tr>
                         <tr>
-                            <td style="text-align: right;">Quantity</td>
+                            <td style="text-align: right;">Net Weight</td>
                             <td>:</td>
                             <td style="text-align: left; padding-left: 5px;"><?php echo h($transfer['Transfer']['net_wt']); ?></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">Date</td>
                             <td>:</td>
-                            <td style="text-align: left; padding-left: 5px;"><?php echo date('d-m-y'); ?></td>
+                            <td style="text-align: left; padding-left: 5px;"><b style="font-size:20px;"><?php echo date('d-m-y'); ?></b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;">Remarks</td>
+                            <td>:</td>
+                            <td style="text-align: left; padding-left: 5px;">
+                                <?php 
+                                echo !empty($transfer['Transfer']['remarks']) ? h($transfer['Transfer']['remarks']) : "--"; 
+                                ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;">User</td>
+                            <td>:</td>
+                            <td style="text-align: left; padding-left: 5px;"><?php echo h($transfer['User']['username']); ?></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;">shift</td>
+                            <td>:</td>
+                            <td style="text-align: left; padding-left: 5px;">
+                                <?php 
+                                echo $transfer['Transfer']['shift'] == 1 ? "Night" : "Morning"; 
+                                ?>
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="3">
                                 <table width="30%" style="margin-top: 20px;" >
                                     <tr>
-                                        <td style=" width: 40%;padding: 10px; border: 1px solid #23300f;border-radius: 4px;text-align: center;background: #d9edf7;color: #900;font-size: 20px;">QA Stamp</td>
-                                        <td></td>
-                                        <td style=" width: 40%;padding: 10px; border: 1px solid #23300f;border-radius: 4px;text-align: center;background: #d9edf7;color: #900;font-size: 20px;" >Prod Stamp</td>
+                                        <td style="text-align:center;">QA Verification <br/>__________________</td>
+                                        <td style="text-align:center;">Production <br/>__________________</td>
+                                        <td style="text-align:center;">Warehouse <br/>__________________</td>
                                     </tr>
                                 </table>
                             </td>

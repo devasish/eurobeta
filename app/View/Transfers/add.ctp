@@ -56,6 +56,9 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $('#transferDate').datepicker({format:'dd-mm-yyyy',}).datepicker('setDate', new Date()).datepicker('update');
+        
+        
         $('#TransferSapCode').autocomplete({
             source : 'prediction',
             select : function (event, ui) {

@@ -1,7 +1,7 @@
 <div class="row">
     <ol class="breadcrumb">
         <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-        <li class="active">Dashboard</li>
+        <li><?php echo $this->Html->link('<i class="fa fa-eye"></i>' . '&nbsp;&nbsp;' . __('View Container'), array('controller' => 'containers', 'action' => 'view', $this->Form->value('Container.id')), array('escape' => FALSE)); ?> </li>
     </ol>
 </div>
 

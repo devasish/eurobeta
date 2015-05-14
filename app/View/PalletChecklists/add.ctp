@@ -1,7 +1,7 @@
 <div class="row">
     <ol class="breadcrumb action-link">
         <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-        <li><?php echo $this->Html->link('<i class="fa fa-share-square-o"></i>'.'&nbsp;&nbsp;'.__('View Container'), array(), array('escape'=>FALSE)); ?></li>        
+        <li><?php echo $this->Html->link('<i class="fa fa-eye"></i>' . '&nbsp;&nbsp;' . __('View Container'), array('controller' => 'containers', 'action' => 'view', $container_id), array('escape' => FALSE)); ?> </li>
     </ol>
 </div><!--/.row-->
 
@@ -117,5 +117,5 @@
             <button type="submit" class="btn btn-primary">Save</button><br/><br/>
         </div>
 </div>
-<?php echo $this->Html->script('View/PalletChecklists/add') ?>
+<?php echo $this->Html->script('View/PalletChecklists/add'); ?>
 
