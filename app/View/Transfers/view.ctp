@@ -5,7 +5,7 @@
     #print_div{
         background:#FFF    ;
         width: 390px; 
-        height: 450px; 
+        height: 460px; 
         border: 1px solid #123456;
         padding: 15px;
         border-radius: 5px;
@@ -171,10 +171,10 @@
                     <h3>EURO SME SDN BHD</h3>
                     <h4>Finished Goods Slip</h4>
                     <div id="barcode-div1"></div>
-                    <table style="text-align: center;">
+                    <table style="text-align: center; width: 100%;">
                         <tr>
-                            <td style="text-align: right;">SAP Code</td>
-                            <td>:</td>
+                            <td style="text-align: right;" width="45%">SAP Code</td>
+                            <td width="2%">:</td>
                             <td style="text-align: left; padding-left: 5px;"><b style="font-size:20px;"><?php echo h($transfer['Transfer']['sap_code']); ?></b></td>
                         </tr>
                         <tr>
@@ -253,9 +253,9 @@
                     <h3>EURO SME SDN BHD</h3>
                     <h4>Finished Goods Slip</h4>
                     <div id="barcode-div2"></div>
-                    <table>
+                    <table style="text-align: center; width: 100%;">
                         <tr>
-                            <td style="text-align: right;">SAP Code</td>
+                            <td style="text-align: right; width: 45%;">SAP Code</td>
                             <td>:</td>
                             <td style="text-align: left; padding-left: 5px;"><b style="font-size:20px;"><?php echo h($transfer['Transfer']['sap_code']); ?></b></td>
                         </tr>
