@@ -40,7 +40,7 @@
 			<th><?php echo $this->Paginator->sort('net_wt'); ?></th>
 			<th><?php echo $this->Paginator->sort('transfer_date'); ?></th>			
 			<th><?php echo $this->Paginator->sort('shift'); ?></th>			
-			<th><?php echo 'Created By'; ?></th>
+			<th><?php echo 'Created/Modified By'; ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
                     </tr>
 
@@ -54,8 +54,16 @@
                         <td><?php echo h($transfer['Transfer']['net_wt']); ?>&nbsp;</td>
                         <td><?php echo h($transfer['Transfer']['transfer_date']); ?>&nbsp;</td>                       
                         <td><?php echo h($transfer['Transfer']['shift'] == 0 ? 'Morning' : 'Night'); ?>&nbsp;</td>                        
-                        <td>
-                            <?php echo $this->Html->link($transfer['User']['username'], array('controller' => 'users', 'action' => 'view', $transfer['User']['id'])); ?>
+                        <td class="text-center">
+                            <?php 
+                            echo $this->Html->link($transfer['User']['username'], array('controller' => 'users', 'action' => 'view', $transfer['User']['id'])); 
+                            ?>
+                            &nbsp;&nbsp;
+                            <?php
+                            if (!empty($transfer['Transfer']['modified_by'])) {
+                                echo $this->Html->link($transfer['Editor']['username'], array('controller' => 'users', 'action' => 'view', $transfer['Editor']['id'])); 
+                            }
+                            ?>
                         </td>
                         <td>
                             <span class="label label-info"><?php echo $this->Html->link(__('View'), array('action' => 'view', $transfer['Transfer']['id'])); ?></span>

@@ -147,6 +147,7 @@ class TransfersController extends AppController {
         if ($this->request->is(array('post', 'put'))) {
             $updtransdate = date('Y-m-d', strtotime($this->request->data['Transfer']['transfer_date']));
             $this->request->data['Transfer']['transfer_date'] = $updtransdate;
+            $this->request->data['Transfer']['modified_by'] = $this->Session->read('Auth.User.id');
             if ($this->Transfer->save($this->request->data)) {
                 $this->Session->setFlash(__('The transfer has been saved.'), 'flash_success');
                 return $this->redirect(array('action' => 'index'));

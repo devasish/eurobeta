@@ -105,6 +105,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                     </a>
                                     <ul>
                                         <li>
+                                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Containers', array('controller' => 'reports', 'action' => 'containers'), array('escape' => FALSE)); ?>
+                                        </li>
+                                        <li>
                                             <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Loading Report', array('controller' => 'reports', 'action' => 'loading'), array('escape' => FALSE)); ?>
                                         </li>
                                         <li>

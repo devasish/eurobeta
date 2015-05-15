@@ -147,6 +147,13 @@ class Transfer extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Editor' => array(
+			'className' => 'User',
+			'foreignKey' => 'modified_by',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
         
