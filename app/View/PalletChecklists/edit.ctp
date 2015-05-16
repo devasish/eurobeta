@@ -72,7 +72,7 @@
     <div class="col-lg-4">
             <div class="panel panel-default">                   
                     <div class="panel-body">
-                        <div class="col-md-6">                            
+                        <div class="col-md-12">                            
                             <div class="form-group">
                                 <?php echo $this->Form->input('id', array('type' => 'hidden')); ?>
                             </div>

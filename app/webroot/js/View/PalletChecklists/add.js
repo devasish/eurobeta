@@ -9,7 +9,7 @@ $(document).ready(function () {
             var wt_wth_pallet = $('#PalletLoad' + row_index + 'WtWithPallet').val();
             
             if (qty_ctn > 0 && wt_wth_pallet > 0) {
-                var wt_per_ctn = Custom.round((wt_wth_pallet - empty_pallet_wt) / qty_ctn, 4);
+                var wt_per_ctn = Custom.round((wt_wth_pallet - empty_pallet_wt) / qty_ctn, 2);
                 $('#PalletLoad' + row_index + 'WtPerCtn').val(wt_per_ctn);
                 
             } else {
@@ -177,10 +177,10 @@ $(document).ready(function () {
             var total_wt_with_pallet = $('#PalletChecklistTotalWtWithPallet').val();
             var total_empty_ctn_wt = empty_ctn_wt * total_ctn;
             var net_product_wt = total_wt_with_pallet - (total_empty_ctn_wt + empty_pallet_wt)
-            var net_wt_per_ctn = Custom.round(net_product_wt / total_ctn, 4);
-            var gross_wt_per_ctn = Custom.round((total_wt_with_pallet - empty_pallet_wt)/total_ctn, 4);
-            var diff = Custom.round((net_wt_per_ctn - cutomer_prod_wt), 4);
-            var diff_perc = Custom.round(((net_wt_per_ctn - cutomer_prod_wt) / cutomer_prod_wt) * 100, 4);
+            var net_wt_per_ctn = Custom.round(net_product_wt / total_ctn, 2);
+            var gross_wt_per_ctn = Custom.round((total_wt_with_pallet - empty_pallet_wt)/total_ctn, 2);
+            var diff = Custom.round((net_wt_per_ctn - cutomer_prod_wt), 2);
+            var diff_perc = Custom.round(((net_wt_per_ctn - cutomer_prod_wt) / cutomer_prod_wt) * 100, 2);
             
             $('#PalletChecklistNoOfPallet').val(load_count);
             $('#PalletChecklistEmptyPalletWt').val(empty_pallet_wt);

@@ -86,6 +86,7 @@ class ReportsController extends AppController {
      */
     public function ctn_loading_report() {
         // loads the view only
+        $this->Session->setFlash(__('Please Search by SAP Code or Description'), 'flash_warning');
     }
 
     /**
@@ -117,22 +118,23 @@ class ReportsController extends AppController {
      * This function loads the view only
      */
     public function loading_analysis() {
-        $this->loadModel('PalletChecklist');
-        $x = $this->PalletChecklist->find('all', array(
-            'conditions' => array(),
-            'recursive' => 0,
-            'fields' => array(
-                'sap_id',
-                'created',
-                'SUM(no_of_ctn) AS total_no_of_ctn',
-                'ROUND(SUM(net_product_wt), 2) as total_net_product_wt',
-                'ROUND((SUM(net_wt_per_ctn) - SUM(product_cust_wt)) / SUM(product_cust_wt) *100, 2) AS total_diff_perc',
-                'DATE_FORMAT(PalletChecklist.created, "%Y-%m") AS gr_date'
-            ),
-            'group' => array('PalletChecklist.sap_id', "DATE_FORMAT(PalletChecklist.created, '%Y%m')"),
-            'order' => array('PalletChecklist.created ASC', 'PalletChecklist.sap_id DESC')
-        ));
+//        $this->loadModel('PalletChecklist');
+//        $x = $this->PalletChecklist->find('all', array(
+//            'conditions' => array(),
+//            'recursive' => 0,
+//            'fields' => array(
+//                'sap_id',
+//                'created',
+//                'SUM(no_of_ctn) AS total_no_of_ctn',
+//                'ROUND(SUM(net_product_wt), 2) as total_net_product_wt',
+//                'ROUND((SUM(net_wt_per_ctn) - SUM(product_cust_wt)) / SUM(product_cust_wt) *100, 2) AS total_diff_perc',
+//                'DATE_FORMAT(PalletChecklist.created, "%Y-%m") AS gr_date'
+//            ),
+//            'group' => array('PalletChecklist.sap_id', "DATE_FORMAT(PalletChecklist.created, '%Y%m')"),
+//            'order' => array('PalletChecklist.created ASC', 'PalletChecklist.sap_id DESC')
+//        ));
 
+        $this->Session->setFlash(__('Please Select a Date Range'), 'flash_warning');
 //        pr($x);
     }
 
@@ -402,6 +404,8 @@ class ReportsController extends AppController {
     
     public function containers() {
         $conditions = array();
+        $hasDateFrom = false;
+        $hasDateTo = false;
         if (($this->request->is('post') || $this->request->is('put')) && isset($this->data['Filter'])) {
             $filter_url = array();
             $filter_url['controller'] = $this->request->params['controller'];
@@ -438,9 +442,11 @@ class ReportsController extends AppController {
                     } elseif ($name == 'cal_from' && !empty($value)) {
                         $dateObj = DateTime::createFromFormat('d-m-Y', $value);
                         $conditions['Container.created >='] = $dateObj->format('Y-m-d');
+                        $hasDateFrom = true;
                     } elseif ($name == 'cal_to' && !empty($value)) {
                         $dateObj = DateTime::createFromFormat('d-m-Y', $value);
                         $conditions['Container.created <='] = $dateObj->format('Y-m-d') . ' 23:59:59';
+                        $hasDateTo = true;
                     }
                     $this->request->data['Filter'][$name] = $value;
                 }
@@ -453,8 +459,13 @@ class ReportsController extends AppController {
 //            'conditions' => $conditions
 //        );
         //$this->Container->recursive = 0;
-        $this->loadModel('Container');
-        $containers = $this->Container->find('all', array('conditions' => $conditions, 'order' => 'Container.id DESC'));
+        if ($hasDateFrom && $hasDateTo) {
+            $this->loadModel('Container');
+            $containers = $this->Container->find('all', array('conditions' => $conditions, 'order' => 'Container.id DESC'));
+        } else {
+            $containers = array();
+            $this->Session->setFlash(__('Please Select a Date Range'), 'flash_warning');
+        }
         $this->set('containers', $containers);
     }
 }

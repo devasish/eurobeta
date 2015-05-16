@@ -16,7 +16,7 @@
                 <h3 class="box-title">Containers List</h3>
                 <div class="box-tools">
 
-                    <?php $url = array('controller' => 'Containers', 'action' => 'index'); ?>  
+                    <?php $url = array('controller' => 'reports', 'action' => 'containers'); ?>  
                     <?php echo $this->Form->create('Filter', array('url' => $url)); ?>
                     <div class="input-group"> 
                         <ul class="filters">
@@ -34,14 +34,14 @@
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover" id="containers-report-table">
                     <tr>
-                        <th><?php echo h('id'); ?></th>
-                        <th><?php echo h('container_no'); ?></th>
-                        <th><?php echo h('seal_no'); ?></th>
-                        <th><?php echo h('empty_tare_wt'); ?></th>
-                        <th><?php echo h('type'); ?></th>
-                        <th><?php echo h('Container_type'); ?></th>
-                        <th><?php echo h('status'); ?></th>
-                        <th><?php echo h('created'); ?></th>			
+                        <th><?php echo h('Id'); ?></th>
+                        <th><?php echo h('Container No'); ?></th>
+                        <th><?php echo h('Seal No'); ?></th>
+                        <th><?php echo h('Empty Tare Wt'); ?></th>
+                        <th><?php echo h('Type'); ?></th>
+                        <th><?php echo h('Container Type'); ?></th>
+                        <th><?php echo h('Status'); ?></th>
+                        <th><?php echo h('Created'); ?></th>			
                     </tr>
 
                     <?php foreach ($containers as $container): ?>
