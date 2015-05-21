@@ -63,12 +63,13 @@ class ReportsController extends AppController {
             'fields' => array(
                 'Sap.sapcode',
                 'Sap.description',
+                'Container.container_no',
                 'ROUND(SUM(net_product_wt), 2) as total_net_product_wt',
                 'SUM(no_of_ctn) AS total_no_of_ctn',
                 'ROUND(SUM((no_of_ctn * product_cust_wt)), 2) AS net_cust_product_wt',
                 '(ROUND(SUM(net_wt_per_ctn) / COUNT(sap_id), 2)) AS avg_net_wt_per_ctn',
                 'ROUND((SUM(net_product_wt) - SUM((no_of_ctn * product_cust_wt))), 2) AS total_diff',
-                'PalletChecklist.created'
+                'Container.load_date'
             ),
             'recursive' => 0,
             'conditions' => $conditions,

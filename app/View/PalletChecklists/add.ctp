@@ -70,7 +70,7 @@
                                 <?php echo $this->Form->input('sap_id', array('type' => 'hidden', 'class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
-                                <?php echo $this->Form->input('sap_code', array('class'=>'form-control lg-input')); ?>
+                                <?php echo $this->Form->input('sap_code', array('class'=>'form-control lg-input', 'autofocus' => true)); ?>
                             </div>
                             <div class="form-group">
                                 <?php echo $this->Form->input('sap_desc', array('readonly' => true, 'class'=>'form-control')); ?>
@@ -106,7 +106,7 @@
                                 <?php echo $this->Form->input('diff', array('type' => 'hidden', 'class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
-                                <?php echo $this->Form->input('diff_perc', array('readonly' => true, 'class'=>'form-control', 'label' => 'Diff (%)')); ?>
+                                <?php echo $this->Form->input('diff_perc', array('readonly' => true, 'class'=>'form-control', 'label' => array('text' => 'Diff (%)', 'class' => 'control-label'))); ?>
                             </div>
                             
                         </div>

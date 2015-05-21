@@ -190,11 +190,21 @@ $(document).ready(function () {
             $('#PalletChecklistGrossWtPerCtn').val(gross_wt_per_ctn);
             $('#PalletChecklistDiff').val(diff);
             $('#PalletChecklistDiffPerc').val(diff_perc);
+            
+            highlightDiff(diff_perc);
         }
         
         function go_check() {
             var ct = count_loads();
             do_sum();
             set_data({'load_count' : ct});
+        }
+        
+        function highlightDiff(diff_perc) {
+            if (Math.abs(diff_perc) >= 15) {
+                $('#PalletChecklistDiffPerc').parents('.form-group:first').addClass('has-error')
+            } else {
+                $('#PalletChecklistDiffPerc').parents('.form-group:first').removeClass('has-error')
+            }
         }
     });

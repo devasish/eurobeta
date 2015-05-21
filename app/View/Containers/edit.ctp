@@ -39,9 +39,27 @@
                             <div class="form-group">
                                 <?php echo $this->Form->input('destination', array('options' => Configure::read('CONT_DESTINATION'), 'empty' => true, 'class'=>'form-control')); ?>
                             </div>                            
+                            <div class="form-group">
+                                <?php echo $this->Form->input('customer_id', array('class'=>'form-control', 'type'=>'hidden')); ?>
+                            </div>
+                            <div class="form-group">
+                                <?php echo $this->Form->input('customer_name', array('class'=>'form-control', 'type'=>'text', 'value' => $this->Form->value('Customer.name'))); ?>
+                            </div>
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </div>
             </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#ContainerCustomerName').autocomplete({
+            source : SITE_URL + 'customers/prediction',
+            select : function (event, ui) {
+                $('#ContainerCustomerId').val(ui.item.id);
+                //console.log(ui);
+            }
+        });
+    })
+</script>

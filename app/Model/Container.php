@@ -100,6 +100,13 @@ class Container extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Customer' => array(
+			'className' => 'Customer',
+			'foreignKey' => 'customer_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 

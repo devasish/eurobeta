@@ -119,7 +119,7 @@
                                 <?php echo $this->Form->input('diff', array('type' => 'hidden', 'class'=>'form-control')); ?>
                             </div>                            
                             <div class="form-group">
-                                <?php echo $this->Form->input('diff_perc', array('readonly' => true, 'class'=>'form-control', 'label' => 'Diff (%)')); ?>
+                                <?php echo $this->Form->input('diff_perc', array('readonly' => true, 'class'=>'form-control', 'label' => array('text' => 'Diff (%)', 'class' => 'control-label'))); ?>
                             </div>                            
                         </div>
                     </div>

@@ -13,7 +13,7 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Containers List</h3>
+                <h3 class="box-title">Containers</h3>
                 <div class="box-tools">
 
                     <?php $url = array('controller' => 'reports', 'action' => 'containers'); ?>  
@@ -34,14 +34,15 @@
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover" id="containers-report-table">
                     <tr>
-                        <th><?php echo h('Id'); ?></th>
-                        <th><?php echo h('Container No'); ?></th>
-                        <th><?php echo h('Seal No'); ?></th>
-                        <th><?php echo h('Empty Tare Wt'); ?></th>
-                        <th><?php echo h('Type'); ?></th>
-                        <th><?php echo h('Container Type'); ?></th>
-                        <th><?php echo h('Status'); ?></th>
-                        <th><?php echo h('Created'); ?></th>			
+                        <td><?php echo h('Id'); ?></td>
+                        <td><?php echo h('Container No'); ?></td>
+                        <td><?php echo h('Seal No'); ?></td>
+                        <td><?php echo h('Empty Tare Wt'); ?></td>
+                        <td><?php echo h('Type'); ?></td>
+                        <td><?php echo h('Container Type'); ?></td>
+                        <td><?php echo h('Status'); ?></td>
+                        <td><?php echo h('Loaded On'); ?></td>			
+                        <td><?php echo h('Customer'); ?></td>			
                     </tr>
 
                     <?php foreach ($containers as $container): ?>
@@ -88,7 +89,8 @@
                             <td class="<?php echo $cls; ?>">
                                 <?php echo $status; ?>
                             </td>
-                            <td><?php echo h($container['Container']['created']); ?>&nbsp;</td>
+                            <td><?php echo h($container['Container']['load_date']); ?>&nbsp;</td>
+                            <td><?php echo h($container['Customer']['name']); ?>&nbsp;</td>
                         </tr>
                     <?php endforeach; ?>
                 </table>

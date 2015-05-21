@@ -103,6 +103,11 @@
                                 <?php echo h($container['Container']['modified']); ?>
                                 &nbsp;
                             </dd>
+                            <dt><?php echo __('Customer'); ?></dt>
+                            <dd>
+                                <?php echo h($container['Customer']['name']); ?>
+                                &nbsp;
+                            </dd>
                             <dt><?php echo __('User'); ?></dt>
                             <dd>
                                 <?php echo $this->Html->link($container['User']['username'], array('controller' => 'users', 'action' => 'view', $container['User']['id'])); ?>

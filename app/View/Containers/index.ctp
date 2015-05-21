@@ -11,7 +11,7 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Containers List</h3>
+                  <h3 class="box-title">Containers</h3>
                   <div class="box-tools">
                     
                     <?php $url = array('controller' => 'Containers', 'action' => 'index'); ?>  
@@ -39,7 +39,8 @@
 			<th><?php echo $this->Paginator->sort('type'); ?></th>
 			<th><?php echo $this->Paginator->sort('Container_type'); ?></th>
 			<th><?php echo $this->Paginator->sort('status'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>			
+			<th><?php echo $this->Paginator->sort('load_date'); ?></th>			
+			<th><?php echo $this->Paginator->sort('Customer.name'); ?></th>			
 			<th class="actions"><?php echo __('Actions'); ?></th>
                     </tr>
 
@@ -88,10 +89,11 @@
                                 <span class="label <?php echo $cls; ?>"><?php echo $status; ?></span>
                                 &nbsp;
                             </td>
-                            <td><?php echo h($container['Container']['created']); ?>&nbsp;</td>
+                            <td><?php echo h($container['Container']['load_date']); ?>&nbsp;</td>
+                            <td><?php echo h($container['Customer']['name']); ?>&nbsp;</td>
 
                             <td>
-                                <span class="label label-info"><?php echo $this->Html->link(__('Load'), array('action' => 'view', $container['Container']['id'])); ?></span>
+                                <span class="label label-info"><?php echo $this->Html->link(__(($container['Container']['status'] == 2 ? 'Update' : 'Load')), array('action' => 'view', $container['Container']['id'])); ?></span>
                             </td>
                         </tr>
                     <?php endforeach; ?>

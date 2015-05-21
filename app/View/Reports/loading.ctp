@@ -39,20 +39,22 @@
                         </tr>
                     <?php endif; ?>
                     <tr class="tr-head">
-                        <td><?php echo $this->Paginator->sort('Sap.sapcode'); ?></td>
-                        <td><?php echo $this->Paginator->sort('Sap.description'); ?></td>
+                        <td><?php echo $this->Paginator->sort('Sap.sapcode', 'SAP Code'); ?></td>
+                        <td><?php echo $this->Paginator->sort('Sap.description', 'Description'); ?></td>
+                        <td><?php echo $this->Paginator->sort('Container.container_no', 'Container No'); ?></td>
                         <td>T. CTN</td>
                         <td>L. Weight</td>
                         <td>N. Weight</td>
                         <td>Diff. Kg.</td>
                         <td>Diff. %</td>
                         <td>AVG WT/CTN</td>
-                        <td>Loaded on</td>
+                        <td><?php echo $this->Paginator->sort('Container.load_date', 'Loaded On'); ?></td>
                     </tr>
                     <?php foreach ($palletLoads as $palletLoad): ?>
                         <tr>
                             <td><?php echo h($palletLoad['Sap']['sapcode']); ?></td>
                             <td><?php echo h($palletLoad['Sap']['description']); ?></td>
+                            <td><?php echo h($palletLoad['Container']['container_no']); ?></td>
                             <td><?php echo h($palletLoad[0]['total_no_of_ctn']); ?></td>
                             <td><?php echo h($palletLoad[0]['total_net_product_wt']); ?></td>
                             <td><?php echo h($palletLoad[0]['net_cust_product_wt']); ?></td>
@@ -66,7 +68,7 @@
                             ?>
                             <td class="<?php echo $cls; ?>"><?php echo $diff_perc; ?></td>
                             <td><?php echo h(round($palletLoad[0]['total_net_product_wt'] / $palletLoad[0]['total_no_of_ctn'], 2)); ?></td>
-                            <td><?php echo h($palletLoad['PalletChecklist']['created']); ?></td>
+                            <td><?php echo h($palletLoad['Container']['load_date']); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </table>
