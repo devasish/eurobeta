@@ -267,6 +267,7 @@ class ReportsController extends AppController {
     
     public function transfer_report_1() {
         $params = array();
+        $dateSet = false;
         if (($this->request->is('post') || $this->request->is('put')) && isset($this->data['Filter'])) {
             $filter_url = array();
             $filter_url['controller'] = $this->request->params['controller'];
@@ -295,10 +296,11 @@ class ReportsController extends AppController {
                     } elseif($name == 'cal_from' && !empty ($value)) {
                         $dateObj = DateTime::createFromFormat('d-m-Y', $value);
                         $params['cal_from'] = $dateObj->format('Y-m-d');
+                        $dateSet = true;
                     } elseif($name == 'cal_to' && !empty ($value)) {
                         $dateObj = DateTime::createFromFormat('d-m-Y', $value);
                         $params['cal_to'] = $dateObj->format('Y-m-d');
-                        
+                        $dateSet = true;
                     } elseif ($name == 'factory') {
                         $params['factory'] = $value;
                     }
@@ -309,6 +311,17 @@ class ReportsController extends AppController {
             }
         }
         
+        if (!$dateSet) {
+            $date_from = date('d-m-Y', strtotime(date('Y-m-d') . ' - 1 days'));
+            $date_to = date('d-m-Y');
+            $this->request->data['Filter']['cal_from'] = $date_from;
+            $this->request->data['Filter']['cal_to'] = $date_to;
+            $dateObj = DateTime::createFromFormat('d-m-Y', $date_from);
+            $params['cal_from'] = $dateObj->format('Y-m-d');
+            $dateObj = DateTime::createFromFormat('d-m-Y', $date_to);
+            $params['cal_to'] = $dateObj->format('Y-m-d') . ' 23:59:59';
+        }
+        
         $this->loadModel('Transfer');       
         $transfers = $this->Transfer->report_1_data($params);
         $this->set('transfers', $transfers);
@@ -317,6 +330,7 @@ class ReportsController extends AppController {
     
     public function transfer_report_2() {
         $conditions = array();
+        $dateSet = false;
         if (($this->request->is('post') || $this->request->is('put')) && isset($this->data['Filter'])) {
             $filter_url = array();
             $filter_url['controller'] = $this->request->params['controller'];
@@ -331,6 +345,7 @@ class ReportsController extends AppController {
                     }
                 }
             }
+            
             return $this->redirect($filter_url);
         } else {
             foreach ($this->request->params['named'] as $name => $value) {
@@ -346,9 +361,11 @@ class ReportsController extends AppController {
                             $conditions['Sap.' . $this->request->params['named']['field'] . ' LIKE '] = "%$value%";
                         }
                     } elseif($name == 'cal_from' && !empty ($value)) {
+                        $dateSet = true;
                         $dateObj = DateTime::createFromFormat('d-m-Y', $value);
                         $conditions['Transfer.transfer_date >='] = $dateObj->format('Y-m-d');
                     } elseif($name == 'cal_to' && !empty ($value)) {
+                        $dateSet = true;
                         $dateObj = DateTime::createFromFormat('d-m-Y', $value);
                         $conditions['Transfer.transfer_date <='] = $dateObj->format('Y-m-d') . ' 23:59:59';
                     } elseif ($name == 'factory') {
@@ -359,6 +376,17 @@ class ReportsController extends AppController {
                     
                 }
             }
+        }
+        
+        if (!$dateSet) {
+            $date_from = date('d-m-Y', strtotime(date('Y-m-d') . ' - 1 days'));
+            $date_to = date('d-m-Y');
+            $this->request->data['Filter']['cal_from'] = $date_from;
+            $this->request->data['Filter']['cal_to'] = $date_to;
+            $dateObj = DateTime::createFromFormat('d-m-Y', $date_from);
+            $conditions['Transfer.transfer_date >='] = $dateObj->format('Y-m-d');
+            $dateObj = DateTime::createFromFormat('d-m-Y', $date_to);
+            $conditions['Transfer.transfer_date <='] = $dateObj->format('Y-m-d') . ' 23:59:59';
         }
         
         $conditions_m = $conditions;

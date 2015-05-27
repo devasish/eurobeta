@@ -13,7 +13,7 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Transfer Report</h3>
+                <h3 class="box-title">Transfer Report 2</h3>
                 <div class="box-tools">
                     <?php $url = array('controller' => 'Reports', 'action' => 'transfer_report_2'); ?>
                     <?php echo $this->Form->create('Filter', array('url' => $url)); ?>
@@ -33,8 +33,17 @@
                 </div>
             </div><!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
-                <table class="table table-hover table-striped table-bordered table-condensed" id="transfer_report_table">                                      
+                <table class="table table-hover table-striped table-bordered table-condensed" id="transfer_report_table">
+                <?php $totals = array(); ?>
                 <?php foreach ($transfers as $key => $transfer): ?>
+                    <?php
+                    if (!isset($totals[$key]['net_wt'])) {
+                        $totals[$key]['net_wt'] = 0;
+                    }
+                    if (!isset($totals[$key]['ctn_per_pallet'])) {
+                        $totals[$key]['ctn_per_pallet'] = 0;
+                    }
+                    ?>
                     <tr class="tr-head">
                         <td colspan="6" class="text-center title-td">
                             <?php 
@@ -51,7 +60,7 @@
                             <td>Sap Code</td>
                             <td>Product</td>
                             <td>Weight</td>
-                            <td>TTL CTN</td>                        
+                            <td>No. of CTN</td>                        
                         </tr>
                         
                         <?php foreach ($transfer as $trans): ?>                       
@@ -62,7 +71,19 @@
                             <td><?php echo h($trans['Transfer']['net_wt']); ?></td>
                             <td><?php echo h($trans['Transfer']['ctn_per_pallet']); ?></td>
                         </tr>
-                        <?php endforeach; ?>                        
+                        
+                        <?php 
+                        $totals[$key]['net_wt'] = isset($totals[$key]['net_wt']) ? $totals[$key]['net_wt'] + $trans['Transfer']['net_wt'] : $trans['Transfer']['net_wt']; 
+                        $totals[$key]['ctn_per_pallet'] = isset($totals[$key]['ctn_per_pallet']) ? $totals[$key]['ctn_per_pallet'] + $trans['Transfer']['ctn_per_pallet'] : $trans['Transfer']['ctn_per_pallet']; 
+                        ?>
+                        <?php endforeach; ?>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><?php echo h($totals[$key]['net_wt']); ?></td>
+                            <td><?php echo h($totals[$key]['ctn_per_pallet']); ?></td>
+                        </tr>
                 <?php endforeach;?>
                 </table>
                 
