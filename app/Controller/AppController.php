@@ -53,6 +53,10 @@ class AppController extends Controller {
     );
     
     public function permitted($module = NULL, $section = NULL) {
+        $univAllowed = array('users' => array('login' => 1, 'logout' => 1));
+        if (!empty($univAllowed[$module]) && !empty($univAllowed[$module][$section])) {
+            return TRUE;
+        }
         $this->loadModel('UacPermission');
         $p = $this->UacPermission->getPermissions($this->Session->read('Auth.User.role'));
         $flag = FALSE;
@@ -77,8 +81,6 @@ class AppController extends Controller {
         if (!$this->permitted($controller, $action)) {
             throw new NotFoundException(__(NOT_ALLOWED));
         }
-        //$p = $this->Session->read('Auth.User.Perm');
-//        $this->Auth->allow('index', 'view');
     }
 
 }

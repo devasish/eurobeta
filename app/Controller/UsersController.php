@@ -106,7 +106,7 @@ class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         // Allow users to register and logout.
-        $this->Auth->allow('add', 'logout');
+        $this->Auth->allow('logout');
     }
 
     public function login() {
@@ -115,7 +115,7 @@ class UsersController extends AppController {
             if ($this->Auth->login()) {
                 // Get permissions
                 $this->loadModel('UacPermission');
-                $result = $this->UacPermission->get($role = $this->Session->read('Auth.User.role'));
+                $result = $this->UacPermission->getPermissions($role = $this->Session->read('Auth.User.role'));
                 $this->Session->write('Auth.User.Perm', $result);
                 
                 return $this->redirect($this->Auth->redirectUrl());
