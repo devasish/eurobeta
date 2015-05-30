@@ -20,6 +20,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 App::uses('Controller', 'Controller');
+App::uses('Common', 'Lib');
 
 /**
  * Application Controller
@@ -50,8 +51,29 @@ class AppController extends Controller {
             )
         )
     );
+    
+    public function permitted($module = NULL, $section = NULL) {
+        $p = $this->Session->read('Auth.User.Perm');
+        $flag = FALSE;
+        if (empty($section) && !empty($module)) {
+            if (!empty($p[$module])) {
+                $flag = TRUE;
+            }
+        }
+        
+        if (!empty($section)) {
+            if (!empty($p[$module]) && !empty($p[$module][$section]) && $p[$module][$section] == 1) {
+                $flag = TRUE;
+            }
+        }
+        
+        return $flag;
+    }
 
     public function beforeFilter() {
+        $controller = $this->request->params['controller'];
+        $action = $this->request->params['action'];
+        $p = $this->Session->read('Auth.User.Perm');
 //        $this->Auth->allow('index', 'view');
     }
 
