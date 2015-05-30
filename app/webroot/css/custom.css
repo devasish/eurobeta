@@ -162,7 +162,9 @@ form .error-message {
     background: lightgoldenrodyellow!important;
     font-weight: bold;
 }
-
+.check-label label{
+    margin-left: 10px;
+}
 /*-- Print Section --*/
 .print-hidden{
     display: none;

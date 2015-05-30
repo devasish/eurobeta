@@ -79,7 +79,7 @@ class AppController extends Controller {
         $controller = $this->request->params['controller'];
         $action     = $this->request->params['action'];
         if (!$this->permitted($controller, $action)) {
-            throw new NotFoundException(__(NOT_ALLOWED));
+            throw new AclException(__(NOT_ALLOWED));
         }
     }
 
