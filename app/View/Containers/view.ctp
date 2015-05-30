@@ -358,6 +358,101 @@
                 <td style="border: 1px solid #666; text-align: center; background: #DDD;">&nbsp;</td>
             </tr>
         </table>
+        
+        <table width="100%" style="border-collapse: collapse;">
+            <tr>
+                <td width="40%" valign="top">
+                    <table style="border-collapse: collapse;">
+                        <tr>
+                            <td width="10%" style="border: 1px solid #666;"><b>LOADED BY</b></td>
+                            <td width="40%" style="border: 1px solid #666; text-align: center;"><?php echo h($container['Container']['loader_id']); ?></td>
+                            <td width="10%" style="border: 1px solid #666; text-align: center;"><b>SHIPPING</b></td>
+                            <td width="20%" style="border: 1px solid #666;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #666; height: 15px;" colspan="4"></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #666;"><b>CHECKED BY</b></td>
+                            <td style="border: 1px solid #666; text-align: center;"><?php echo h($container['Container']['checker_id']); ?></td>
+                            <td style="border: 1px solid #666; text-align: center;"><b>HOD</b></td>
+                            <td style="border: 1px solid #666;">&nbsp;</td>
+                        </tr>
+                    </table>
+                </td>
+                <td valign="top">
+                    <table style="border-collapse: collapse;">
+                        <tr>
+                            <td width="40%" style="border: 1px solid #666; height: 30px;"><b>CONTAINER GROSS WT</b></td>
+                            <td style="border: 1px solid #666; height: 30px;">23.8900</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #666; height: 30px;"><b>GROSS GOODS WT (with out pallet)</b></td>
+                            <td style="border: 1px solid #666; height: 30px;">21.4567</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #666; height: 30px;"><b>T. PALLET WT</b></td>
+                            <td style="border: 1px solid #666; height: 30px;">10.567</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #666; height: 30px;"><b>GROSS WT (with pallet)</b></td>
+                            <td style="border: 1px solid #666; height: 30px;">24.8979</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table style="border-collapse: collapse;">
+                        <tr>
+                            <td style="border: 1px solid #666;" colspan="2"><b>CONTAINER CHECKLIST</b></td>
+                        </tr>
+                        <tr>
+                            <td width="70%" style="border: 1px solid #666;"><b>FRONT WALL</b></td>
+                            <td style="border: 1px solid #666;">OK</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #666;"><b>FLOOR</b></td>
+                            <td style="border: 1px solid #666;">OK</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #666;"><b>CELLING/ROOF</b></td>
+                            <td style="border: 1px solid #666;">OK</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #666;"><b>RIGHT/LEFT SIDE</b></td>
+                            <td style="border: 1px solid #666;">OK</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #666;"><b>IN/OUT SIDE CARRIAGE</b></td>
+                            <td style="border: 1px solid #666;">OK</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #666;"><b>IN/OUT SIDE DOOR</b></td>
+                            <td style="border: 1px solid #666;">OK</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #666;"><b>NO HOLES</b></td>
+                            <td style="border: 1px solid #666;">OK</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #666;"><b>NO DAMP</b></td>
+                            <td style="border: 1px solid #666;">OK</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #666;"><b>NO WETNESS</b></td>
+                            <td style="border: 1px solid #666;">OK</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #666;"><b>NO O DOOR</b></td>
+                            <td style="border: 1px solid #666;">OK</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #666;"><b>CLEANLINESS</b></td>
+                            <td style="border: 1px solid #666;">OK</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
 
     </center>
 </div>

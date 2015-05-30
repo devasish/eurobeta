@@ -38,7 +38,6 @@ class UacPermissionsController extends AppController {
 		}
 		$options = array('conditions' => array('UacPermission.' . $this->UacPermission->primaryKey => $id));
 		$this->set('uacPermission', $this->UacPermission->find('first', $options));
-                
 	}
 
 /**
@@ -56,12 +55,8 @@ class UacPermissionsController extends AppController {
 				$this->Session->setFlash(__('The uac permission could not be saved. Please, try again.'));
 			}
 		}
-                
-                $this->loadModel('UacModule');
-                $this->loadModel('UacSection');
-		$uacSections = $this->UacPermission->UacSection->find('list');		                
-                $uacModules = $this->UacModule->find('list');
-                $this->set(compact('uacSections', 'uacModules'));
+		$uacModules = $this->UacPermission->UacModule->find('list');
+		$this->set(compact('uacModules'));
 	}
 
 /**
@@ -86,8 +81,8 @@ class UacPermissionsController extends AppController {
 			$options = array('conditions' => array('UacPermission.' . $this->UacPermission->primaryKey => $id));
 			$this->request->data = $this->UacPermission->find('first', $options);
 		}
-		$uacSections = $this->UacPermission->UacSection->find('list');
-		$this->set(compact('uacSections'));
+		$uacModules = $this->UacPermission->UacModule->find('list');
+		$this->set(compact('uacModules'));
 	}
 
 /**
@@ -110,11 +105,4 @@ class UacPermissionsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-        
-        public function test() {
-            $this->autoRender = false;
-            $result = $this->UacPermission->get($role = $this->Session->read('Auth.User.role'));
-            pr($result);
-        }
-        
 }

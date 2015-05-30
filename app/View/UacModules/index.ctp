@@ -4,7 +4,8 @@
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('name'); ?></th>
+			<th><?php echo $this->Paginator->sort('controller'); ?></th>
+			<th><?php echo $this->Paginator->sort('action'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -12,7 +13,8 @@
 	<?php foreach ($uacModules as $uacModule): ?>
 	<tr>
 		<td><?php echo h($uacModule['UacModule']['id']); ?>&nbsp;</td>
-		<td><?php echo h($uacModule['UacModule']['name']); ?>&nbsp;</td>
+		<td><?php echo h($uacModule['UacModule']['controller']); ?>&nbsp;</td>
+		<td><?php echo h($uacModule['UacModule']['action']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $uacModule['UacModule']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $uacModule['UacModule']['id'])); ?>
@@ -40,7 +42,7 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Uac Module'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Uac Sections'), array('controller' => 'uac_sections', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Uac Section'), array('controller' => 'uac_sections', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Uac Permissions'), array('controller' => 'uac_permissions', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Uac Permission'), array('controller' => 'uac_permissions', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
