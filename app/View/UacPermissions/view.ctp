@@ -6,28 +6,19 @@
 			<?php echo h($uacPermission['UacPermission']['id']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Uac Section'); ?></dt>
+		<dt><?php echo __('Uac Module'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($uacPermission['UacSection']['name'], array('controller' => 'uac_sections', 'action' => 'view', $uacPermission['UacSection']['id'])); ?>
-			&nbsp;
-		</dd>
-                <dt><?php echo __('Uac Module'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($uacPermission['UacSection']['uac_module_id'], array('controller' => 'uac_sections', 'action' => 'view', $uacPermission['UacSection']['id'])); ?>
+			<?php echo $this->Html->link($uacPermission['UacModule']['id'], array('controller' => 'uac_modules', 'action' => 'view', $uacPermission['UacModule']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Role'); ?></dt>
 		<dd>
-                        <?php 
-                            $conf_roles = Configure::read('ROLES');
-                            $role = $conf_roles[$uacPermission['UacPermission']['role']];
-                        ?>
-			<?php echo $role; ?>
+			<?php echo h($uacPermission['UacPermission']['role']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Permitted'); ?></dt>
 		<dd>
-			<?php echo h($uacPermission['UacPermission']['permitted'] == 0 ? 'Not Permitted' : 'Permitted'); ?>
+			<?php echo h($uacPermission['UacPermission']['permitted']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Remarks'); ?></dt>
@@ -44,7 +35,7 @@
 		<li><?php echo $this->Form->postLink(__('Delete Uac Permission'), array('action' => 'delete', $uacPermission['UacPermission']['id']), array(), __('Are you sure you want to delete # %s?', $uacPermission['UacPermission']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Uac Permissions'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Uac Permission'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Uac Sections'), array('controller' => 'uac_sections', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Uac Section'), array('controller' => 'uac_sections', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Uac Modules'), array('controller' => 'uac_modules', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Uac Module'), array('controller' => 'uac_modules', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

@@ -1,11 +1,10 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * UacModule Model
+ * Perm Model
  *
- * @property UacPermission $UacPermission
  */
-class UacModule extends AppModel {
+class Perm extends AppModel {
 
 /**
  * Validation rules
@@ -13,6 +12,16 @@ class UacModule extends AppModel {
  * @var array
  */
 	public $validate = array(
+		'role' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 		'controller' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
@@ -33,29 +42,15 @@ class UacModule extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'permitted' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 	);
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * hasMany associations
- *
- * @var array
- */
-	public $hasMany = array(
-		'UacPermission' => array(
-			'className' => 'UacPermission',
-			'foreignKey' => 'uac_module_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		)
-	);
-
 }

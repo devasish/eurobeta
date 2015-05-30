@@ -90,8 +90,7 @@ class ContainersController extends AppController {
         }
         $options = array('conditions' => array('Container.' . $this->Container->primaryKey => $id));
         $this->Container->recursive = 2;
-        $this->set('container', $this->Container->find('first', $options));
-        
+        $this->set('container', $this->Container->find('first', $options));        
         $this->loadModel('Loader');
         $this->loadModel('Checker');
         
