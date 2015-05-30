@@ -5,6 +5,7 @@
         <li><?php echo $this->Form->postLink('<i class="fa fa-trash"></i>' . '&nbsp;&nbsp;' . __('Delete Container'), array('action' => 'delete', $container['Container']['id']), array('escape' => FALSE), __('Are you sure you want to delete # %s?', $container['Container']['id'])); ?> </li>
         <li><?php echo $this->Html->link('<i class="fa fa-list"></i>' . '&nbsp;&nbsp;' . __('Containers List'), array('action' => 'index'), array('escape' => FALSE)); ?> </li>
         <li><?php echo $this->Html->link('<i class="fa fa-plus"></i>' . '&nbsp;&nbsp;' . __('New Container'), array('action' => 'add'), array('escape' => FALSE)); ?> </li>
+        <li><a href="javascript:void(0)" onclick="printData('container-view-print')"><i class="fa fa-print"></i>&nbsp;&nbsp;Print</a></li>
     </ol>
 </div><!--/.row-->
 <br/><br/>
@@ -75,9 +76,9 @@
                                     <select id="status_select" data-contid="<?php echo $container['Container']['id']; ?>">
                                 <?php foreach (Configure::read('CONT_STATUS') as $k => $v) : ?>
                                     <?php $selected = ($k == $container['Container']['status']) ? 'selected' : ''; ?>
-                                                <option <?php echo $selected; ?> value="<?php echo $k ?>">
+                                                            <option <?php echo $selected; ?> value="<?php echo $k ?>">
                                     <?php echo $v ?>
-                                                </option>
+                                                            </option>
                                 <?php endforeach; ?>
                                     </select>
                                 </span>
@@ -179,7 +180,7 @@
                             <?php echo $this->Form->input('remarks', array('class' => 'form-control', 'type' => 'textarea', 'rows' => 1, 'value' => $container['Container']['remarks'])); ?>
                         </div>
                         <div class="form-group">
-                            <?php echo $this->Form->end('Save'); ?>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
 
                     </div>
@@ -219,8 +220,8 @@
                     $total_net_wt = 0;
                     ?>
                     <?php foreach ($container['PalletChecklist'] as $pallet) : ?>
-                        <?php 
-                        $total_ctn += $pallet['no_of_ctn']; 
+                        <?php
+                        $total_ctn += $pallet['no_of_ctn'];
                         $total_net_wt += $pallet['net_product_wt'];
                         ?>
                         <tr>
@@ -251,28 +252,138 @@
         <br/><br/>
     </div>
 </div>
-<script>
-    $(function () {
-        $('#go_change_status').click(function () {
-            var st = $('#status_select').val();
-            var id = $('#status_select').data('contid');
-            var data = {status: st, id: id};
-            $.ajax({
-                url: SITE_URL + 'containers/change_status',
-                data: data,
-                success: function (r) {
-                    var json = $.parseJSON(r);
-                    if (json.success) {
-                        alert('Status Changed Successfully');
-                        window.location.reload();
-                    } else {
-                        alert('Error!! Status Not Changed');
-                    }
-                }
-            })
-        });
 
-        $('#ContainerLoadDate').datepicker({format: 'dd-mm-yyyy'})
-    });
+<!-- print section start-->
+<div id="container-view-print" class="print-hidden">
+    <center>
+        <table>
+            <tr>
+                <td width="10%"><?php echo $this->Html->image('sme.jpg', array('width' => '100')); ?></td>
+                <td style="text-align: center;">
+                    <table>
+                        <tr>
+                            <td style="text-align: center; border: 1px solid #000;"><font size="4">EURO SME SDN BHD</font></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td width="60%">
+                                            <table style="border: 1px solid #666; border-collapse: collapse;">
+                                                <tr>
+                                                    <td style="border: 1px solid #666">DATE</td>
+                                                    <td style="border: 1px solid #666">
+                                                        <?php echo date('d-m-Y'); ?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="border: 1px solid #666">CONTAINER</td>
+                                                    <td style="border: 1px solid #666"><?php echo h($container['Container']['container_no']); ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="border: 1px solid #666">SEAL NO</td>
+                                                    <td style="border: 1px solid #666"><?php echo h($container['Container']['seal_no']); ?></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <table style="border: 1px solid #666; border-collapse: collapse;">
+                                                <tr>
+                                                    <td style="border: 1px solid #666; height: 35px;">EMPTY TARE WT</td>
+                                                    <td style="border: 1px solid #666; height: 35px;"><?php echo h($container['Container']['empty_tare_wt']); ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="border: 1px solid #666;">TYPE</td>
+                                                    <td style="border: 1px solid #666; background: #DDD;">
+                                                        <?php
+                                                        foreach (Configure::read('CONT_TYPES') as $k => $v) {
+                                                            if ($k == $container['Container']['type']) {
+                                                                echo h($v);
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>                                        
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table> 
+                </td>
+                <td width="10%">&nbsp;</td>
+            </tr>
+        </table>
+        <h1>
+            Loading Advice
+        </h1>
+        <table width="100%" style="border-collapse: collapse;">
+            <tr>
+                <th style="border: 1px solid #666;">SL NO</th>
+                <th style="border: 1px solid #666;">PRODUCT DESC</th>
+                <th style="border: 1px solid #666;">SAP CODE</th>
+                <th style="border: 1px solid #666;">NO OF CTN</th>
+                <th style="border: 1px solid #666;">CBM</th>
+                <th style="border: 1px solid #666;">NEW SAP</th>
+                <th style="border: 1px solid #666;">REMARKS</th>
+            </tr>            
+            <?php
+            $x = 1;
+            $total_ctn = 0;
+            $total_net_wt = 0;
+            ?>
+            <?php foreach ($container['PalletChecklist'] as $pallet) : ?>
+                <?php
+                $total_ctn += $pallet['no_of_ctn'];
+                $total_net_wt += $pallet['net_product_wt'];
+                ?>
+                <tr>
+                    <td style="border: 1px solid #666; padding-left: 10px;"><?php echo $x++; ?></td>
+                    <td style="border: 1px solid #666; padding-left: 10px;"><?php echo h($pallet['sap_desc']) ?></td>
+                    <td style="border: 1px solid #666; padding-left: 10px;"><?php echo h($pallet['sap_code']) ?></td>
+                    <td style="border: 1px solid #666; padding-left: 10px;"><?php echo h($pallet['no_of_ctn']) ?></td>
+                    <td style="border: 1px solid #666; padding-left: 10px;"><?php echo h($container['Container']['id']); ?></td>
+                    <td style="border: 1px solid #666; padding-left: 10px;">&nbsp;</td>
+                    <td style="border: 1px solid #666; padding-left: 10px;"><?php echo h($container['Container']['remarks']) ?><td/>
+                </tr>
+            <?php endforeach; ?>
+            <tr>
+                <td style="border: 1px solid #666; text-align: center; background: #DDD;">&nbsp;</td>
+                <td style="border: 1px solid #666; text-align: center; background: #DDD;"><b>TOTAL</b></td>
+                <td style="border: 1px solid #666; text-align: center; background: #DDD;">&nbsp;</td>
+                <td style="border: 1px solid #666; text-align: center; background: #DDD;"><b><?php echo h($total_ctn) ?></b></td>
+                <td style="border: 1px solid #666; text-align: center; background: #DDD;">&nbsp;</td>
+                <td style="border: 1px solid #666; text-align: center; background: #DDD;">&nbsp;</td>
+                <td style="border: 1px solid #666; text-align: center; background: #DDD;">&nbsp;</td>
+            </tr>
+        </table>
+
+    </center>
+</div>
+
+<script>
+            $(function() {
+                $('#go_change_status').click(function() {
+                    var st = $('#status_select').val();
+                    var id = $('#status_select').data('contid');
+                    var data = {status: st, id: id};
+                    $.ajax({
+                        url: SITE_URL + 'containers/change_status',
+                        data: data,
+                        success: function(r) {
+                            var json = $.parseJSON(r);
+                            if (json.success) {
+                                alert('Status Changed Successfully');
+                                window.location.reload();
+                            } else {
+                                alert('Error!! Status Not Changed');
+                            }
+                        }
+                    })
+                });
+
+                $('#ContainerLoadDate').datepicker({format: 'dd-mm-yyyy'})
+            });
 
 </script>

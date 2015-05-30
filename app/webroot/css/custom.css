@@ -162,3 +162,8 @@ form .error-message {
     background: lightgoldenrodyellow!important;
     font-weight: bold;
 }
+
+/*-- Print Section --*/
+.print-hidden{
+    display: none;
+}
