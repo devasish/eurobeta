@@ -358,7 +358,7 @@
                 <td style="border: 1px solid #666; text-align: center; background: #DDD;">&nbsp;</td>
             </tr>
         </table>
-        
+        <br>
         <table width="100%" style="border-collapse: collapse;">
             <tr>
                 <td width="40%" valign="top">
@@ -378,6 +378,25 @@
                             <td style="border: 1px solid #666; text-align: center;"><b>HOD</b></td>
                             <td style="border: 1px solid #666;">&nbsp;</td>
                         </tr>
+                        <tr>
+                            <td style="border: 1px solid #666; height: 35px; border-left: 0px; border-right: 0px;" colspan="4"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border: 1px solid #666;"><b>CONTAINER CBM</b></td>
+                            <td colspan="2" style="border: 1px solid #666; text-align: center;">70</td>                            
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border: 1px solid #666;"><b>LOADED CBM</b></td>
+                            <td colspan="2" style="border: 1px solid #666; text-align: center;">53.76</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border: 1px solid #666;"><b>EMPTY SPACE</b></td>
+                            <td colspan="2" style="border: 1px solid #666; text-align: center;">22.24</td>                            
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border: 1px solid #666;"><b>EMPTY SPACE</b></td>
+                            <td colspan="2" style="border: 1px solid #666; text-align: center;">29.26%</td>                            
+                        </tr>
                     </table>
                 </td>
                 <td valign="top">
@@ -387,7 +406,7 @@
                             <td style="border: 1px solid #666; height: 30px;">23.8900</td>
                         </tr>
                         <tr>
-                            <td style="border: 1px solid #666; height: 30px;"><b>GROSS GOODS WT (with out pallet)</b></td>
+                            <td style="border: 1px solid #666; height: 30px;"><b>GROSS GOODS WT <br>(with out pallet)</b></td>
                             <td style="border: 1px solid #666; height: 30px;">21.4567</td>
                         </tr>
                         <tr>
@@ -395,7 +414,7 @@
                             <td style="border: 1px solid #666; height: 30px;">10.567</td>
                         </tr>
                         <tr>
-                            <td style="border: 1px solid #666; height: 30px;"><b>GROSS WT (with pallet)</b></td>
+                            <td style="border: 1px solid #666; height: 30px;"><b>GROSS WT <br>(with pallet)</b></td>
                             <td style="border: 1px solid #666; height: 30px;">24.8979</td>
                         </tr>
                     </table>
@@ -403,7 +422,7 @@
                 <td>
                     <table style="border-collapse: collapse;">
                         <tr>
-                            <td style="border: 1px solid #666;" colspan="2"><b>CONTAINER CHECKLIST</b></td>
+                            <td style="border: 1px solid #666; text-align: center;" colspan="2"><b>CONTAINER CHECKLIST</b></td>
                         </tr>
                         <tr>
                             <td width="70%" style="border: 1px solid #666;"><b>FRONT WALL</b></td>
