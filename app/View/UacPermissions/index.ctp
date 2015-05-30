@@ -1,6 +1,6 @@
 <div class="uacPermissions index">
 	<h2><?php echo __('Uac Permissions'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="table table-hover table-striped table-condensed">
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
@@ -16,10 +16,15 @@
 	<tr>
 		<td><?php echo h($uacPermission['UacPermission']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($uacPermission['UacModule']['id'], array('controller' => 'uac_modules', 'action' => 'view', $uacPermission['UacModule']['id'])); ?>
+			<?php echo $this->Html->link($uacPermission['UacModule']['name'], array('controller' => 'uac_modules', 'action' => 'view', $uacPermission['UacModule']['id'])); ?>
 		</td>
-		<td><?php echo h($uacPermission['UacPermission']['role']); ?>&nbsp;</td>
-		<td><?php echo h($uacPermission['UacPermission']['permitted']); ?>&nbsp;</td>
+		<td>
+                    <?php 
+                    $roles = Configure::read('ROLES');
+                    echo h($roles[$uacPermission['UacPermission']['role']]); 
+                    ?>&nbsp;
+                </td>
+		<td><?php echo h($uacPermission['UacPermission']['permitted'] ? 'Yes' : 'No'); ?>&nbsp;</td>
 		<td><?php echo h($uacPermission['UacPermission']['remarks']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $uacPermission['UacPermission']['id'])); ?>

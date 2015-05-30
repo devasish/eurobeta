@@ -53,7 +53,8 @@ class AppController extends Controller {
     );
     
     public function permitted($module = NULL, $section = NULL) {
-        $p = $this->Session->read('Auth.User.Perm');
+        $this->loadModel('UacPermission');
+        $p = $this->UacPermission->getPermissions($this->Session->read('Auth.User.role'));
         $flag = FALSE;
         if (empty($section) && !empty($module)) {
             if (!empty($p[$module])) {
@@ -72,8 +73,11 @@ class AppController extends Controller {
 
     public function beforeFilter() {
         $controller = $this->request->params['controller'];
-        $action = $this->request->params['action'];
-        $p = $this->Session->read('Auth.User.Perm');
+        $action     = $this->request->params['action'];
+        if (!$this->permitted($controller, $action)) {
+            throw new NotFoundException(__(NOT_ALLOWED));
+        }
+        //$p = $this->Session->read('Auth.User.Perm');
 //        $this->Auth->allow('index', 'view');
     }
 

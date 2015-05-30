@@ -21,7 +21,7 @@ class UacModulesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->UacModule->recursive = 0;
+		$this->UacModule->recursive = 1;
 		$this->set('uacModules', $this->Paginator->paginate());
 	}
 
@@ -49,7 +49,7 @@ class UacModulesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->UacModule->create();
                         $this->request->data['UacModule']['slug'] = strtolower(str_replace(' ', '_', $this->request->data['UacModule']['name']));
-			if ($this->UacModule->save($this->request->data)) {
+			if ($this->UacModule->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('The uac module has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
@@ -70,14 +70,14 @@ class UacModulesController extends AppController {
 			throw new NotFoundException(__('Invalid uac module'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->UacModule->save($this->request->data)) {
+			if ($this->UacModule->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('The uac module has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The uac module could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('UacModule.' . $this->UacModule->primaryKey => $id));
+			$options = array('conditions' => array('UacModule.' . $this->UacModule->primaryKey => $id), 'recursive' => 1);
 			$this->request->data = $this->UacModule->find('first', $options);
 		}
 	}
@@ -102,4 +102,12 @@ class UacModulesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+        
+        
+        public function test() {
+            $this->autoRender = FALSE;
+            $this->loadModel('UacPermission');
+            $r = $this->UacPermission->getPermissions();
+            pr($r);
+        }
 }

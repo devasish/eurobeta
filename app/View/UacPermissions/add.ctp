@@ -4,8 +4,8 @@
 		<legend><?php echo __('Add Uac Permission'); ?></legend>
 	<?php
 		echo $this->Form->input('uac_module_id');
-		echo $this->Form->input('role');
-		echo $this->Form->input('permitted');
+		echo $this->Form->input('role', array('options' => Configure::read('ROLES')));
+		echo $this->Form->input('permitted', array('type' => 'checkbox'));
 		echo $this->Form->input('remarks');
 	?>
 	</fieldset>
