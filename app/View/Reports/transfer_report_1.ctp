@@ -40,6 +40,12 @@
                         </tr>
                     <?php endif; ?>
                     <tr class="tr-head">
+                        <td colspan="3"></td>
+                        <td colspan="2" class="text-center">Morning</td>
+                        <td colspan="2" class="text-center">Night</td>
+                        <td colspan="2" class="text-center">Total</td>
+                    </tr>
+                    <tr class="tr-head">
                         <td>SAP</td>
                         <td>Product</td>
                         <td>Weight</td>

@@ -3,7 +3,7 @@ $(document).ready(function () {
         $('body').on('blur', '.loads-input', function() {
             var this_ = $(this);
             var row_index = $(this).data('index');
-            var empty_pallet_wt = 20;
+            var empty_pallet_wt = $('#PalletChecklistSingleEmptyPalletWt').val();
             
             var qty_ctn = $('#PalletLoad' + row_index + 'Quantity').val();
             var wt_wth_pallet = $('#PalletLoad' + row_index + 'WtWithPallet').val();
@@ -169,7 +169,8 @@ $(document).ready(function () {
         
         function set_data(params) {
             var load_count = typeof(params) !== 'undefinde' ? params.load_count : 0;
-            var empty_pallet_wt = load_count * 20;
+            var single_empty_pallet_wt = $('#PalletChecklistSingleEmptyPalletWt').val();
+            var empty_pallet_wt = load_count * single_empty_pallet_wt;
             
             var cutomer_prod_wt = $('#PalletChecklistProductCustWt').val();
             var empty_ctn_wt = $('#PalletChecklistSingleEmptyCtnWt').val();

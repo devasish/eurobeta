@@ -95,6 +95,12 @@
                                 <?php  echo $this->Form->input('no_of_pallet', array('readonly' => true, 'class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
+                                <?php 
+                                $plt_wts = Configure::read('CONT_VP_CTN_PLT_WT');
+                                echo $this->Form->input('single_empty_pallet_wt', array('type' => 'hidden', 'readonly' => true, 'class'=>'form-control', 'value' => $plt_wts[$this->Form->value('Container.vp_ctn')])); 
+                                ?>
+                            </div>
+                            <div class="form-group">
                                 <?php echo $this->Form->input('empty_pallet_wt', array('readonly' => true, 'class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">

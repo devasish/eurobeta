@@ -76,8 +76,8 @@ class AppController extends Controller {
     }
 
     public function beforeFilter() {
-        $controller = $this->request->params['controller'];
-        $action     = $this->request->params['action'];
+        $controller = strtolower($this->request->params['controller']);
+        $action     = strtolower($this->request->params['action']);
         if (!$this->permitted($controller, $action)) {
             throw new NotFoundException(__(NOT_ALLOWED));
         }

@@ -398,6 +398,7 @@ Configure::write('STATUS', array('1' => 'Active','0' => 'Inactive'
 
 Configure::write('CONT_TYPES', array('1' => '20FT', '2' => '40FT-HQ', '3' => '40FT-GB'));
 Configure::write('CONT_VP_CTN', array('1' => 'CTN', '2' => 'VacPack', '3' => 'Local Sale'));
+Configure::write('CONT_VP_CTN_PLT_WT', array('1' => 20, '2' => 22, '3' => 38));
 Configure::write('CONT_STATUS', array('0' => 'Open', '1' => 'In Progress', '2' => 'Closed'));
 Configure::write('CONT_DESTINATION', array('1' => 'EPUK', '2' => 'Direct Shipment'));
 Configure::write('SHIFT', array('0' => 'Morning', '1' => 'Night'));
