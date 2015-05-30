@@ -95,9 +95,6 @@ class SapsController extends AppController {
      * @return void
      */
     public function add() {
-        if (!$this->permitted('sap', 'add')) {
-            throw new NotFoundException(__(NOT_ALLOWED));
-        }
         if ($this->request->is('post')) {
             $this->request->data['Sap']['user_id'] = $this->Session->read('Auth.User.id');
             $this->Sap->create();

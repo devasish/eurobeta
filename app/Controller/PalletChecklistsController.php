@@ -67,6 +67,9 @@ class PalletChecklistsController extends AppController {
                 $this->Session->setFlash(__('The pallet checklist could not be saved. Please, try again.'), 'flash_warning');
             }
         } else {
+            $this->loadModel('Container');
+            $container = $this->Container->find('first', array('condtions' => array('id' => $container_id), 'recursive' => -1));
+            $this->set('container', $container);
             $this->Session->setFlash(__('Please type SAP Code First'), 'flash_info');
         }
         $this->set('container_no', $container_no);
