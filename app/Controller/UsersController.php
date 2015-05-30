@@ -113,6 +113,11 @@ class UsersController extends AppController {
         $this->layout = 'login';
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
+                // Get permissions
+                $this->loadModel('UacPermission');
+                $result = $this->UacPermission->get($role = $this->Session->read('Auth.User.role'));
+                $this->Session->write('Auth.User.Perm', $result);
+                
                 return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Session->setFlash(__('Invalid username or password, try again'), 'flash_warning_1');

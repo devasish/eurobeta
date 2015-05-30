@@ -48,6 +48,7 @@ class UacModulesController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->UacModule->create();
+                        $this->request->data['UacModule']['slug'] = strtolower(str_replace(' ', '_', $this->request->data['UacModule']['name']));
 			if ($this->UacModule->save($this->request->data)) {
 				$this->Session->setFlash(__('The uac module has been saved.'));
 				return $this->redirect(array('action' => 'index'));

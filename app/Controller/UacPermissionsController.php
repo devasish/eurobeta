@@ -8,22 +8,22 @@ App::uses('AppController', 'Controller');
  */
 class UacPermissionsController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
-	public $components = array('Paginator');
+    /**
+     * Components
+     *
+     * @var array
+     */
+    public $components = array('Paginator');
 
-/**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->UacPermission->recursive = 0;
-		$this->set('uacPermissions', $this->Paginator->paginate());
-	}
+    /**
+     * index method
+     *
+     * @return void
+     */
+    public function index() {
+        $this->UacPermission->recursive = 0;
+        $this->set('uacPermissions', $this->Paginator->paginate());
+    }
 
 /**
  * view method
