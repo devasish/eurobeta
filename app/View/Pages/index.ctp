@@ -76,14 +76,14 @@
         </div>
     </div>
 </div><!--/.row-->
-<div class="row">
-    <div class="col-lg-12">
+<!--<div class="row">
+    <div class="col-lg-4 col-md-offset-4 text-center">
       <div class="panel panel-info">  
         <?php
         echo $this->Html->link(
-                $this->Html->image('sme.jpg', array('alt' => 'logo', 'border' => '0')), '', array('target' => '_blank', 'escape' => false)
+                $this->Html->image('sme.jpg', array('alt' => 'logo')), '', array('target' => 'self', 'escape' => false, 'class' => 'logo')
         );
         ?>
-          <font>Welcome&nbsp;&nbsp;&nbsp;&nbsp;<?php print ucfirst($this->Session->read('Auth.User.username')); ?></font>         </div>
+      </div>
     </div>
-</div>
+</div>-->
