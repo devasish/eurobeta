@@ -29,7 +29,7 @@
         <td><?php echo h($palletChecklist['PalletChecklist']['created']); ?></td>
         <td><?php echo h($palletChecklist['Container']['container_no']); ?></td>
         <td><?php echo h($palletChecklist['PalletChecklist']['no_of_ctn']); ?></td>
-        <td><?php echo h($palletChecklist['PalletChecklist']['net_product_wt']); ?></td>
+        <td><?php echo h($palletChecklist['PalletChecklist']['loaded_wt']); ?></td>
         <td><?php echo h($palletChecklist['PalletChecklist']['net_product_wt']); ?></td>
         <td><?php echo h($palletChecklist['PalletChecklist']['diff']); ?></td>
         <?php
@@ -48,3 +48,4 @@
         <td colspan="7"> No Record Found</td>
     </tr>
 <?php endif; ?>
+<?php pr($arr); ?>

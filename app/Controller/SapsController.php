@@ -24,6 +24,7 @@ class SapsController extends AppController {
      */
     public function index() {
         $conditions = array();
+        $limit = 10;
         if (($this->request->is('post') || $this->request->is('put')) && isset($this->data['Filter'])) {
             $filter_url = array();
             $filter_url['controller'] = $this->request->params['controller'];
@@ -41,9 +42,11 @@ class SapsController extends AppController {
             return $this->redirect($filter_url);
         } else {
             foreach ($this->request->params['named'] as $name => $value) {
-                if (!in_array($name, array('page', 'sort', 'direction', 'limit'))) {
+                if (!in_array($name, array('page', 'sort', 'direction'))) {
                     $value = urldecode($value);
-                    if ($name == 'value' && strlen(trim($value)) > 0) {
+                    if ($name == 'limit') {
+                        $limit = $value;
+                    } else if ($name == 'value' && strlen(trim($value)) > 0) {
                         if ($this->request->params['named']['field'] == 'id') {
                             $conditions['Sap.' . $this->request->params['named']['field']] = $value;
                         } elseif ($this->request->params['named']['field'] == 'description') {
@@ -52,20 +55,21 @@ class SapsController extends AppController {
                         } else {
                             $conditions['Sap.' . $this->request->params['named']['field'] . ' LIKE '] = "%$value%";
                         }
-                    }elseif($name == 'cal_from' && !empty ($value)) {
+                    } elseif($name == 'cal_from' && !empty ($value)) {
                         $dateObj = DateTime::createFromFormat('d-m-Y', $value);
                         $conditions['Sap.created >='] = $dateObj->format('Y-m-d');
                     } elseif($name == 'cal_to' && !empty ($value)) {
                         $dateObj = DateTime::createFromFormat('d-m-Y', $value);
                         $conditions['Sap.created <='] = $dateObj->format('Y-m-d') . ' 23:59:59';
+                    } else {
+                        //$this->request->data['Filter'][$name] = $value;
                     }
-                    else
-                        $this->request->data['Filter'][$name] = $value;
+                    $this->request->data['Filter'][$name] = $value;
                 }
             }
         }
         $this->paginate = array(
-            'limit' => 9,
+            'limit' => $limit,
             'order' => 'Sap.id DESC',
             'conditions' => $conditions
         );

@@ -78,8 +78,10 @@ class AppController extends Controller {
     public function beforeFilter() {
         $controller = strtolower($this->request->params['controller']);
         $action     = strtolower($this->request->params['action']);
-        if (!$this->permitted($controller, $action)) {
-            throw new AclException(__(NOT_ALLOWED));
+        if ($this->Session->read('Auth.User')) {
+            if (!$this->permitted($controller, $action)) {
+                throw new NotFoundException(__(NOT_ALLOWED));
+            }
         }
     }
 

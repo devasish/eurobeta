@@ -18,6 +18,12 @@
                     <?php echo $this->Form->create('Filter', array('url' => $url)); ?>  
                     <div class="input-group"> 
                         <ul class="filters">
+                            <li>
+                                <?php
+                                $options = array(10 => 10, 25 => 25, 50 => 50, 75 => 75, 100 => 100, 500 => 500, 1000 => 1000, 10000 => 10000);
+                                echo $this->Form->input('limit', array('class' => 'form-control input-sm', 'label' => false, 'options' => $options));
+                                ?>
+                            </li>
                             <li><?php echo $this->Form->input('cal_from', array('class' => 'date form-control input-sm', 'label' => false, 'placeholder' => 'From')); ?></li>
                             <li><?php echo $this->Form->input('cal_to', array('class' => 'date form-control input-sm', 'label' => false, 'placeholder' => 'To')); ?></li>
                             <li><?php echo $this->Form->input('value', array('class' => 'date form-control input-sm', 'label' => false, 'placeholder' => 'Search')); ?></li>
@@ -85,7 +91,7 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#FilterCalFrom').datepicker({format: 'dd-mm-yyyy'});
         $('#FilterCalTo').datepicker({format: 'dd-mm-yyyy'});
     });
