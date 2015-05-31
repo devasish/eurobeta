@@ -67,30 +67,41 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     </button>
                     <a class="navbar-brand" href="#"><span><?php echo $cakeDescription; ?></span> Admin</a>
                     <?php if ($this->Session->read('Auth.User.id')): ?>
+                        <?php $perms = $this->Session->read('Auth.User.Perm'); ?>
                         <nav id="primary_nav_wrap"><!-- Main Menu starts -->
                             <ul>
-                                <li class="<?php echo (($this->params['controller'] === 'pages') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
-                                    <?php echo $this->Html->link('<span class="glyphicon glyphicon-dashboard"></span>' . '&nbsp;&nbsp;' . 'Dashboard', array('controller' => 'pages', 'action' => 'index'), array('escape' => FALSE)); ?>
-                                </li>
+                                <?php if (!empty($perms['pages']['index'])) : ?>
+                                    <li class="<?php echo (($this->params['controller'] === 'pages') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
+                                        <?php echo $this->Html->link('<span class="glyphicon glyphicon-dashboard"></span>' . '&nbsp;&nbsp;' . 'Dashboard', array('controller' => 'pages', 'action' => 'index'), array('escape' => FALSE)); ?>
+                                    </li>
+                                <?php endif; ?>
 
+                                <?php if (!empty($perms['saps'])): ?>    
                                 <li class="parent <?php echo (($this->params['controller'] === 'saps') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
                                     <?php echo $this->Html->link('<span class="glyphicon glyphicon-list"></span>' . '&nbsp;&nbsp;' . 'Saps', array('controller' => 'saps', 'action' => 'index'), array('escape' => FALSE)); ?>
+                                    <?php if (!empty($perms['saps']['add'])): ?>
                                     <ul>
                                         <li>
                                             <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'New Sap', array('controller' => 'saps', 'action' => 'add'), array('escape' => FALSE)); ?>
                                         </li>
                                     </ul>
+                                    <?php endif; ?>
                                 </li>
+                                <?php endif; ?>
 
+                                <?php if (!empty($perms['transfers'])): ?>
                                 <li class="parent <?php echo (($this->params['controller'] === 'transfers') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
                                     <?php echo $this->Html->link('<span class="glyphicon glyphicon-stats"></span>' . '&nbsp;&nbsp;' . 'Transfers', array('controller' => 'transfers', 'action' => 'index'), array('escape' => FALSE)); ?>
+                                    <?php if (!empty($perms['transfers']['add'])): ?>
                                     <ul>
                                         <li>
                                             <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Make Transfer', array('controller' => 'transfers', 'action' => 'add'), array('escape' => FALSE)); ?>
                                         </li>
                                     </ul>
+                                    <?php endif; ?>
                                 </li>
-
+                                <?php endif; ?>
+                                
                                 <li class="parent <?php echo (($this->params['controller'] === 'containers') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
                                     <?php echo $this->Html->link('<span class="glyphicon glyphicon-info-sign"></span>' . '&nbsp;&nbsp;' . 'Loading Advice', array('controller' => 'containers', 'action' => 'index'), array('escape' => FALSE)); ?>
                                     <ul>
@@ -167,7 +178,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         </nav>
         <!--<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">-->
         <div class="col-sm-12 col-sm-offset-0 col-lg-12 col-lg-offset-0 main">
-        
+
             <?php echo $this->fetch('content'); ?>
 
             <?php echo $this->Session->flash(); ?>
@@ -180,19 +191,19 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         ?>
 
         <script type="text/javascript">
-            $(document).ready(function() {
-                !function($) {
-                    $(document).on("click", "ul.nav li.parent > a > span.icon", function() {
+            $(document).ready(function () {
+                !function ($) {
+                    $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
                         $(this).find('em:first').toggleClass("glyphicon-minus");
                     });
                     $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
                 }(window.jQuery);
 
-                $(window).on('resize', function() {
+                $(window).on('resize', function () {
                     if ($(window).width() > 768)
                         $('#sidebar-collapse').collapse('show')
                 })
-                $(window).on('resize', function() {
+                $(window).on('resize', function () {
                     if ($(window).width() <= 767)
                         $('#sidebar-collapse').collapse('hide')
                 })
@@ -212,19 +223,19 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         colDelim = '","',
                         rowDelim = '"\r\n"',
                         // Grab text from table into CSV formatted string
-                        csv = '"' + $rows.map(function(i, row) {
-                    var $row = $(row),
-                            $cols = $row.find('td');
+                        csv = '"' + $rows.map(function (i, row) {
+                            var $row = $(row),
+                                    $cols = $row.find('td');
 
-                    return $cols.map(function(j, col) {
-                        var $col = $(col),
-                                text = $col.text();
+                            return $cols.map(function (j, col) {
+                                var $col = $(col),
+                                        text = $col.text();
 
-                        return text.replace('"', '""'); // escape double quotes
+                                return text.replace('"', '""'); // escape double quotes
 
-                    }).get().join(tmpColDelim);
+                            }).get().join(tmpColDelim);
 
-                }).get().join(tmpRowDelim)
+                        }).get().join(tmpRowDelim)
                         .split(tmpRowDelim).join(rowDelim)
                         .split(tmpColDelim).join(colDelim) + '"',
                         // Data URI
@@ -232,10 +243,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
                 $(this)
                         .attr({
-                    'download': filename,
-                    'href': csvData,
-                    'target': '_blank'
-                });
+                            'download': filename,
+                            'href': csvData,
+                            'target': '_blank'
+                        });
             }
         </script>
         <!--<?php echo $this->element('sql_dump'); ?>-->

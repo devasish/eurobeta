@@ -48,4 +48,3 @@
         <td colspan="7"> No Record Found</td>
     </tr>
 <?php endif; ?>
-<?php pr($arr); ?>
