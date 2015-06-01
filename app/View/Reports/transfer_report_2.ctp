@@ -4,6 +4,7 @@
         <li><a href="#">Report</a></li>
         <li class="active">Transfer</li>
         <li><a href="javascript:void(0)" id="export_to_csv"><span class="glyphicon glyphicon-export"></span>  Export</a></li>
+        <li><a href="javascript:void(0)" onclick="printData('transfer-report-2')" class="print" rel="list-saps"><i class="fa fa-print"></i>&nbsp;Print List</a></li>
     </ol>
 </div><!--/.row-->
 
@@ -11,10 +12,10 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <div class="box">
+        <div class="box" id="transfer-report-2">
             <div class="box-header">
                 <h3 class="box-title">Transfer Report 2</h3>
-                <div class="box-tools">
+                <div class="box-tools noprint">
                     <?php $url = array('controller' => 'Reports', 'action' => 'transfer_report_2'); ?>
                     <?php echo $this->Form->create('Filter', array('url' => $url)); ?>
                     <div class="input-group"> 
@@ -33,7 +34,7 @@
                 </div>
             </div><!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
-                <table class="table table-hover table-striped table-bordered table-condensed" id="transfer_report_table">
+                <table class="table table-hover table-striped table-bordered table-condensed list" id="transfer_report_table">
                 <?php $totals = array(); ?>
                 <?php foreach ($transfers as $key => $transfer): ?>
                     <?php

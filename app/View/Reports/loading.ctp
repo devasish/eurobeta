@@ -4,6 +4,7 @@
         <li><a href="#">Report</a></li>
         <li class="active">Loading</li>
         <li><a href="javascript:void(0)" id="export_to_csv"><span class="glyphicon glyphicon-export"></span>Export</a></li>
+        <li><a href="javascript:void(0)" onclick="printData('loading-report')" class="print" rel="list-saps"><i class="fa fa-print"></i>&nbsp;Print List</a></li>
     </ol>
 </div><!--/.row-->
 
@@ -11,10 +12,10 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <div class="box">
+        <div class="box" id="loading-report">
             <div class="box-header">
                 <h3 class="box-title">Loading Report</h3>
-                <div class="box-tools">
+                <div class="box-tools noprint">
                     <?php $url = array('controller' => 'Reports', 'action' => 'loading'); ?>
                     <?php echo $this->Form->create('Filter', array('url' => $url)); ?>
                     <div class="input-group"> 
@@ -32,7 +33,7 @@
                 </div>
             </div><!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
-                <table class="table table-hover" id="loading_report_table">
+                <table class="table table-hover list" id="loading_report_table">
                     <?php if (!empty($this->request->data['Filter']['cal_from'])): ?>
                         <tr>
                             <td colspan="9" class="text-center">LOADING REPORT FROM <?php echo h($this->Form->value('Filter.cal_from')) ?> TO <?php echo h($this->Form->value('Filter.cal_to')) ?></td>
@@ -74,7 +75,7 @@
                 </table>
             </div>
             <div class="box-footer clearfix">
-                <ul class="pagination pagination-sm no-margin pull-left">
+                <ul class="pagination pagination-sm no-margin pull-left noprint">
                     <li><?php echo $this->Paginator->prev('<i class="fa fa-angle-double-left"></i>' . '&nbsp;' . __('previous'), array('escape' => FALSE), null, array('class' => 'prev disabled')); ?></li>
                     <li><?php echo $this->Paginator->numbers(array('separator' => '')); ?></li>                    
                     <li><?php echo $this->Paginator->next(__('next') . '&nbsp;' . ' <i class="fa fa-angle-double-right"></i>', array('escape' => FALSE), null, array('class' => 'next disabled')); ?></li>

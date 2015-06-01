@@ -101,48 +101,70 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                     <?php endif; ?>
                                 </li>
                                 <?php endif; ?>
-                                
+                                <?php if (!empty($perms['containers'])): ?>
                                 <li class="parent <?php echo (($this->params['controller'] === 'containers') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
                                     <?php echo $this->Html->link('<span class="glyphicon glyphicon-info-sign"></span>' . '&nbsp;&nbsp;' . 'Loading Advice', array('controller' => 'containers', 'action' => 'index'), array('escape' => FALSE)); ?>
+                                    <?php if (!empty($perms['containers']['add'])): ?>
                                     <ul>
                                         <li>
                                             <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Add New Cointainer', array('controller' => 'containers', 'action' => 'add'), array('escape' => FALSE)); ?>
                                         </li>
                                     </ul>
+                                    <?php endif; ?>
                                 </li>
-
+                                <?php endif; ?>
+                                
+                                <?php if (!empty($perms['reports'])): ?>
                                 <li><a href="javascript:void(0)">
                                         <span class="glyphicon glyphicon-registration-mark"></span>&nbsp;&nbsp;Reports
                                     </a>
                                     <ul>
+                                        <?php if (!empty($perms['reports']['containers'])) : ?>
                                         <li>
                                             <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Containers', array('controller' => 'reports', 'action' => 'containers'), array('escape' => FALSE)); ?>
                                         </li>
+                                        <?php endif; ?>
+                                        <?php if (!empty($perms['reports']['loading'])) : ?>
                                         <li>
                                             <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Loading Report', array('controller' => 'reports', 'action' => 'loading'), array('escape' => FALSE)); ?>
                                         </li>
+                                        <?php endif; ?>
+                                        <?php if (!empty($perms['reports']['ctn_loading_report'])) : ?>
                                         <li>
                                             <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'CTN Loading Report', array('controller' => 'reports', 'action' => 'ctn_loading_report'), array('escape' => FALSE)); ?>
-                                        </li> 
+                                        </li>
+                                        <?php endif; ?>
+                                        <?php if (!empty($perms['reports']['loading_analysis'])) : ?>
                                         <li>
                                             <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Loading Analysis', array('controller' => 'reports', 'action' => 'loading_analysis'), array('escape' => FALSE)); ?>
                                         </li>
+                                        <?php endif; ?>
+                                        <?php if (!empty($perms['reports']['transfer_report_1'])) : ?>
                                         <li>
                                             <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Transfer Report 1', array('controller' => 'reports', 'action' => 'transfer_report_1'), array('escape' => FALSE)); ?>
                                         </li>
+                                        <?php endif; ?>
+                                        <?php if (!empty($perms['reports']['transfer_report_2'])) : ?>
                                         <li>
                                             <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Transfer Report 2', array('controller' => 'reports', 'action' => 'transfer_report_2'), array('escape' => FALSE)); ?>
                                         </li>
+                                        <?php endif; ?>
                                     </ul>
                                 </li>
+                                <?php endif; ?>
+                                <?php if (!empty($perms['users'])) : ?>
                                 <li class="parent <?php echo (($this->params['controller'] === 'users') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
                                     <?php echo $this->Html->link('<span class="glyphicon glyphicon-user"></span>' . '&nbsp;&nbsp;' . 'Users', array('controller' => 'users', 'action' => 'index'), array('escape' => FALSE)); ?>
+                                    <?php if (!empty($perms['users']['add'])) : ?>
                                     <ul>
                                         <li>
                                             <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Create New User', array('controller' => 'users', 'action' => 'add'), array('escape' => FALSE)); ?>
                                         </li>                        
                                     </ul>
+                                    <?php endif; ?>
                                 </li>
+                                <?php endif; ?>
+                                <?php if (!empty($perms['users'])) : ?>
                                 <li>
                                     <a href="javascript:void(0)">
                                         <span class="glyphicon glyphicon-adjust"></span>&nbsp;&nbsp;Control Panel 
@@ -158,7 +180,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                             <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Checkers List', array('controller' => 'checkers', 'action' => 'index'), array('escape' => FALSE)); ?>
                                         </li>
                                     </ul>
-                                </li>                                
+                                </li>
+                                <?php endif; ?>
                             </ul>
                         </nav><!-- Main Menu end -->
 
@@ -248,7 +271,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             'target': '_blank'
                         });
             }
-        </script>
+        </script> 
         <!--<?php echo $this->element('sql_dump'); ?>-->
     </body>
 </html>
