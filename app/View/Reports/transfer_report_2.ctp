@@ -34,6 +34,18 @@
             </div><!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover table-striped table-bordered table-condensed" id="transfer_report_table">
+                    <tr>
+                        <td>Transfer Report 2</td>
+                        <?php if (!empty($this->request->data['Filter']['cal_from'])): ?>
+                        <td>FROM: <?php echo $this->request->data['Filter']['cal_from']; ?></td>
+                        <?php endif;?>
+                        <?php if (!empty($this->request->data['Filter']['cal_from'])): ?>
+                        <td>TO: <?php echo $this->request->data['Filter']['cal_from']; ?></td>
+                        <?php endif;?>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 <?php $totals = array(); ?>
                 <?php foreach ($transfers as $key => $transfer): ?>
                     <?php
@@ -44,6 +56,7 @@
                         $totals[$key]['ctn_per_pallet'] = 0;
                     }
                     ?>
+                    
                     <tr class="tr-head">
                         <td colspan="6" class="text-center title-td">
                             <?php 
@@ -61,6 +74,7 @@
                             <td>Product</td>
                             <td>Weight</td>
                             <td>No. of CTN</td>                        
+                            <td>Total Wt.</td>                        
                         </tr>
                         
                         <?php foreach ($transfer as $trans): ?>                       
@@ -70,6 +84,7 @@
                             <td><?php echo h($trans['Transfer']['description']); ?></td>
                             <td><?php echo h($trans['Transfer']['net_wt']); ?></td>
                             <td><?php echo h($trans['Transfer']['ctn_per_pallet']); ?></td>
+                            <td><?php echo h($trans['Transfer']['ctn_per_pallet'] * $trans['Transfer']['net_wt']); ?></td>
                         </tr>
                         
                         <?php 
@@ -83,6 +98,7 @@
                             <td></td>
                             <td><?php echo h($totals[$key]['net_wt']); ?></td>
                             <td><?php echo h($totals[$key]['ctn_per_pallet']); ?></td>
+                            <td><?php echo h($totals[$key]['ctn_per_pallet'] * $totals[$key]['net_wt']); ?></td>
                         </tr>
                 <?php endforeach;?>
                 </table>

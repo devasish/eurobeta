@@ -864,3 +864,9 @@ h1.page-header {
 .fixed-table-pagination .pagination-detail {
 	margin-top: 20px;
 }
+.only-export {
+    display: none;
+}
+.tr-head {
+    font-weight: bolder;
+}

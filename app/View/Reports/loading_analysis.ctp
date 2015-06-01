@@ -92,17 +92,19 @@
                 success: function(r) {
                     var json = $.parseJSON(r);
                     
-                    if ($('#loading_ana_table tr#t_head').find('th').length == 0) {
-                        var htds = '<th>SAP</th><th>Description</th>';
+                    if ($('#loading_ana_table tr#t_head').find('td').length == 0) {
+                        var htds = '<td>SAP</td><td>Description</td>';
+                        var htds_export_only = '<td>SAP</td><td>Description</td>';
                         var grCols = '<td>Loaded CTN</td><td>Loaded WT</td><td>AVG Loading WT</td><td>DIFF %</td>';
-                        var colHeads = '<td colspan="2">&nbsp;</td>';
-                        
+                        var colHeads = '<td colspan="">&nbsp;</td><td colspan="">&nbsp;</td>'                        
                         $.each(json.gr_dates, function(i, v) {
-                            htds += '<th colspan="4">' + v + '</th>';
+                            htds += '<td colspan="4">' + v + '</td>';
+                            htds_export_only += '<td>' + v + '</td><td></td><td></td><td></td>';
                             colHeads += grCols;
                         });
                         
-                        $('<tr>').attr('id', 't_head').html(htds).appendTo('#loading_ana_table');
+                        $('<tr>').attr('id', 't_head').attr('no-export', 'y').html(htds).appendTo('#loading_ana_table');
+                        $('<tr>').addClass('only-export').html(htds_export_only).appendTo('#loading_ana_table');
                         $('<tr>').html(colHeads).appendTo('#loading_ana_table');
                     }
                     
