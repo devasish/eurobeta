@@ -4,6 +4,7 @@
         <li><a href="#">Report</a></li>
         <li class="active">Loading Analysis Report</li>
         <li><a href="javascript:void(0)" id="export_to_csv"><span class="glyphicon glyphicon-export"></span> Export</a></li>
+        <li><a href="javascript:void(0)" onclick="printData('loading-analysis-report')" class="print" rel="list-saps"><i class="fa fa-print"></i>&nbsp;Print List</a></li>
     </ol>
 </div><!--/.row-->
 
@@ -11,10 +12,10 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <div class="box">
+        <div class="box" id="loading-analysis-report">
             <div class="box-header">
                 <h3 class="box-title">Loading Analysis Report</h3>
-                <div class="box-tools">
+                <div class="box-tools noprint">
                     <div class="input-group"> 
                         <ul class="filters">  
                             <li><?php echo $this->Form->input('cal_from', array('class' => 'date form-control input-sm', 'label' => false, 'placeholder' => 'From')); ?></li>
@@ -27,7 +28,7 @@
                 </div>
             </div><!-- /.box-header -->
             <div class="box-body table-responsive no-padding" id="box-body">
-                <table id="loading_ana_table" class="table table-bordered">
+                <table id="loading_ana_table list" class="table table-bordered">
                 </table>
             </div>
             <div class="box-footer clearfix">

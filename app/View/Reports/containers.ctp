@@ -4,6 +4,7 @@
         <li>
             <a id="export_to_csv" href="javascript:void(0)"><span class="glyphicon glyphicon-export"></span>Export</a>
         </li>
+        <li><a href="javascript:void(0)" onclick="printData('containers-report')" class="print" rel="list-saps"><i class="fa fa-print"></i>&nbsp;Print List</a></li>
     </ol>
 </div><!--/.row-->
 
@@ -11,10 +12,10 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <div class="box">
+        <div class="box" id="containers-report">
             <div class="box-header">
                 <h3 class="box-title">Containers</h3>
-                <div class="box-tools">
+                <div class="box-tools noprint">
 
                     <?php $url = array('controller' => 'reports', 'action' => 'containers'); ?>  
                     <?php echo $this->Form->create('Filter', array('url' => $url)); ?>
@@ -32,7 +33,7 @@
                 </div>
             </div><!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
-                <table class="table table-hover" id="containers-report-table">
+                <table class="table table-hover list" id="containers-report-table">
                     <tr>
                         <td><?php echo h('Id'); ?></td>
                         <td><?php echo h('Container No'); ?></td>
