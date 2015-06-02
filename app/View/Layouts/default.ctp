@@ -77,29 +77,29 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                 <?php endif; ?>
 
                                 <?php if (!empty($perms['saps'])): ?>    
-                                <li class="parent <?php echo (($this->params['controller'] === 'saps') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
-                                    <?php echo $this->Html->link('<span class="glyphicon glyphicon-list"></span>' . '&nbsp;&nbsp;' . 'Saps', array('controller' => 'saps', 'action' => 'index'), array('escape' => FALSE)); ?>
-                                    <?php if (!empty($perms['saps']['add'])): ?>
-                                    <ul>
-                                        <li>
-                                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'New Sap', array('controller' => 'saps', 'action' => 'add'), array('escape' => FALSE)); ?>
-                                        </li>
-                                    </ul>
-                                    <?php endif; ?>
-                                </li>
+                                    <li class="parent <?php echo (($this->params['controller'] === 'saps') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
+                                        <?php echo $this->Html->link('<span class="glyphicon glyphicon-list"></span>' . '&nbsp;&nbsp;' . 'Saps', array('controller' => 'saps', 'action' => 'index'), array('escape' => FALSE)); ?>
+                                        <?php if (!empty($perms['saps']['add'])): ?>
+                                            <ul>
+                                                <li>
+                                                    <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'New Sap', array('controller' => 'saps', 'action' => 'add'), array('escape' => FALSE)); ?>
+                                                </li>
+                                            </ul>
+                                        <?php endif; ?>
+                                    </li>
                                 <?php endif; ?>
 
                                 <?php if (!empty($perms['transfers'])): ?>
-                                <li class="parent <?php echo (($this->params['controller'] === 'transfers') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
-                                    <?php echo $this->Html->link('<span class="glyphicon glyphicon-stats"></span>' . '&nbsp;&nbsp;' . 'Transfers', array('controller' => 'transfers', 'action' => 'index'), array('escape' => FALSE)); ?>
-                                    <?php if (!empty($perms['transfers']['add'])): ?>
-                                    <ul>
-                                        <li>
-                                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Make Transfer', array('controller' => 'transfers', 'action' => 'add'), array('escape' => FALSE)); ?>
-                                        </li>
-                                    </ul>
-                                    <?php endif; ?>
-                                </li>
+                                    <li class="parent <?php echo (($this->params['controller'] === 'transfers') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
+                                        <?php echo $this->Html->link('<span class="glyphicon glyphicon-stats"></span>' . '&nbsp;&nbsp;' . 'Transfers', array('controller' => 'transfers', 'action' => 'index'), array('escape' => FALSE)); ?>
+                                        <?php if (!empty($perms['transfers']['add'])): ?>
+                                            <ul>
+                                                <li>
+                                                    <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Make Transfer', array('controller' => 'transfers', 'action' => 'add'), array('escape' => FALSE)); ?>
+                                                </li>
+                                            </ul>
+                                        <?php endif; ?>
+                                    </li>
                                 <?php endif; ?>
                                 <?php if (!empty($perms['containers'])): ?>
                                 <li class="parent <?php echo (($this->params['controller'] === 'containers') && ($this->params['action'] == 'index') ) ? 'active' : '' ?>">
@@ -236,7 +236,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <script>
             function exportTableToCSV($table, filename) {
 
-                var $rows = $table.find('tr:has(td)'),
+                var $rows = $table.find('tr[no-export!="y"]:has(td)'),
                         // Temporary delimiter characters unlikely to be typed by keyboard
                         // This is to avoid accidentally splitting the actual contents
                         tmpColDelim = String.fromCharCode(11), // vertical tab character
@@ -247,12 +247,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         rowDelim = '"\r\n"',
                         // Grab text from table into CSV formatted string
                         csv = '"' + $rows.map(function (i, row) {
-                            var $row = $(row),
-                                    $cols = $row.find('td');
+                            var $row = $(row), $cols = $row.find('td');
 
                             return $cols.map(function (j, col) {
-                                var $col = $(col),
-                                        text = $col.text();
+                                var $col = $(col), text = $col.text();
 
                                 return text.replace('"', '""'); // escape double quotes
 

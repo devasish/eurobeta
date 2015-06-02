@@ -80,7 +80,7 @@ class AppController extends Controller {
         $action     = strtolower($this->request->params['action']);
         if ($this->Session->read('Auth.User')) {
             if (!$this->permitted($controller, $action)) {
-                throw new NotFoundException(__(NOT_ALLOWED));
+               // throw new NotFoundException(__(NOT_ALLOWED));
             }
         }
     }

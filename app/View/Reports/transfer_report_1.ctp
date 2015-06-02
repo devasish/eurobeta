@@ -14,8 +14,8 @@
     <div class="col-xs-12">
         <div class="box" id="transfer-report-1">
             <div class="box-header">
-                <h3 class="box-title">Transfer Report</h3>
-                <div class="box-tools noprint">
+                <h3 class="box-title">Transfer Report 1</h3>
+                <div class="box-tools">
                     <?php $url = array('controller' => 'Reports', 'action' => 'transfer_report_1'); ?>
                     <?php echo $this->Form->create('Filter', array('url' => $url)); ?>
                     <div class="input-group"> 
@@ -40,11 +40,22 @@
                             <td colspan="9" class="text-center">TRANSFER REPORT <?php echo h($this->Form->value('Filter.cal_from')) ?> TO <?php echo h($this->Form->value('Filter.cal_to')) ?></td>
                         </tr>
                     <?php endif; ?>
-                    <tr class="tr-head">
+                    <tr class="tr-head" no-export="y">
                         <td colspan="3"></td>
                         <td colspan="2" class="text-center">Morning</td>
                         <td colspan="2" class="text-center">Night</td>
                         <td colspan="2" class="text-center">Total</td>
+                    </tr>
+                    <tr class="tr-head only-export">
+                        <td colspan="1"></td>
+                        <td colspan="1"></td>
+                        <td colspan="1"></td>
+                        <td colspan="1" class="text-center">Morning</td>
+                        <td colspan="1" class="text-center">Morning</td>
+                        <td colspan="1" class="text-center">Night</td>
+                        <td colspan="1" class="text-center">Night</td>
+                        <td colspan="1" class="text-center"></td>
+                        <td colspan="1" class="text-center"></td>
                     </tr>
                     <tr class="tr-head">
                         <td>SAP</td>
