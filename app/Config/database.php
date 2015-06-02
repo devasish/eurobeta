@@ -74,7 +74,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'root',
 		'password' => '',
-		'database' => 'myexpt',
+		'database' => 'eurobeta',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);

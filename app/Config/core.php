@@ -388,7 +388,7 @@ Cache::config('_cake_model_', array(
 /**
 * MY CUSTOM GLOBALS
 */
-define('SITE_URL', 'http://localhost:8080/eurobeta/');
+define('SITE_URL', 'http://localhost/eurobeta/');
 //define('SITE_URL', 'http://devachieve.com/eurobeta1403/');
 define('NOT_ALLOWED', 'NOT FOUND');
 
