@@ -28,7 +28,7 @@
                 </div>
             </div><!-- /.box-header -->
             <div class="box-body table-responsive no-padding" id="box-body">
-                <table id="loading_ana_table list" class="table table-bordered">
+                <table id="loading_ana_table" class="table table-bordered list" >
                 </table>
             </div>
             <div class="box-footer clearfix">
