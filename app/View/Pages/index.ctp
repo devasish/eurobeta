@@ -87,3 +87,15 @@
       </div>
     </div>
 </div>-->
+
+<script type="text/javascript">
+    $(document).ready(function(){
+       $.ajax({
+           url : SITE_URL + 'reports/dash_data',
+           success: function(r) {
+               var json = $.parseJSON(r);
+               console.log(json.transfer);
+           }
+       }); 
+    });
+</script>

@@ -497,4 +497,76 @@ class ReportsController extends AppController {
         }
         $this->set('containers', $containers);
     }
+    
+    public function dash_data() {
+            $this->autoRender = FALSE;
+            $fd = date('Y-m-d H:i:s', mktime(0,0,0,date('m')-1,1,date('Y')));
+            $ld = date('Y-m-d H:i:s', mktime(23,59,59,date('m'),0,date('Y')));
+            $yesterday = date('Y-m-d', strtotime(date('Y-m-d'). '- 1 day'));
+            
+            $this->loadModel('Transfer');
+            $last_month_data = $this->Transfer->find('all', array(
+                'conditions' => array(
+                    'transfer_date >= ' => $fd,
+                    'transfer_date <= ' => $ld,
+                ),
+                'fields' => array('IFNULL(ROUND(SUM(Transfer.ctn_per_pallet * Transfer.net_wt),2),0) AS total')
+            ));
+            
+            $last_day_data = $this->Transfer->find('all', array(
+                'conditions' => array(
+                    'transfer_date >= ' => $yesterday.' 00:00:00',
+                    'transfer_date <= ' => $yesterday.' 23:59:59',
+                ),
+                'fields' => array('IFNULL(ROUND(SUM(Transfer.ctn_per_pallet * Transfer.net_wt),2),0) AS total')
+            ));
+            
+            $this->loadModel('PalletChecklist');
+            $last_mon_dispatch = $this->PalletChecklist->find('all', array(
+                'fields' => array(
+                    'IFNULL(ROUND(SUM((no_of_ctn * product_cust_wt)), 2),0) AS total',
+                ),
+                'recursive' => 0,
+                'conditions' => array(
+                    'Container.load_date >= ' => $fd,
+                    'Container.load_date <= ' => $ld,
+                )
+            ));
+            
+            $prev_mon_dispatch = $this->PalletChecklist->find('all', array(
+                'fields' => array(
+                    'IFNULL(ROUND(SUM((no_of_ctn * product_cust_wt)), 2),0) AS total',
+                ),
+                'recursive' => 0,
+                'conditions' => array(
+                    'Container.load_date >= ' => $fd,
+                    'Container.load_date <= ' => $ld,
+                )
+            ));
+            
+            $last_day_dispatch = $this->PalletChecklist->find('all', array(
+                'fields' => array(
+                    'IFNULL(ROUND(SUM((no_of_ctn * product_cust_wt)), 2),0) AS total',
+                ),
+                'recursive' => 0,
+                'conditions' => array(
+                    'Container.load_date >= ' => $yesterday.' 00:00:00',
+                    'Container.load_date <= ' => $yesterday.' 23:59:59',
+                )
+            ));
+            
+            $return = array(
+                'transfer' => array(
+                    'last_month' => $last_month_data[0][0]['total'],
+                    'yesterday' => $last_day_data[0][0]['total'],
+                ),
+                'dispatch' => array(
+                    'last_month' => $last_mon_dispatch[0][0]['total'],
+                    'yesterday' => $last_day_dispatch[0][0]['total'],
+                ),
+            );
+            
+            echo json_encode($return);
+            
+        }
 }
