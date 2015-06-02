@@ -510,7 +510,7 @@ class ReportsController extends AppController {
                     'transfer_date >= ' => $fd,
                     'transfer_date <= ' => $ld,
                 ),
-                'fields' => array('IFNULL(ROUND(SUM(Transfer.ctn_per_pallet * Transfer.net_wt),2),0) AS total')
+                'fields' => array('IFNULL(ROUND(SUM(Transfer.ctn_per_pallet * Transfer.net_wt)/1000,2),0) AS total')
             ));
             
             $last_day_data = $this->Transfer->find('all', array(
@@ -518,13 +518,13 @@ class ReportsController extends AppController {
                     'transfer_date >= ' => $yesterday.' 00:00:00',
                     'transfer_date <= ' => $yesterday.' 23:59:59',
                 ),
-                'fields' => array('IFNULL(ROUND(SUM(Transfer.ctn_per_pallet * Transfer.net_wt),2),0) AS total')
+                'fields' => array('IFNULL(ROUND(SUM(Transfer.ctn_per_pallet * Transfer.net_wt)/1000,2),0) AS total')
             ));
             
             $this->loadModel('PalletChecklist');
             $last_mon_dispatch = $this->PalletChecklist->find('all', array(
                 'fields' => array(
-                    'IFNULL(ROUND(SUM((no_of_ctn * product_cust_wt)), 2),0) AS total',
+                    'IFNULL(ROUND(SUM((no_of_ctn * product_cust_wt))/1000, 2),0) AS total',
                 ),
                 'recursive' => 0,
                 'conditions' => array(
@@ -535,7 +535,7 @@ class ReportsController extends AppController {
             
             $prev_mon_dispatch = $this->PalletChecklist->find('all', array(
                 'fields' => array(
-                    'IFNULL(ROUND(SUM((no_of_ctn * product_cust_wt)), 2),0) AS total',
+                    'IFNULL(ROUND(SUM((no_of_ctn * product_cust_wt))/1000, 2),0) AS total',
                 ),
                 'recursive' => 0,
                 'conditions' => array(
