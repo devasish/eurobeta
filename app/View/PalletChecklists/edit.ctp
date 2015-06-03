@@ -216,7 +216,7 @@
                                 <table cellspacing="0" cellpadding="2" style=" border-collapse: collapse; background: #DDD;">
                                     <tr>
                                         <td width="7%" style="border-right: 1px solid #666;"><b>TOTAL</b></td>
-                                        <td width="27%" style="padding-right: 6px; border-right: 1px solid #666;"><?php echo $this->Form->input('no_of_ctn', array('label' => FALSE, 'div' => FALSE, 'readonly' => true, 'class' => 'form-control')); ?></td>
+                                        <td width="27%" style="padding-right: 6px; border-right: 1px solid #666;"><?php echo $this->Form->value('PalletChecklist.no_of_ctn'); ?></td>
                                         <td width="27%" style="padding-left: 7px; border-right: 1px solid #666;"><?php echo $this->Form->input('total_wt_with_pallet', array('label' => FALSE, 'div' => FALSE, 'readonly' => true, 'class' => 'form-control')); ?></td>
                                         <td style=" border-right: 0px;" width="27%">&nbsp;</td>                                        
                                     </tr>
@@ -230,11 +230,11 @@
                     <table style=" border-collapse: collapse;">
                         <tr>
                             <td style=" border: 1px solid #666;">Sap Code</td>
-                            <td style=" border: 1px solid #666;"><?php echo $this->Form->input('sap_code', array('class' => 'form-control lg-input')); ?></td>
+                            <td style=" border: 1px solid #666;"><?php echo $this->Form->value('PalletChecklist.sap_code'); ?></td>
                         </tr>
                         <tr>
                             <td style=" border: 1px solid #666;">Sap Description</td>
-                            <td style=" border: 1px solid #666;"><?php echo $this->Form->input('sap_desc', array('readonly' => true, 'class' => 'form-control')); ?></td>
+                            <td style=" border: 1px solid #666;"><?php echo $this->Form->value('PalletChecklist.sap_desc'); ?></td>
                         </tr>
                     </table>
                     <br/>
@@ -243,18 +243,18 @@
                             <td style=" border: 1px solid #666; text-align: center;">PRODUCT CUSTOMER WT</td>
                         </tr>
                         <tr>
-                            <td style=" border: 1px solid #666; text-align: center;"><?php echo $this->Form->input('product_cust_wt', array('readonly' => true, 'class' => 'form-control')); ?></td>
+                            <td style=" border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('PalletChecklist.product_cust_wt'); ?></td>
                         </tr>
                     </table>
                     <br/>
                     <table style=" border-collapse: collapse;">
                         <tr>
-                            <td width="30%" style=" border: 1px solid #666;">NO OF PALLETS</td>
-                            <td style=" border: 1px solid #666;">EMPTY PALLET WT</td>
+                            <td width="30%" style=" border: 1px solid #666; text-align: center;">NO OF PALLETS</td>
+                            <td style=" border: 1px solid #666; text-align: center;">EMPTY PALLET WT</td>
                         </tr>
                         <tr>
-                            <td style=" border: 1px solid #666;">SAMPLE FIG</td>
-                            <td style=" border: 1px solid #666;">SAMPLE FIG</td>
+                            <td style=" border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('PalletChecklist.no_of_pallet'); ?></td>
+                            <td style=" border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('PalletChecklist.empty_pallet_wt'); ?></td>
                         </tr>
                     </table>
                     <br/>
@@ -263,7 +263,7 @@
                             <td style=" border: 1px solid #666; text-align: center;">EMPTY CTN/VPN WEIGHT</td>
                         </tr>
                         <tr>
-                            <td style=" border: 1px solid #666; text-align: center;">SAMPLE FIG</td>
+                            <td style=" border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('PalletChecklist.empty_ctn_wt'); ?></td>
                         </tr>
                     </table>
                     <br/>
@@ -272,7 +272,7 @@
                             <td style=" border: 1px solid #666; text-align: center;">NET WEIGHT OF PRODUCT</td>
                         </tr>
                         <tr>
-                            <td style=" border: 1px solid #666; text-align: center;">SAMPLE FIG</td>
+                            <td style=" border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('PalletChecklist.net_product_wt'); ?></td>
                         </tr>
                     </table>
                     <br/>
@@ -281,7 +281,7 @@
                             <td style=" border: 1px solid #666; text-align: center;">NET WEIGHT/CTN</td>
                         </tr>
                         <tr>
-                            <td style=" border: 1px solid #666; text-align: center;">SAMPLE FIG</td>
+                            <td style=" border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('PalletChecklist.net_wt_per_ctn'); ?></td>
                         </tr>
                     </table>
                     <br/>
@@ -290,14 +290,14 @@
                             <td style=" border: 1px solid #666; text-align: center;">GROSS WEIGHT/CTN</td>
                         </tr>
                         <tr>
-                            <td style=" border: 1px solid #666; text-align: center;">SAMPLE FIG</td>
+                            <td style=" border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('PalletChecklist.gross_wt_per_ctn'); ?></td>
                         </tr>
                     </table>
                     <br/>
                     <table style=" border-collapse: collapse;">
                         <tr>
                             <td width="30%" style=" border: 1px solid #666;">DIFF%</td>
-                            <td style=" border: 1px solid #666; text-align: center;">SAMPLE FIG %</td>
+                            <td style=" border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('PalletChecklist.diff_perc'); ?></td>
                         </tr>                        
                     </table>
                 </td>                
@@ -309,11 +309,11 @@
                     <table style=" border-collapse: collapse;">
                         <tr>
                             <td width="30%" style=" border: 1px solid #666;">CHECKED BY</td>
-                            <td style=" border: 1px solid #666; text-align: center;">SAMPLE FIG</td>
+                            <td style=" border: 1px solid #666; text-align: center;">SOHAIL</td>
                         </tr>
                         <tr>
                             <td width="30%" style=" border: 1px solid #666;">CONTAINER NO</td>
-                            <td style=" border: 1px solid #666; text-align: center;">SAMPLE FIG</td>
+                            <td style=" border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('Container.container_no'); ?></td>
                         </tr>
                     </table>
                 </td>
@@ -322,7 +322,7 @@
                     <table style=" border-collapse: collapse;">
                         <tr>
                             <td width="30%" style=" border: 1px solid #666;">SEAL NO</td>
-                            <td style=" border: 1px solid #666; text-align: center;">SAMPLE FIG</td>
+                            <td style=" border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('Container.seal_no'); ?></td>
                         </tr>                        
                     </table>
                 </td>
