@@ -27,11 +27,11 @@
         <div class="panel panel-blue panel-widget ">
             <div class="row no-padding">
                 <div class="col-sm-3 col-lg-5 widget-left">
-                    <em class="glyphicon glyphicon-shopping-cart glyphicon-l"></em>
+                    <em class="glyphicon glyphicon-transfer glyphicon-l"></em>
                 </div>
                 <div class="col-sm-9 col-lg-7 widget-right">
-                    <div class="large">120</div>
-                    <div class="text-muted">New Orders</div>
+                    <div class="large" id="transfer-last-month">120</div>
+                    <div class="text-muted">Transfers</div>
                 </div>
             </div>
         </div>
@@ -40,11 +40,11 @@
         <div class="panel panel-orange panel-widget">
             <div class="row no-padding">
                 <div class="col-sm-3 col-lg-5 widget-left">
-                    <em class="glyphicon glyphicon-comment glyphicon-l"></em>
+                    <em class="glyphicon glyphicon-transfer glyphicon-l"></em>
                 </div>
                 <div class="col-sm-9 col-lg-7 widget-right">
-                    <div class="large">52</div>
-                    <div class="text-muted">Comments</div>
+                    <div class="large" id="transfer-yesterday">52</div>
+                    <div class="text-muted">Yesterday Transfers</div>
                 </div>
             </div>
         </div>
@@ -53,11 +53,11 @@
         <div class="panel panel-teal panel-widget">
             <div class="row no-padding">
                 <div class="col-sm-3 col-lg-5 widget-left">
-                    <em class="glyphicon glyphicon-user glyphicon-l"></em>
+                    <em class="glyphicon glyphicon-log-out glyphicon-l"></em>
                 </div>
                 <div class="col-sm-9 col-lg-7 widget-right">
-                    <div class="large">24</div>
-                    <div class="text-muted">New Users</div>
+                    <div class="large" id="dispatch-last-month">24</div>
+                    <div class="text-muted">Dispatch</div>
                 </div>
             </div>
         </div>
@@ -66,11 +66,11 @@
         <div class="panel panel-red panel-widget">
             <div class="row no-padding">
                 <div class="col-sm-3 col-lg-5 widget-left">
-                    <em class="glyphicon glyphicon-stats glyphicon-l"></em>
+                    <em class="glyphicon glyphicon-log-out glyphicon-l"></em>
                 </div>
                 <div class="col-sm-9 col-lg-7 widget-right">
-                    <div class="large">25.2k</div>
-                    <div class="text-muted">Visitors</div>
+                    <div class="large" id="dispatch-yesterday">25.2k</div>
+                    <div class="text-muted">Yesterday Dispatch</div>
                 </div>
             </div>
         </div>
@@ -87,3 +87,18 @@
       </div>
     </div>
 </div>-->
+
+<script type="text/javascript">
+    $(document).ready(function(){
+       $.ajax({
+           url : SITE_URL + 'reports/dash_data',
+           success: function(r) {
+               var json = $.parseJSON(r);
+               $('#transfer-last-month').html(json.transfer.last_month)
+               $('#transfer-yesterday').html(json.transfer.yesterday)
+               $('#dispatch-last-month').html(json.dispatch.last_month)
+               $('#dispatch-yesterday').html(json.dispatch.yesterday)
+           }
+       }); 
+    });
+</script>
