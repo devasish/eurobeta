@@ -130,6 +130,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                             <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Loading Report', array('controller' => 'reports', 'action' => 'loading'), array('escape' => FALSE)); ?>
                                         </li>
                                         <?php endif; ?>
+                                        <?php if (!empty($perms['reports']['loading_vplus_vminus'])) : ?>
+                                        <li>
+                                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Loading (V+ & V-) ', array('controller' => 'reports', 'action' => 'loading_vplus_vminus'), array('escape' => FALSE)); ?>
+                                        </li>
+                                        <?php endif; ?>
                                         <?php if (!empty($perms['reports']['ctn_loading_report'])) : ?>
                                         <li>
                                             <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'CTN Loading Report', array('controller' => 'reports', 'action' => 'ctn_loading_report'), array('escape' => FALSE)); ?>
