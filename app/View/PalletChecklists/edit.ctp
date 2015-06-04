@@ -201,13 +201,13 @@
 
                                     <?php foreach ($this->Form->value('PalletLoad') as $k => $palletLoad) : ?>
                                         <tr>
-                                            <td style="border: 1px solid #666;">
+                                            <td style="border: 1px solid #666; text-align: center;">
                                                 <?php echo $x++; ?>
                                                 <?php echo $this->Form->input('PalletLoad.' . $row_index . '.id', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads_id_input form-control', 'data-index' => $row_index)); ?>
                                             </td>
-                                            <td style="border: 1px solid #666;"><?php echo $this->Form->input('PalletLoad.' . $row_index . '.quantity', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads-input form-control', 'data-index' => $row_index)); ?></td>
-                                            <td style="border: 1px solid #666;"><?php echo $this->Form->input('PalletLoad.' . $row_index . '.wt_with_pallet', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads-input form-control', 'data-index' => $row_index)); ?></td>
-                                            <td style="border: 1px solid #666; border-right: 0px;"><?php echo $this->Form->input('PalletLoad.' . $row_index . '.wt_per_ctn', array('label' => FALSE, 'div' => FALSE, 'readonly' => true, 'data-index' => $row_index, 'class' => 'loads_wt_per_ctn form-control')); ?></td>                                            
+                                            <td style="border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('PalletLoad.' . $row_index . '.quantity', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads-input form-control', 'data-index' => $row_index)); ?></td>
+                                            <td style="border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('PalletLoad.' . $row_index . '.wt_with_pallet', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads-input form-control', 'data-index' => $row_index)); ?></td>
+                                            <td style="border: 1px solid #666; text-align: center; border-right: 0px;"><?php echo $this->Form->value('PalletLoad.' . $row_index . '.wt_per_ctn', array('label' => FALSE, 'div' => FALSE, 'readonly' => true, 'data-index' => $row_index, 'class' => 'loads_wt_per_ctn form-control')); ?></td>                                            
                                         </tr>
                                         <?php $row_index++; ?>
                                     <?php endforeach; ?>
@@ -215,9 +215,9 @@
 
                                 <table cellspacing="0" cellpadding="2" style=" border-collapse: collapse; background: #DDD;">
                                     <tr>
-                                        <td width="7%" style="border-right: 1px solid #666;"><b>TOTAL</b></td>
-                                        <td width="27%" style="padding-right: 6px; border-right: 1px solid #666;"><?php echo $this->Form->value('PalletChecklist.no_of_ctn'); ?></td>
-                                        <td width="27%" style="padding-left: 7px; border-right: 1px solid #666;"><?php echo $this->Form->input('total_wt_with_pallet', array('label' => FALSE, 'div' => FALSE, 'readonly' => true, 'class' => 'form-control')); ?></td>
+                                        <td width="7%" style="border-right: 1px solid #666; text-align: center;"><b>TOTAL</b></td>
+                                        <td width="27%" style="padding-right: 6px; border-right: 1px solid #666; text-align: center;"><?php echo $this->Form->value('PalletChecklist.no_of_ctn'); ?></td>
+                                        <td width="27%" style="padding-left: 7px; border-right: 1px solid #666; text-align: center;"><?php echo $this->Form->value('total_wt_with_pallet', array('label' => FALSE, 'div' => FALSE, 'readonly' => true, 'class' => 'form-control')); ?></td>
                                         <td style=" border-right: 0px;" width="27%">&nbsp;</td>                                        
                                     </tr>
                                 </table>
