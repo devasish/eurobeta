@@ -118,11 +118,11 @@ echo $this->Html->link(
             $('#dash-line-chart').highcharts({
                 title: {
                     text: 'Monthly Transfer and Dispatch',
-                    x: -20 //center
+                    //x: -20 //center
                 },
                 subtitle: {
                     text: 'Based on last one month records',
-                    x: -20
+                    //x: -20
                 },
                 xAxis: {
                     categories: json.categories
