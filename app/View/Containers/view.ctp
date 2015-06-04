@@ -1,3 +1,18 @@
+<?php 
+$loaded_cbm = 0;
+$container_cbm = 40;
+$cont_gross_wt = 0;
+$total_plt_wt = 0;
+if (is_array($container['PalletChecklist']) && !empty($container['PalletChecklist'])) {
+    foreach ($container['PalletChecklist'] as $key => $value) {
+        $loaded_cbm += $value['loaded_cbm'];
+        $cont_gross_wt += $value['loaded_wt'];
+        $total_plt_wt += $value['empty_pallet_wt'];
+    }
+}
+$empty_space = $container_cbm - $loaded_cbm;
+$empty_space_perc = $empty_space / $container_cbm * 100;
+?>
 <div class="row">
     <ol class="breadcrumb action-link">
         <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
@@ -120,40 +135,36 @@
                         <dl>
                             <dt><?php echo __('Container CBM'); ?></dt>
                             <dd>
-                                <?php echo h($container['Container']['id']); ?>&nbsp;
+                                <?php echo h($container_cbm); ?>&nbsp;
                             </dd>
                             <dt><?php echo __('Loaded CBM'); ?></dt>
                             <dd>
-                                <?php echo h($container['Container']['id']); ?>&nbsp;
-                            </dd>
-                            <dt><?php echo __('Loaded CBM'); ?></dt>
-                            <dd>
-                                <?php echo h($container['Container']['id']); ?>&nbsp;
+                                <?php echo h($loaded_cbm); ?>&nbsp;
                             </dd>
                             <dt><?php echo __('Empty Space'); ?></dt>
                             <dd>
-                                <?php echo h($container['Container']['id']); ?>&nbsp;
+                                <?php echo h($empty_space); ?>&nbsp;
                             </dd>
                             <dt><?php echo __('Empty Space (%)'); ?></dt>
                             <dd>
-                                <?php echo h($container['Container']['id']); ?>&nbsp;
+                                <?php echo h($empty_space_perc); ?>&nbsp;
                             </dd>
                             <dt><?php echo __('Container Gross WT'); ?></dt>
                             <dd>
-                                <?php echo h($container['Container']['id']); ?>&nbsp;
+                                <?php echo h($cont_gross_wt); ?>&nbsp;
                             </dd>
                             <dt><?php echo __('Gross Goods WT <br/><small>(without pallet)</small>'); ?></dt>
                             <dd>
-                                <?php echo h($container['Container']['id']); ?>&nbsp;
+                                <?php echo h($cont_gross_wt - $total_plt_wt); ?>&nbsp;
                             </dd>
-                            <dt><?php echo __('Total Pallet WT'); ?></dt>
+                           <dt><?php echo __('Total Pallet WT'); ?></dt>
+                            <dd>
+                                <?php echo h($total_plt_wt); ?>&nbsp;
+                            </dd>
+                          <!--   <dt><?php echo __('Gross WT <br/><small>(with pallet)</small>'); ?></dt>
                             <dd>
                                 <?php echo h($container['Container']['id']); ?>&nbsp;
-                            </dd>
-                            <dt><?php echo __('Gross WT <br/><small>(with pallet)</small>'); ?></dt>
-                            <dd>
-                                <?php echo h($container['Container']['id']); ?>&nbsp;
-                            </dd>
+                            </dd>-->
                         </dl>
                     </div>
                     <div class="pull-right col-md-4">

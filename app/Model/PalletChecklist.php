@@ -13,7 +13,8 @@ App::uses('AppModel', 'Model');
 class PalletChecklist extends AppModel {
     
     public $virtualFields = array(
-        'loaded_wt' => "PalletChecklist.empty_pallet_wt + PalletChecklist.empty_ctn_wt + PalletChecklist.net_product_wt"
+        'loaded_wt' => "PalletChecklist.empty_pallet_wt + PalletChecklist.empty_ctn_wt + PalletChecklist.net_product_wt",
+        'loaded_cbm' => "ROUND(PalletChecklist.cbm * PalletChecklist.no_of_ctn, 4)"
     );
     /**
      * Validation rules
