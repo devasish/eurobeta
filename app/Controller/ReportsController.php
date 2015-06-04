@@ -600,14 +600,37 @@ class ReportsController extends AppController {
             
             $data = array('transfer', 'dispatch');
             foreach ($transfers as $tr) {
-                $data['transfer'][strtotime($tr[0]['transfer_date'])] = $tr[0]['transfer_date'];
+                $data['transfer'][strtotime($tr[0]['transfer_date'])] = $tr[0]['total'];
             }
             
             foreach ($dispatches as $tr) {
-                $data['dispatch'][strtotime($tr[0]['dispatch_date'])] = $tr[0]['dispatch_date'];
+                $data['dispatch'][strtotime($tr[0]['dispatch_date'])] = $tr[0]['total'];
+            }
+            $date_names = array();
+            $loop_start = strtotime($one_mon_ago);
+            $loop_end   = strtotime($today);
+            $loop_index = $loop_start;
+            $ts = array('name' => 'Transfer');
+            $ds = array('name' => 'Dispatch');
+            $i = 0;
+            
+            while ($loop_index <= $loop_end) {
+                $next_date = $one_mon_ago. ' + ' . $i++ . ' day';
+                $date_names[] = date('d M', strtotime($next_date));
+                $loop_index = strtotime($next_date);
+                $ts['data'][] = isset($data['transfer'][$loop_index]) ? (int)$data['transfer'][$loop_index] : 0;
+                $ds['data'][] = isset($data['dispatch'][$loop_index]) ? (int)$data['dispatch'][$loop_index] : 0;
+                if ($i > 31) {
+                    break;
+                }
             }
             
-            pr($dispatches);
+            $return = array(
+                'categories' => $date_names,
+                'series' => array($ts, $ds)
+            );
             
+            //pr($return);
+            echo json_encode($return);
         }
 }
