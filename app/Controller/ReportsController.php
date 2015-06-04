@@ -569,4 +569,45 @@ class ReportsController extends AppController {
             echo json_encode($return);
             
         }
+        
+        public function dash_graph() {
+            $this->autoRender = FALSE;
+            $today = date('Y-m-d H:i:s');
+            $one_mon_ago = date('Y-m-d', strtotime(date('Y-m-d'). '- 1 month'));
+            
+            $this->loadModel('Transfer');
+            $transfers = $this->Transfer->find('all', array(
+                'conditions' => array(
+                    'transfer_date >= ' => $one_mon_ago,
+                    'transfer_date <= ' => $today,
+                ),
+                'fields' => array("IFNULL(ROUND(SUM(Transfer.ctn_per_pallet * Transfer.net_wt)/1000,2),0) AS total, DATE_FORMAT(Transfer.transfer_date, '%Y-%m-%d') AS transfer_date"),
+                'group' => array("DATE_FORMAT(Transfer.transfer_date, '%Y%m%d')")
+            ));
+            
+            $this->loadModel('PalletChecklist');
+            $dispatches = $this->PalletChecklist->find('all', array(
+                'fields' => array(
+                    "IFNULL(ROUND(SUM((no_of_ctn * product_cust_wt))/1000, 2),0) AS total, DATE_FORMAT(Container.load_date, '%Y-%m-%d') AS dispatch_date",
+                ),
+                'recursive' => 0,
+                'conditions' => array(
+                    'Container.load_date >= ' => $one_mon_ago,
+                    'Container.load_date <= ' => $today,
+                ),
+                'group' => array("DATE_FORMAT(Container.load_date, '%Y%m%d')")
+            ));
+            
+            $data = array('transfer', 'dispatch');
+            foreach ($transfers as $tr) {
+                $data['transfer'][strtotime($tr[0]['transfer_date'])] = $tr[0]['transfer_date'];
+            }
+            
+            foreach ($dispatches as $tr) {
+                $data['dispatch'][strtotime($tr[0]['dispatch_date'])] = $tr[0]['dispatch_date'];
+            }
+            
+            pr($dispatches);
+            
+        }
 }
