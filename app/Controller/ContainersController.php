@@ -30,7 +30,7 @@ class ContainersController extends AppController {
             $filter_url['action'] = $this->request->params['action'];
             $filter_url['page'] = 1;
             foreach ($this->data['Filter'] as $name => $value) {
-                if (trim($value)) {
+                if (strlen(trim($value))) {
                     if ($name == 'cal_from' || $name == 'cal_to') {
                         $filter_url[$name] = urlencode(str_replace('/', '-', $value));
                     } else {
@@ -50,10 +50,6 @@ class ContainersController extends AppController {
                             $conditions['Container.' . $this->request->params['named']['field']] = $value;
                         } elseif ($this->request->params['named']['field'] == 'seal_no') {
                             $conditions['Container.' . $this->request->params['named']['field']] = $value;
-                        } elseif ($this->request->params['named']['field'] == 'type') {
-                            $conditions['Container.' . $this->request->params['named']['field']] = $value;
-                        } elseif ($this->request->params['named']['field'] == 'status') {
-                            $conditions['Container.' . $this->request->params['named']['field']] = $value;
                         } else {
                             $conditions['Sap.' . $this->request->params['named']['field'] . ' LIKE '] = "%$value%";
                         }                    
@@ -63,6 +59,10 @@ class ContainersController extends AppController {
                     } elseif ($name == 'cal_to' && !empty($value)) {
                         $dateObj = DateTime::createFromFormat('d-m-Y', $value);
                         $conditions['Container.created <='] = $dateObj->format('Y-m-d') . ' 23:59:59';
+                    } elseif ($name == 'status' && strlen($value) > 0) {
+                        $conditions['Container.status'] = $value;
+                    } elseif ($name == 'type' && strlen($value) > 0) {
+                        $conditions['Container.type'] = $value;
                     }
                     $this->request->data['Filter'][$name] = $value;
                 }
