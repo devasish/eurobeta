@@ -75,8 +75,8 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12" id="dash-line-chart"></div>
+    <div class="row no-padding">
+        <div class="col-xs-12 col-md-6 col-lg-12" id="dash-line-chart"></div>
     </div>
 </div><!--/.row-->
 <!--<div class="row">
@@ -116,6 +116,9 @@ echo $this->Html->link(
         
         function drawChart(json) {
             $('#dash-line-chart').highcharts({
+                chart: {
+                    //type: 'area'
+                },
                 title: {
                     text: 'Monthly Transfer and Dispatch',
                     //x: -20 //center
