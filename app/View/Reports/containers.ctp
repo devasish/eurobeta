@@ -24,7 +24,7 @@
                             <li><?php echo $this->Form->input('cal_from', array('class' => 'date form-control input-sm', 'label' => false, 'placeholder' => 'From')); ?></li>
                             <li><?php echo $this->Form->input('cal_to', array('class' => 'date form-control input-sm', 'label' => false, 'placeholder' => 'To')); ?></li>
                             <li><?php echo $this->Form->input('value', array('class' => 'date form-control input-sm', 'label' => false, 'placeholder' => 'Search')); ?></li>
-                            <li><?php echo $this->Form->input('field', array('options' => array('id' => 'ID', 'container_no' => 'Container No', 'seal_no' => 'Seal No', 'type' => 'Type', 'status' => 'Status'), 'label' => false, 'class' => 'form-control input-sm')); ?></li>
+                            <li><?php echo $this->Form->input('field', array('options' => array('id' => 'ID', 'container_no' => 'Container No', 'seal_no' => 'Seal No'), 'label' => false, 'class' => 'form-control input-sm')); ?></li>
                         </ul>
                         <div class="input-group-btn srch-btn">
                             <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
