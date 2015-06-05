@@ -117,7 +117,7 @@
                     </dd>
                     <dt><?php echo __('Transfer Date'); ?></dt>
                     <dd>
-                        <?php echo h($transfer['Transfer']['transfer_date']); ?>
+                        <?php echo h(date('d-m-Y', strtotime($transfer['Transfer']['transfer_date']))); ?>
                         &nbsp;
                     </dd>
                     <dt><?php echo __('Shift'); ?></dt>
@@ -195,7 +195,7 @@
                         <tr>
                             <td style="text-align: right;">Date</td>
                             <td>:</td>
-                            <td style="text-align: left; padding-left: 5px;"><b style="font-size:20px;"><?php echo date('d-m-y'); ?></b></td>
+                            <td style="text-align: left; padding-left: 5px;"><b style="font-size:20px;"><?php echo h(date('d-m-Y', strtotime($transfer['Transfer']['transfer_date']))); ?></b></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">Remarks</td>
@@ -277,7 +277,7 @@
                         <tr>
                             <td style="text-align: right;">Date</td>
                             <td>:</td>
-                            <td style="text-align: left; padding-left: 5px;"><b style="font-size:20px;"><?php echo date('d-m-y'); ?></b></td>
+                            <td style="text-align: left; padding-left: 5px;"><b style="font-size:20px;"><?php echo h(date('d-m-Y', strtotime($transfer['Transfer']['transfer_date']))); ?></b></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">Remarks</td>

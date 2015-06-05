@@ -491,8 +491,10 @@ class ReportsController extends AppController {
 
     public function dash_data() {
         $this->autoRender = FALSE;
-        $fd = date('Y-m-d H:i:s', mktime(0, 0, 0, date('m') - 1, 1, date('Y')));
-        $ld = date('Y-m-d H:i:s', mktime(23, 59, 59, date('m'), 0, date('Y')));
+//        $fd = date('Y-m-d H:i:s', mktime(0, 0, 0, date('m') - 1, 1, date('Y')));
+//        $ld = date('Y-m-d H:i:s', mktime(23, 59, 59, date('m'), 0, date('Y')));
+        $fd = date('Y-m-01');
+        $ld = date('Y-m-d'). ' 23:59:59';
         $yesterday = date('Y-m-d', strtotime(date('Y-m-d') . '- 1 day'));
 
         $this->loadModel('Transfer');
@@ -501,7 +503,7 @@ class ReportsController extends AppController {
                 'transfer_date >= ' => $fd,
                 'transfer_date <= ' => $ld,
             ),
-            'fields' => array('IFNULL(ROUND(SUM(Transfer.ctn_per_pallet * Transfer.net_wt)/1000,2),0) AS total')
+            'fields' => array('IFNULL(ROUND(SUM(Transfer.ctn_per_pallet * Sap.net_wt)/1000,2),0) AS total')
         ));
 
         $last_day_data = $this->Transfer->find('all', array(
@@ -509,7 +511,7 @@ class ReportsController extends AppController {
                 'transfer_date >= ' => $yesterday . ' 00:00:00',
                 'transfer_date <= ' => $yesterday . ' 23:59:59',
             ),
-            'fields' => array('IFNULL(ROUND(SUM(Transfer.ctn_per_pallet * Transfer.net_wt)/1000,2),0) AS total')
+            'fields' => array('IFNULL(ROUND(SUM(Transfer.ctn_per_pallet * Sap.net_wt)/1000,2),0) AS total')
         ));
 
         $this->loadModel('PalletChecklist');
@@ -563,7 +565,7 @@ class ReportsController extends AppController {
     public function dash_graph() {
         $this->autoRender = FALSE;
         $today = date('Y-m-d H:i:s');
-        $one_mon_ago = date('Y-m-d', strtotime(date('Y-m-d') . '- 1 month'));
+        $one_mon_ago = date('Y-m-01');
 
         $this->loadModel('Transfer');
         $transfers = $this->Transfer->find('all', array(
@@ -598,14 +600,14 @@ class ReportsController extends AppController {
         }
         $date_names = array();
         $loop_start = strtotime($one_mon_ago);
-        $loop_end = strtotime($today);
+        $loop_end = strtotime($today.' -1 day');
         $loop_index = $loop_start;
         $ts = array('name' => 'Transfer');
         $ds = array('name' => 'Dispatch');
         $i = 0;
 
-        while ($loop_index <= $loop_end) {
-            $next_date = $one_mon_ago . ' + ' . $i++ . ' day';
+        while ($loop_index < $loop_end) {
+            $next_date = $one_mon_ago . ' + ' . ($i++) . ' day';
             $date_names[] = date('d M', strtotime($next_date));
             $loop_index = strtotime($next_date);
             $ts['data'][] = isset($data['transfer'][$loop_index]) ? (int) $data['transfer'][$loop_index] : 0;
@@ -620,7 +622,6 @@ class ReportsController extends AppController {
             'series' => array($ts, $ds)
         );
 
-        //pr($return);
         echo json_encode($return);
     }
 

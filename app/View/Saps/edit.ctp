@@ -26,16 +26,16 @@
                                 <?php echo $this->Form->input('net_wt', array('class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
-                                <?php echo $this->Form->input('gross_wt', array('value' => 0, 'class'=>'form-control')); ?>
+                                <?php echo $this->Form->input('gross_wt', array('class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
-                                <?php echo $this->Form->input('empty_ctn_wt', array('value' => 0, 'class'=>'form-control')); ?>
+                                <?php echo $this->Form->input('empty_ctn_wt', array('class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
-                                <?php echo $this->Form->input('cbm', array('value' => 0, 'class'=>'form-control')); ?>
+                                <?php echo $this->Form->input('cbm', array('class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
-                                <?php echo $this->Form->input('ctn_per_pallet', array('value' => 0, 'class'=>'form-control')); ?>
+                                <?php echo $this->Form->input('ctn_per_pallet', array('class'=>'form-control')); ?>
                             </div>
                             <div class="form-group">
                                 <?php echo $this->Form->input('status', array('options' => Configure::read('STATUS'), 'empty'=>TRUE, 'class'=>'form-control')); ?>
