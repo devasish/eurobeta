@@ -24,4 +24,11 @@ class Loader extends AppModel {
 			),
 		),
 	);
+        
+        public $hasMany = array(
+        'Container' => array(
+            'className' => 'Container'
+        )
+    );
+
 }

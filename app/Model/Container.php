@@ -107,6 +107,41 @@ class Container extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Loader' => array(
+			'className' => 'Loader',
+			'foreignKey' => 'loader_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Loader2' => array(
+			'className' => 'Loader',
+			'foreignKey' => 'loader_id_2',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Checker' => array(
+			'className' => 'Checker',
+			'foreignKey' => 'checker_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Checker2' => array(
+			'className' => 'Checker',
+			'foreignKey' => 'checker_id_2',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Editor' => array(
+			'className' => 'User',
+			'foreignKey' => 'modified_by',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 

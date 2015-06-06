@@ -166,7 +166,12 @@
                         </tr>
                         <tr>
                             <td style="text-align: center; border: 1px solid #000;">
-                                <font size="3"><?php echo date('d-m-Y'); ?></font>
+                                <font size="3">
+                                    <?php 
+                                    $loaded_on = strtotime($this->Form->value('PalletChecklist.modified')) > 0 ? strtotime($this->Form->value('PalletChecklist.modified')) : strtotime($this->Form->value('PalletChecklist.created'));
+                                    echo date('d-m-Y', $loaded_on);
+                                    ?>
+                                </font>
                             </td>
                         </tr>
                     </table>
@@ -187,7 +192,7 @@
                         </tr>
                         <tr>
                             <td style="border: 1px solid #666;">
-                                <table id="loads-table" style="border-collapse: collapse;">
+                                <table style="border-collapse: collapse;">
                                     <tr>
                                         <th style="border-right: 1px solid #666;" width="7%">Serial</th>
                                         <th style="border-right: 1px solid #666;" width="27%">QTY CTN</th>
@@ -203,21 +208,17 @@
                                         <tr>
                                             <td style="border: 1px solid #666; text-align: center;">
                                                 <?php echo $x++; ?>
-                                                <?php echo $this->Form->input('PalletLoad.' . $row_index . '.id', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads_id_input form-control', 'data-index' => $row_index)); ?>
                                             </td>
-                                            <td style="border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('PalletLoad.' . $row_index . '.quantity', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads-input form-control', 'data-index' => $row_index)); ?></td>
-                                            <td style="border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('PalletLoad.' . $row_index . '.wt_with_pallet', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads-input form-control', 'data-index' => $row_index)); ?></td>
-                                            <td style="border: 1px solid #666; text-align: center; border-right: 0px;"><?php echo $this->Form->value('PalletLoad.' . $row_index . '.wt_per_ctn', array('label' => FALSE, 'div' => FALSE, 'readonly' => true, 'data-index' => $row_index, 'class' => 'loads_wt_per_ctn form-control')); ?></td>                                            
+                                            <td style="border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('PalletLoad.' . $row_index . '.quantity'); ?></td>
+                                            <td style="border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('PalletLoad.' . $row_index . '.wt_with_pallet'); ?></td>
+                                            <td style="border: 1px solid #666; text-align: center; border-right: 0px;"><?php echo $this->Form->value('PalletLoad.' . $row_index . '.wt_per_ctn'); ?></td>                                            
                                         </tr>
                                         <?php $row_index++; ?>
                                     <?php endforeach; ?>
-                                </table>
-
-                                <table cellspacing="0" cellpadding="2" style=" border-collapse: collapse; background: #DDD;">
-                                    <tr>
+                                        <tr>
                                         <td width="7%" style="border-right: 1px solid #666; text-align: center;"><b>TOTAL</b></td>
-                                        <td width="27%" style="padding-right: 6px; border-right: 1px solid #666; text-align: center;"><?php echo $this->Form->value('PalletChecklist.no_of_ctn'); ?></td>
-                                        <td width="27%" style="padding-left: 7px; border-right: 1px solid #666; text-align: center;"><?php echo $this->Form->value('total_wt_with_pallet', array('label' => FALSE, 'div' => FALSE, 'readonly' => true, 'class' => 'form-control')); ?></td>
+                                        <td width="27%" style="padding-right: 6px; border-right: 1px solid #666; text-align: center;"><b><?php echo $this->Form->value('PalletChecklist.no_of_ctn'); ?></b></td>
+                                        <td width="27%" style="padding-left: 7px; border-right: 1px solid #666; text-align: center;"><b><?php echo $this->Form->value('PalletChecklist.loaded_wt'); ?></b></td>
                                         <td style=" border-right: 0px;" width="27%">&nbsp;</td>                                        
                                     </tr>
                                 </table>
@@ -309,7 +310,7 @@
                     <table style=" border-collapse: collapse;">
                         <tr>
                             <td width="30%" style=" border: 1px solid #666;">CHECKED BY</td>
-                            <td style=" border: 1px solid #666; text-align: center;">SOHAIL</td>
+                            <td style=" border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('Container.Checker.checker_name'); ?></td>
                         </tr>
                         <tr>
                             <td width="30%" style=" border: 1px solid #666;">CONTAINER NO</td>
@@ -330,4 +331,7 @@
         </table>
     </center>
 </div>
+<?php 
+//pr($container_data)
+?>
 

@@ -96,12 +96,20 @@ class PalletChecklistsController extends AppController {
             }
         } else {
             $options = array('conditions' => array('PalletChecklist.' . $this->PalletChecklist->primaryKey => $id));
+            
             $this->request->data = $this->PalletChecklist->find('first', $options);
         }
         $containers = $this->PalletChecklist->Container->find('list');
         $saps = $this->PalletChecklist->Sap->find('list');
         $users = $this->PalletChecklist->User->find('list');
         $this->set(compact('containers', 'saps', 'users'));
+        $this->PalletChecklist->Container->recursive = 1;
+        $container_data = $this->PalletChecklist->Container->find('first', array('conditions' => array('Container.id' => $this->request->data['Container']['id'])));
+        $this->request->data['Container']['Checker'] = $container_data['Checker'];
+        $this->request->data['Container']['Checker2'] = $container_data['Checker2'];
+        $this->request->data['Container']['Loader'] = $container_data['Loader'];
+        $this->request->data['Container']['Loader2'] = $container_data['Loader2'];
+//        pr($this->request->data);
     }
 
     /**

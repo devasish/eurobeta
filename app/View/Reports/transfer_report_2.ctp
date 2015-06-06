@@ -56,6 +56,9 @@
                     if (!isset($totals[$key]['ctn_per_pallet'])) {
                         $totals[$key]['ctn_per_pallet'] = 0;
                     }
+                    if (!isset($totals[$key]['total_wt'])) {
+                        $totals[$key]['total_wt'] = 0;
+                    }
                     ?>
                     
                     <tr class="tr-head">
@@ -91,6 +94,7 @@
                         <?php 
                         $totals[$key]['net_wt'] = isset($totals[$key]['net_wt']) ? $totals[$key]['net_wt'] + $trans['Transfer']['net_wt'] : $trans['Transfer']['net_wt']; 
                         $totals[$key]['ctn_per_pallet'] = isset($totals[$key]['ctn_per_pallet']) ? $totals[$key]['ctn_per_pallet'] + $trans['Transfer']['ctn_per_pallet'] : $trans['Transfer']['ctn_per_pallet']; 
+                        $totals[$key]['total_wt'] = $totals[$key]['total_wt'] + $trans['Transfer']['ctn_per_pallet'] * $trans['Transfer']['net_wt']; 
                         ?>
                         <?php endforeach; ?>
                         <tr>
@@ -99,7 +103,7 @@
                             <td></td>
                             <td><?php echo h($totals[$key]['net_wt']); ?></td>
                             <td><?php echo h($totals[$key]['ctn_per_pallet']); ?></td>
-                            <td><?php echo h($totals[$key]['ctn_per_pallet'] * $totals[$key]['net_wt']); ?></td>
+                            <td><?php echo h($totals[$key]['total_wt']); ?></td>
                         </tr>
                 <?php endforeach;?>
                 </table>

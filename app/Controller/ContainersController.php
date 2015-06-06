@@ -130,6 +130,7 @@ class ContainersController extends AppController {
             throw new NotFoundException(__('Invalid container'));
         }
         if ($this->request->is(array('post', 'put'))) {
+            $this->request->data['Container']['modified_by'] = $this->Session->read('Auth.User.id');
             if ($this->Container->save($this->request->data)) {
                 $this->Session->setFlash(__('The container has been saved.'), 'flash_success');
                 return $this->redirect(array('action' => 'index'));

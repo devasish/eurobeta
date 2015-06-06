@@ -129,6 +129,11 @@ $empty_space_perc = $empty_space / $container_cbm * 100;
                                 <?php echo $this->Html->link($container['User']['username'], array('controller' => 'users', 'action' => 'view', $container['User']['id'])); ?>
                                 &nbsp;
                             </dd>
+                            <dt><?php echo __('Modified By'); ?></dt>
+                            <dd>
+                                <?php echo $this->Html->link($container['Editor']['username'], array('controller' => 'users', 'action' => 'view', $container['Editor']['id'])); ?>
+                                &nbsp;
+                            </dd>
                         </dl>
                     </div>
                     <div class="col-md-4">
@@ -284,7 +289,7 @@ $empty_space_perc = $empty_space / $container_cbm * 100;
                                                 <tr>
                                                     <td style="border: 1px solid #666">DATE</td>
                                                     <td style="border: 1px solid #666">
-                                                        <?php echo date('d-m-Y'); ?>
+                                                        <?php echo date('d-m-Y', strtotime($container['Container']['load_date'])); ?>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -307,11 +312,8 @@ $empty_space_perc = $empty_space / $container_cbm * 100;
                                                     <td style="border: 1px solid #666;">TYPE</td>
                                                     <td style="border: 1px solid #666; background: #DDD;">
                                                         <?php
-                                                        foreach (Configure::read('CONT_TYPES') as $k => $v) {
-                                                            if ($k == $container['Container']['type']) {
-                                                                echo h($v);
-                                                            }
-                                                        }
+                                                        $types = Configure::read('CONT_TYPES');
+                                                        echo $types[$container['Container']['type']];
                                                         ?>
                                                     </td>
                                                 </tr>
@@ -336,8 +338,7 @@ $empty_space_perc = $empty_space / $container_cbm * 100;
                 <th style="border: 1px solid #666;">SAP CODE</th>
                 <th style="border: 1px solid #666;">NO OF CTN</th>
                 <th style="border: 1px solid #666;">CBM</th>
-                <th style="border: 1px solid #666;">NEW SAP</th>
-                <th style="border: 1px solid #666;">REMARKS</th>
+                <th style="border: 1px solid #666; width:40%;">REMARKS</th>
             </tr>            
             <?php
             $x = 1;
@@ -355,8 +356,7 @@ $empty_space_perc = $empty_space / $container_cbm * 100;
                     <td style="border: 1px solid #666; padding-left: 10px;"><?php echo h($pallet['sap_code']) ?></td>
                     <td style="border: 1px solid #666; padding-left: 10px;"><?php echo h($pallet['no_of_ctn']) ?></td>
                     <td style="border: 1px solid #666; padding-left: 10px;"><?php echo h($container['Container']['id']); ?></td>
-                    <td style="border: 1px solid #666; padding-left: 10px;">&nbsp;</td>
-                    <td style="border: 1px solid #666; padding-left: 10px;"><?php echo h($container['Container']['remarks']) ?><td/>
+                    <td style="border: 1px solid #666; padding-left: 10px;height: 50px;"><?php echo h($container['Container']['remarks']) ?><td/>
                 </tr>
             <?php endforeach; ?>
             <tr>
@@ -364,7 +364,6 @@ $empty_space_perc = $empty_space / $container_cbm * 100;
                 <td style="border: 1px solid #666; text-align: center; background: #DDD;"><b>TOTAL</b></td>
                 <td style="border: 1px solid #666; text-align: center; background: #DDD;">&nbsp;</td>
                 <td style="border: 1px solid #666; text-align: center; background: #DDD;"><b><?php echo h($total_ctn) ?></b></td>
-                <td style="border: 1px solid #666; text-align: center; background: #DDD;">&nbsp;</td>
                 <td style="border: 1px solid #666; text-align: center; background: #DDD;">&nbsp;</td>
                 <td style="border: 1px solid #666; text-align: center; background: #DDD;">&nbsp;</td>
             </tr>
@@ -376,7 +375,7 @@ $empty_space_perc = $empty_space / $container_cbm * 100;
                     <table style="border-collapse: collapse;">
                         <tr>
                             <td width="10%" style="border: 1px solid #666;"><b>LOADED BY</b></td>
-                            <td width="40%" style="border: 1px solid #666; text-align: center;"><?php echo h($container['Container']['loader_id']); ?></td>
+                            <td width="40%" style="border: 1px solid #666; text-align: center;"><?php echo h($container['Loader']['loader_name']); ?></td>
                             <td width="10%" style="border: 1px solid #666; text-align: center;"><b>SHIPPING</b></td>
                             <td width="20%" style="border: 1px solid #666;">&nbsp;</td>
                         </tr>
@@ -385,7 +384,7 @@ $empty_space_perc = $empty_space / $container_cbm * 100;
                         </tr>
                         <tr>
                             <td style="border: 1px solid #666;"><b>CHECKED BY</b></td>
-                            <td style="border: 1px solid #666; text-align: center;"><?php echo h($container['Container']['checker_id']); ?></td>
+                            <td style="border: 1px solid #666; text-align: center;"><?php echo h($container['Checker']['checker_name']); ?></td>
                             <td style="border: 1px solid #666; text-align: center;"><b>HOD</b></td>
                             <td style="border: 1px solid #666;">&nbsp;</td>
                         </tr>
@@ -394,19 +393,19 @@ $empty_space_perc = $empty_space / $container_cbm * 100;
                         </tr>
                         <tr>
                             <td colspan="2" style="border: 1px solid #666;"><b>CONTAINER CBM</b></td>
-                            <td colspan="2" style="border: 1px solid #666; text-align: center;">70</td>                            
+                            <td colspan="2" style="border: 1px solid #666; text-align: center;"><?php echo $container_cbm; ?></td>                            
                         </tr>
                         <tr>
                             <td colspan="2" style="border: 1px solid #666;"><b>LOADED CBM</b></td>
-                            <td colspan="2" style="border: 1px solid #666; text-align: center;">53.76</td>
+                            <td colspan="2" style="border: 1px solid #666; text-align: center;"><?php echo $loaded_cbm; ?></td>
                         </tr>
                         <tr>
                             <td colspan="2" style="border: 1px solid #666;"><b>EMPTY SPACE</b></td>
-                            <td colspan="2" style="border: 1px solid #666; text-align: center;">22.24</td>                            
+                            <td colspan="2" style="border: 1px solid #666; text-align: center;"><?php echo $empty_space; ?></td>                            
                         </tr>
                         <tr>
-                            <td colspan="2" style="border: 1px solid #666;"><b>EMPTY SPACE</b></td>
-                            <td colspan="2" style="border: 1px solid #666; text-align: center;">29.26%</td>                            
+                            <td colspan="2" style="border: 1px solid #666;"><b>EMPTY SPACE (%)</b></td>
+                            <td colspan="2" style="border: 1px solid #666; text-align: center;"><?php echo $empty_space_perc; ?></td>                            
                         </tr>
                     </table>
                 </td>

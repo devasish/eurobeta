@@ -38,7 +38,7 @@
                         <th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('container_no'); ?></th>
 			<th><?php echo $this->Paginator->sort('seal_no'); ?></th>
-			<th><?php echo $this->Paginator->sort('empty_tare_wt'); ?></th>
+			<th><?php echo $this->Paginator->sort('destination'); ?></th>
 			<th><?php echo $this->Paginator->sort('type'); ?></th>
 			<th><?php echo $this->Paginator->sort('Container_type'); ?></th>
 			<th><?php echo $this->Paginator->sort('status'); ?></th>
@@ -52,7 +52,13 @@
                             <td><?php echo h($container['Container']['id']); ?>&nbsp;</td>
                             <td><?php echo h($container['Container']['container_no']); ?>&nbsp;</td>
                             <td><?php echo h($container['Container']['seal_no']); ?>&nbsp;</td>
-                            <td><?php echo h($container['Container']['empty_tare_wt']); ?>&nbsp;</td>
+                            <td>
+                                <?php 
+                                $conf_desti = Configure::read('CONT_DESTINATION');
+                                echo h(!empty($conf_desti[$container['Container']['destination']]) ? $conf_desti[$container['Container']['destination']] : '--'); 
+                                ?>
+                                &nbsp;
+                            </td>
                             <td><?php
                                 foreach (Configure::read('CONT_TYPES') as $k => $v) {
                                     if ($k == $container['Container']['type']) {
