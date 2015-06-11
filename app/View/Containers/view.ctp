@@ -1,6 +1,8 @@
 <?php 
+//Configure::write('CONT_TYPES_CBM', array('1' => 31, '2' => 76, '3' => 68));
+$cont_type_cbm = Configure::read('CONT_TYPES_CBM');
 $loaded_cbm = 0;
-$container_cbm = 40;
+$container_cbm = $cont_type_cbm[$container['Container']['type']];
 $cont_gross_wt = 0;
 $total_plt_wt = 0;
 if (is_array($container['PalletChecklist']) && !empty($container['PalletChecklist'])) {
@@ -11,7 +13,7 @@ if (is_array($container['PalletChecklist']) && !empty($container['PalletChecklis
     }
 }
 $empty_space = $container_cbm - $loaded_cbm;
-$empty_space_perc = $empty_space / $container_cbm * 100;
+$empty_space_perc = round(($empty_space / $container_cbm * 100), 2);
 ?>
 <div class="row">
     <ol class="breadcrumb action-link">
