@@ -133,6 +133,7 @@ class SapsController extends AppController {
         } else {
             $options = array('conditions' => array('Sap.' . $this->Sap->primaryKey => $id));
             $this->request->data = $this->Sap->find('first', $options);
+            //pr($this->request->data);
         }
     }
 

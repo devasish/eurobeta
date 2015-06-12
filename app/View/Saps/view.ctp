@@ -88,6 +88,11 @@
                         <?php echo $this->Html->link($sap['Editor']['username'], array('controller' => 'users', 'action' => 'view', $sap['Sap']['last_edited_by'])); ?>
                         &nbsp;
                     </dd>
+                    <dt><?php echo __('Customer'); ?></dt>
+                    <dd>
+                        <?php echo h($sap['Customer']['name']); ?>
+                        &nbsp;
+                    </dd>
                 </dl>
             </div>
         </div>
