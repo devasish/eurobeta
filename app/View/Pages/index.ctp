@@ -117,7 +117,7 @@ echo $this->Html->link(
         function drawChart(json) {
             $('#dash-line-chart').highcharts({
                 chart: {
-                    //type: 'area'
+                    type: 'area'
                 },
                 title: {
                     text: 'Monthly Transfer and Dispatch',

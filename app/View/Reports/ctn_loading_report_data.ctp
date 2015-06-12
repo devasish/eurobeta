@@ -26,7 +26,7 @@
 </tr>
 <?php foreach ($arr as $palletChecklist): ?>
     <tr>
-        <td><?php echo h($palletChecklist['PalletChecklist']['created']); ?></td>
+        <td><?php echo h($palletChecklist['Container']['load_date']); ?></td>
         <td><?php echo h($palletChecklist['Container']['container_no']); ?></td>
         <td><?php echo h($palletChecklist['PalletChecklist']['no_of_ctn']); ?></td>
         <td><?php echo h($palletChecklist['PalletChecklist']['loaded_wt']); ?></td>

@@ -97,7 +97,7 @@
                         var htds = '<td>SAP</td><td>Description</td>';
                         var htds_export_only = '<td>SAP</td><td>Description</td>';
                         var grCols = '<td>Loaded CTN</td><td>Loaded WT</td><td>AVG Loading WT</td><td>DIFF %</td>';
-                        var colHeads = '<td colspan="">&nbsp;</td><td colspan="">&nbsp;</td>'                        
+                        var colHeads = '<td colspan=""></td><td colspan=""></td>'                        
                         $.each(json.gr_dates, function(i, v) {
                             htds += '<td colspan="4">' + v + '</td>';
                             htds_export_only += '<td>' + v + '</td><td></td><td></td><td></td>';

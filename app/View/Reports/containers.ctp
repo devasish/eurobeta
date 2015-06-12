@@ -34,6 +34,16 @@
             </div><!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover list" id="containers-report-table">
+                    <?php if ((!empty($this->request->data['Filter']['cal_from']) || !empty($this->request->data['Filter']['cal_to']))) : ?>
+                    <tr>
+                        <td colspan="9">
+                            Date : 
+                            <?php echo !empty($this->request->data['Filter']['cal_from']) ? $this->request->data['Filter']['cal_from'].' ' : ''; ?>
+                            To
+                            <?php echo !empty($this->request->data['Filter']['cal_to']) ? $this->request->data['Filter']['cal_to'].' ' : ''; ?>
+                        </td>
+                    </tr>
+                    <?php endif; ?>
                     <tr>
                         <td><?php echo h('Id'); ?></td>
                         <td><?php echo h('Container No'); ?></td>
@@ -48,24 +58,24 @@
 
                     <?php foreach ($containers as $container): ?>
                         <tr>
-                            <td><?php echo h($container['Container']['id']); ?>&nbsp;</td>
-                            <td><?php echo h($container['Container']['container_no']); ?>&nbsp;</td>
-                            <td><?php echo h($container['Container']['seal_no']); ?>&nbsp;</td>
-                            <td><?php echo h($container['Container']['empty_tare_wt']); ?>&nbsp;</td>
+                            <td><?php echo h($container['Container']['id']); ?></td>
+                            <td><?php echo h($container['Container']['container_no']); ?></td>
+                            <td><?php echo h($container['Container']['seal_no']); ?></td>
+                            <td><?php echo h($container['Container']['empty_tare_wt']); ?></td>
                             <td><?php
                                 foreach (Configure::read('CONT_TYPES') as $k => $v) {
                                     if ($k == $container['Container']['type']) {
                                         echo h($v);
                                     }
                                 }
-                                ?>&nbsp;</td>
+                                ?></td>
                             <td><?php
                                 foreach (Configure::read('CONT_VP_CTN') as $k => $v) {
                                     if ($k == $container['Container']['vp_ctn']) {
                                         echo h($v);
                                     }
                                 }
-                                ?>&nbsp;</td>
+                                ?></td>
                             <?php
                                 $cls = 'text-success';
                                 $status = '';
@@ -90,8 +100,8 @@
                             <td class="<?php echo $cls; ?>">
                                 <?php echo $status; ?>
                             </td>
-                            <td><?php echo h($container['Container']['load_date']); ?>&nbsp;</td>
-                            <td><?php echo h($container['Customer']['name']); ?>&nbsp;</td>
+                            <td><?php echo h($container['Container']['load_date']); ?></td>
+                            <td><?php echo h($container['Customer']['name']); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </table>
