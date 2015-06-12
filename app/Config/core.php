@@ -393,10 +393,10 @@ define('SITE_URL', 'http://localhost/eurobeta/');
 define('NOT_ALLOWED', 'NOT FOUND');
 
 Configure::write('ROLES', array('1' => 'Production(F1)', '2' => 'Production(F3)', '3' => 'QA', '4' => 'Loading', '5' => 'Warehouse (F1)', '6' => 'Warehouse (F3)', '100' => 'Admin'));
-Configure::write('STATUS', array('1' => 'Active','0' => 'Inactive'
-        ));
+Configure::write('STATUS', array('1' => 'Active','0' => 'Inactive'));
 
 Configure::write('CONT_TYPES', array('1' => '20FT', '2' => '40FT-HQ', '3' => '40FT-GB'));
+Configure::write('CONT_TYPES_CBM', array('1' => 31, '2' => 76, '3' => 68));
 Configure::write('CONT_VP_CTN', array('1' => 'CTN', '2' => 'VacPack', '3' => 'Local Sale'));
 Configure::write('CONT_VP_CTN_PLT_WT', array('1' => 20, '2' => 22, '3' => 38));
 Configure::write('CONT_STATUS', array('0' => 'Open', '1' => 'In Progress', '2' => 'Closed'));

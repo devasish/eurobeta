@@ -101,7 +101,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><?php echo h($totals[$key]['net_wt']); ?></td>
+                            <td><?php //echo h($totals[$key]['net_wt']); ?></td>
                             <td><?php echo h($totals[$key]['ctn_per_pallet']); ?></td>
                             <td><?php echo h($totals[$key]['total_wt']); ?></td>
                         </tr>

@@ -1,5 +1,4 @@
 <?php 
-//Configure::write('CONT_TYPES_CBM', array('1' => 31, '2' => 76, '3' => 68));
 $cont_type_cbm = Configure::read('CONT_TYPES_CBM');
 $loaded_cbm = 0;
 $container_cbm = $cont_type_cbm[$container['Container']['type']];
@@ -377,7 +376,11 @@ $empty_space_perc = round(($empty_space / $container_cbm * 100), 2);
                     <table style="border-collapse: collapse;">
                         <tr>
                             <td width="10%" style="border: 1px solid #666;"><b>LOADED BY</b></td>
-                            <td width="40%" style="border: 1px solid #666; text-align: center;"><?php echo h($container['Loader']['loader_name']); ?></td>
+                            <td width="40%" style="border: 1px solid #666; text-align: center;">
+                                <?php echo h($container['Loader']['loader_name']); ?>
+                                <div style="width: 100%;height: 1px; border-top:1px solid #999"></div>
+                                <?php echo h($container['Loader2']['loader_name']); ?>
+                            </td>
                             <td width="10%" style="border: 1px solid #666; text-align: center;"><b>SHIPPING</b></td>
                             <td width="20%" style="border: 1px solid #666;">&nbsp;</td>
                         </tr>
@@ -386,7 +389,11 @@ $empty_space_perc = round(($empty_space / $container_cbm * 100), 2);
                         </tr>
                         <tr>
                             <td style="border: 1px solid #666;"><b>CHECKED BY</b></td>
-                            <td style="border: 1px solid #666; text-align: center;"><?php echo h($container['Checker']['checker_name']); ?></td>
+                            <td style="border: 1px solid #666; text-align: center;">
+                                <?php echo h($container['Checker']['checker_name']); ?>
+                                <div style="width: 100%;height: 1px; border-top:1px solid #999"></div>
+                                <?php echo h($container['Checker2']['checker_name']); ?>
+                            </td>
                             <td style="border: 1px solid #666; text-align: center;"><b>HOD</b></td>
                             <td style="border: 1px solid #666;">&nbsp;</td>
                         </tr>

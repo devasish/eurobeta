@@ -40,9 +40,26 @@
                             <div class="form-group">
                                 <?php echo $this->Form->input('status', array('options' => Configure::read('STATUS'), 'empty'=>TRUE, 'class'=>'form-control')); ?>
                             </div>
+                            <div class="form-group">
+                                <?php echo $this->Form->input('customer_id', array('class'=>'form-control', 'type'=>'hidden')); ?>
+                            </div>
+                            <div class="form-group">
+                                <?php echo $this->Form->input('customer_name', array('class'=>'form-control', 'type'=>'text', 'value' => $this->Form->value('Customer.name'))); ?>
+                            </div>
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </div>
             </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#SapCustomerName').autocomplete({
+            source : SITE_URL + 'customers/prediction',
+            select : function (event, ui) {
+                $('#SapCustomerId').val(ui.item.id);
+                //console.log(ui);
+            }
+        });
+    })
+</script>
