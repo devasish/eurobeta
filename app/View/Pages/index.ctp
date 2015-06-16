@@ -141,7 +141,7 @@ echo $this->Html->link(
                         }]
                 },
                 tooltip: {
-                    valueSuffix: 'MT'
+                    valueSuffix: 'KG'
                 },
                 legend: {
                     layout: 'vertical',

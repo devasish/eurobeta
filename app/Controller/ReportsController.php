@@ -150,15 +150,15 @@ class ReportsController extends AppController {
         $to = $this->request->query('to');
 
         $fromObj = DateTime::createFromFormat('m/d/Y', $from);
-        $from = $fromObj->format('Y-m-d');
+        $from = $fromObj->format('Y-m-d') . ' 00:00:00';
         $toObj = DateTime::createFromFormat('m/d/Y', $to);
-        $to = $toObj->format('Y-m-d');
+        $to = $toObj->format('Y-m-d') . ' 23:59:59';
 
         $this->loadModel('PalletChecklist');
         $count = $this->PalletChecklist->find('count', array(
             'conditions' => array(
-                'PalletChecklist.created >=' => $from,
-                'PalletChecklist.created <=' => $to
+                'Container.load_date >=' => $from,
+                'Container.load_date <=' => $to
             ),
             'fields' => 'DISTINCT PalletChecklist.sap_id',
             'recursive' => 0
@@ -183,49 +183,47 @@ class ReportsController extends AppController {
         $from = $this->request->query('from');
         $to = $this->request->query('to');
         $start = $this->request->query('start');
-        //$limit = $this->request->query('limit');
 
         $fromObj = DateTime::createFromFormat('m/d/Y', $from);
-        $from = $fromObj->format('Y-m-d');
+        $from = $fromObj->format('Y-m-d') . ' 00:00:00';
         $toObj = DateTime::createFromFormat('m/d/Y', $to);
-        $to = $toObj->format('Y-m-d');
+        $to = $toObj->format('Y-m-d'). ' 23:59:59';
 
         $this->loadModel('PalletChecklist');
         $sap = $this->PalletChecklist->find('first', array(
             'conditions' => array(
-                'PalletChecklist.created >=' => $from,
-                'PalletChecklist.created <=' => $to,
+                'Container.load_date >=' => $from,
+                'Container.load_date <=' => $to,
                 'Container.status' => 2
             ),
             'fields' => 'DISTINCT PalletChecklist.sap_id',
             'recursive' => 0,
-            'limit' => 1,
             'offset' => $start
         ));
 
-
-        $x = $this->PalletChecklist->find('all', array(
-            'conditions' => array(
-                'PalletChecklist.created >=' => $from,
-                'PalletChecklist.created <=' => $to,
-                'PalletChecklist.sap_id' => $sap['PalletChecklist']['sap_id']
-            ),
-            'recursive' => 0,
-            'fields' => array(
-                'sap_id',
-                'Sap.description',
-                'Sap.sapcode',
-                'created',
-                'SUM(no_of_ctn) AS total_no_of_ctn',
-                'ROUND(SUM(net_product_wt), 2) as total_net_product_wt',
-                'ROUND((SUM(net_wt_per_ctn) - SUM(product_cust_wt)) / SUM(product_cust_wt) *100, 2) AS total_diff_perc',
-                'DATE_FORMAT(PalletChecklist.created, "%Y%m") AS gr_date'
-            ),
-            'group' => array('PalletChecklist.sap_id', "DATE_FORMAT(PalletChecklist.created, '%Y%m')"),
-            'order' => array('PalletChecklist.created ASC', 'PalletChecklist.sap_id DESC')
-        ));
-
-
+        $x = array();
+        if (!empty($sap)) {
+            $x = $this->PalletChecklist->find('all', array(
+                'conditions' => array(
+                    'Container.load_date >=' => $from,
+                    'Container.load_date <=' => $to,
+                    'PalletChecklist.sap_id' => $sap['PalletChecklist']['sap_id']
+                ),
+                'recursive' => 0,
+                'fields' => array(
+                    'sap_id',
+                    'Sap.description',
+                    'Sap.sapcode',
+                    'created',
+                    'SUM(no_of_ctn) AS total_no_of_ctn',
+                    'ROUND(SUM(net_product_wt), 2) as total_net_product_wt',
+                    'ROUND((SUM(net_wt_per_ctn) - SUM(product_cust_wt)) / SUM(product_cust_wt) *100, 2) AS total_diff_perc',
+                    'DATE_FORMAT(Container.load_date, "%Y%m") AS gr_date'
+                ),
+                'group' => array('PalletChecklist.sap_id', "DATE_FORMAT(Container.load_date, '%Y%m')"),
+                'order' => array('PalletChecklist.created ASC', 'PalletChecklist.sap_id DESC')
+            ));
+        }
 // Process data...
         $y1 = date('Y', strtotime($from));
         $y2 = date('Y', strtotime($to));
@@ -235,7 +233,6 @@ class ReportsController extends AppController {
 
         $diff = (($y2 - $y1) * 12) + ($m2 - $m1);
 
-        //pr($x);
         $arr = array();
         $gr_dates = array();
 
@@ -250,12 +247,14 @@ class ReportsController extends AppController {
             $gr_dates[] = date('Y-m', strtotime('+' . $i . ' month', strtotime($from)));
         }
 
-        $arr['sapcode'] = $x[0]['Sap']['sapcode'];
-        $arr['sapdesc'] = $x[0]['Sap']['description'];
+        $arr['sapcode'] = !empty($x) ? $x[0]['Sap']['sapcode'] : '';
+        $arr['sapdesc'] = !empty($x) ? $x[0]['Sap']['description'] : '';
         $arr['gr_dates'] = $gr_dates;
 
-        foreach ($x as $d) {
-            $arr['data'][$d[0]['gr_date']] = $d[0];
+        if (!empty($x)) {
+            foreach ($x as $d) {
+                $arr['data'][$d[0]['gr_date']] = $d[0];
+            }
         }
 
         return json_encode($arr);
@@ -461,11 +460,11 @@ class ReportsController extends AppController {
                         }
                     } elseif ($name == 'cal_from' && !empty($value)) {
                         $dateObj = DateTime::createFromFormat('d-m-Y', $value);
-                        $conditions['Container.created >='] = $dateObj->format('Y-m-d');
+                        $conditions['Container.load_date >='] = $dateObj->format('Y-m-d');
                         $hasDateFrom = true;
                     } elseif ($name == 'cal_to' && !empty($value)) {
                         $dateObj = DateTime::createFromFormat('d-m-Y', $value);
-                        $conditions['Container.created <='] = $dateObj->format('Y-m-d') . ' 23:59:59';
+                        $conditions['Container.load_date <='] = $dateObj->format('Y-m-d') . ' 23:59:59';
                         $hasDateTo = true;
                     }
                     $this->request->data['Filter'][$name] = $value;
@@ -523,17 +522,7 @@ class ReportsController extends AppController {
             'conditions' => array(
                 'Container.load_date >= ' => $fd,
                 'Container.load_date <= ' => $ld,
-            )
-        ));
-
-        $prev_mon_dispatch = $this->PalletChecklist->find('all', array(
-            'fields' => array(
-                'IFNULL(ROUND(SUM((no_of_ctn * product_cust_wt))/1000, 2),0) AS total',
-            ),
-            'recursive' => 0,
-            'conditions' => array(
-                'Container.load_date >= ' => $fd,
-                'Container.load_date <= ' => $ld,
+                'Container.status' => 2
             )
         ));
 
@@ -545,6 +534,7 @@ class ReportsController extends AppController {
             'conditions' => array(
                 'Container.load_date >= ' => $yesterday . ' 00:00:00',
                 'Container.load_date <= ' => $yesterday . ' 23:59:59',
+                'Container.status' => 2
             )
         ));
 
@@ -573,23 +563,23 @@ class ReportsController extends AppController {
                 'transfer_date >= ' => $one_mon_ago,
                 'transfer_date <= ' => $today,
             ),
-            'fields' => array("IFNULL(ROUND(SUM(Transfer.ctn_per_pallet * Transfer.net_wt)/1000,2),0) AS total, DATE_FORMAT(Transfer.transfer_date, '%Y-%m-%d') AS transfer_date"),
+            'fields' => array("IFNULL(ROUND(SUM(Transfer.ctn_per_pallet * Transfer.net_wt)/1,2),0) AS total, DATE_FORMAT(Transfer.transfer_date, '%Y-%m-%d') AS transfer_date"),
             'group' => array("DATE_FORMAT(Transfer.transfer_date, '%Y%m%d')")
         ));
 
         $this->loadModel('PalletChecklist');
         $dispatches = $this->PalletChecklist->find('all', array(
             'fields' => array(
-                "IFNULL(ROUND(SUM((no_of_ctn * product_cust_wt))/1000, 2),0) AS total, DATE_FORMAT(Container.load_date, '%Y-%m-%d') AS dispatch_date",
+                "IFNULL(ROUND(SUM((no_of_ctn * product_cust_wt))/1, 2),0) AS total, DATE_FORMAT(Container.load_date, '%Y-%m-%d') AS dispatch_date",
             ),
             'recursive' => 0,
             'conditions' => array(
-                'Container.load_date >= ' => $one_mon_ago,
-                'Container.load_date <= ' => $today,
+                'Container.load_date >=' => $one_mon_ago,
+                'Container.load_date <=' => $today,
             ),
             'group' => array("DATE_FORMAT(Container.load_date, '%Y%m%d')")
         ));
-
+        
         $data = array('transfer', 'dispatch');
         foreach ($transfers as $tr) {
             $data['transfer'][strtotime($tr[0]['transfer_date'])] = $tr[0]['total'];

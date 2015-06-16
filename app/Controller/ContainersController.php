@@ -55,10 +55,10 @@ class ContainersController extends AppController {
                         }                    
                     } elseif ($name == 'cal_from' && !empty($value)) {
                         $dateObj = DateTime::createFromFormat('d-m-Y', $value);
-                        $conditions['Container.created >='] = $dateObj->format('Y-m-d');
+                        $conditions['Container.load_date >='] = $dateObj->format('Y-m-d');
                     } elseif ($name == 'cal_to' && !empty($value)) {
                         $dateObj = DateTime::createFromFormat('d-m-Y', $value);
-                        $conditions['Container.created <='] = $dateObj->format('Y-m-d') . ' 23:59:59';
+                        $conditions['Container.load_date <='] = $dateObj->format('Y-m-d') . ' 23:59:59';
                     } elseif ($name == 'status' && strlen($value) > 0) {
                         $conditions['Container.status'] = $value;
                     } elseif ($name == 'type' && strlen($value) > 0) {
