@@ -21,7 +21,45 @@ class UacPermissionsController extends AppController {
      * @return void
      */
     public function index() {
-        $this->UacPermission->recursive = 0;
+        $conditions = array();
+        $limit = 10000;
+        if (($this->request->is('post') || $this->request->is('put')) && isset($this->data['Filter'])) {
+            $filter_url = array();
+            $filter_url['controller'] = $this->request->params['controller'];
+            $filter_url['action'] = $this->request->params['action'];
+            $filter_url['page'] = 1;
+            foreach ($this->data['Filter'] as $name => $value) {
+                if (trim($value)) {
+                    $filter_url[$name] = urlencode($value);
+                }
+            }
+            return $this->redirect($filter_url);
+        } else {
+            foreach ($this->request->params['named'] as $name => $value) {
+                if (!in_array($name, array('page', 'sort', 'direction'))) {
+                    $value = urldecode($value);
+                    if ($name == 'limit') {
+                        $limit = $value;
+                    } else if ($name == 'role' && !empty ($value)) {
+                        $conditions['UacPermission.role'] = $value;
+                    } elseif($name == 'controller_name' && !empty ($value)) {
+                        $conditions['UacModule.controller LIKE '] = "%$value%";
+                    } elseif($name == 'action_name' && !empty ($value)) {
+                        $conditions['UacModule.action LIKE '] = "%$value%";
+                    } else {
+                        //$this->request->data['Filter'][$name] = $value;
+                    }
+                    $this->request->data['Filter'][$name] = $value;
+                }
+            }
+        }
+        $this->paginate = array(
+            'limit' => $limit,
+            'order' => 'UacModule.controller ASC',
+            'conditions' => $conditions
+        );
+        
+        //$this->UacPermission->recursive = 0;
         $this->set('uacPermissions', $this->Paginator->paginate());
     }
 

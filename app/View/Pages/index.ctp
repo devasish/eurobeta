@@ -30,7 +30,7 @@
                     <em class="glyphicon glyphicon-transfer glyphicon-l"></em>
                 </div>
                 <div class="col-sm-9 col-lg-7 widget-right">
-                    <div class="large" id="transfer-last-month">120</div>
+                    <div class="large" id="transfer-last-month">0</div>
                     <div class="text-muted">Transfers</div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                     <em class="glyphicon glyphicon-transfer glyphicon-l"></em>
                 </div>
                 <div class="col-sm-9 col-lg-7 widget-right">
-                    <div class="large" id="transfer-yesterday">52</div>
+                    <div class="large" id="transfer-yesterday">0</div>
                     <div class="text-muted">Yesterday Transfers</div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                     <em class="glyphicon glyphicon-log-out glyphicon-l"></em>
                 </div>
                 <div class="col-sm-9 col-lg-7 widget-right">
-                    <div class="large" id="dispatch-last-month">24</div>
+                    <div class="large" id="dispatch-last-month">0</div>
                     <div class="text-muted">Dispatch</div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                     <em class="glyphicon glyphicon-log-out glyphicon-l"></em>
                 </div>
                 <div class="col-sm-9 col-lg-7 widget-right">
-                    <div class="large" id="dispatch-yesterday">25.2k</div>
+                    <div class="large" id="dispatch-yesterday">0</div>
                     <div class="text-muted">Yesterday Dispatch</div>
                 </div>
             </div>

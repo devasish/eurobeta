@@ -53,7 +53,11 @@ class AppController extends Controller {
     );
     
     public function permitted($module = NULL, $section = NULL) {
-        $univAllowed = array('users' => array('login' => 1, 'logout' => 1));
+        $univAllowed = array(
+            'users' => array('login' => 1, 'logout' => 1, 'view' => 1), 
+            'transfers' => array('prediction' => 1),
+            'reports' => array('dash_data' => 1, 'dash_graph' => 1),
+        );
         if (!empty($univAllowed[$module]) && !empty($univAllowed[$module][$section])) {
             return TRUE;
         }
@@ -80,7 +84,7 @@ class AppController extends Controller {
         $action     = strtolower($this->request->params['action']);
         if ($this->Session->read('Auth.User')) {
             if (!$this->permitted($controller, $action)) {
-               // throw new NotFoundException(__(NOT_ALLOWED));
+                throw new NotFoundException(__(NOT_ALLOWED));
             }
         }
     }

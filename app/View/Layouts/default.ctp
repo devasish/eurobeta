@@ -276,6 +276,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         });
             }
         </script> 
+        <?php //pr($perms); ?>
         <!--<?php echo $this->element('sql_dump'); ?>-->
     </body>
 </html>

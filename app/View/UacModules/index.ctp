@@ -16,11 +16,12 @@
                 <h3 class="box-title"><?php echo __('Uac Modules'); ?></h3>
                 <div class="box-tools">
 
-                    <?php $url = array('controller' => 'Saps', 'action' => 'index'); ?>
+                    <?php $url = array('controller' => 'uac_modules', 'action' => 'index'); ?>
                     <?php echo $this->Form->create('Filter', array('url' => $url)); ?>  
                     <div class="input-group"> 
-                        <ul class="filters">                            
-                            <li><?php echo $this->Form->input('value', array('class' => 'date form-control input-sm', 'label' => false, 'placeholder' => 'Search')); ?></li>                            
+                        <ul class="filters">
+                            <li><?php echo $this->Form->input('controller_name', array('class' => 'form-control input-sm', 'label' => false, 'placeholder' => 'Search Controller')); ?></li>
+                            <li><?php echo $this->Form->input('action_name', array('class' => 'form-control input-sm', 'label' => false, 'placeholder' => 'Search Action')); ?></li>
                         </ul>
                         <div class="input-group-btn srch-btn">
                             <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
