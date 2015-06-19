@@ -68,6 +68,11 @@ class TransfersController extends AppController {
                 }
             }
         }
+        
+        if ($this->Session->read('Auth.User.role') != ROLE_ADMIN) {
+            $conditions['Transfer.user_id'] = $this->Session->read('Auth.User.id');
+        }
+        
         $this->paginate = array(
             'limit' => 9,
             'order' => 'Transfer.id DESC',

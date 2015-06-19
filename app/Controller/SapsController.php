@@ -68,6 +68,11 @@ class SapsController extends AppController {
                 }
             }
         }
+        
+        if ($this->Session->read('Auth.User.role') != ROLE_ADMIN) {
+            $conditions['Sap.user_id'] = $this->Session->read('Auth.User.id');
+        }
+        
         $this->paginate = array(
             'limit' => $limit,
             'order' => 'Sap.id DESC',

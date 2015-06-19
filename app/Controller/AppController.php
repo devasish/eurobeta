@@ -57,6 +57,7 @@ class AppController extends Controller {
             'users' => array('login' => 1, 'logout' => 1, 'view' => 1), 
             'transfers' => array('prediction' => 1),
             'reports' => array('dash_data' => 1, 'dash_graph' => 1),
+            'customers' => array('prediction' => 1),
         );
         if (!empty($univAllowed[$module]) && !empty($univAllowed[$module][$section])) {
             return TRUE;

@@ -68,6 +68,11 @@ class ContainersController extends AppController {
                 }
             }
         }
+        
+        if ($this->Session->read('Auth.User.role') != ROLE_ADMIN) {
+            $conditions['Container.user_id'] = $this->Session->read('Auth.User.id');
+        }
+        
         $this->paginate = array(
             'limit' => 9,
             'order' => 'Container.id DESC',

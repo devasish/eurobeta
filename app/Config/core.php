@@ -391,6 +391,7 @@ Cache::config('_cake_model_', array(
 define('SITE_URL', 'http://localhost/eurobeta/');
 //define('SITE_URL', 'http://devachieve.com/eurobeta1403/');
 define('NOT_ALLOWED', 'NOT FOUND');
+define('ROLE_ADMIN', 100);
 
 Configure::write('ROLES', array('1' => 'Production(F1)', '2' => 'Production(F3)', '3' => 'QA', '4' => 'Loading', '5' => 'Warehouse (F1)', '6' => 'Warehouse (F3)', '100' => 'Admin'));
 Configure::write('STATUS', array('1' => 'Active','0' => 'Inactive'));

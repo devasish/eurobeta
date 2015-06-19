@@ -20,9 +20,21 @@
 .trnsp-input1 input, .trnsp-input2 input{
     height: 34px;
     border-radius: 5px;
-    background: transparent!important;
+    background-color: transparent!important;
     color: #FFF;
     border: none;
+}
+.trnsp-input1 input:-webkit-autofill {
+    background-color: transparent !important;
+}
+.trnsp-input2 input:-webkit-autofill {
+    background-color: transparent !important;
+}
+.trnsp-input1 input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px whitesmoke inset;
+}
+.trnsp-input2 input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px whitesmoke inset;
 }
 .trnsp-input1 input:focus, .trnsp-input2 input:focus{
     border: 1px solid #FFF;
