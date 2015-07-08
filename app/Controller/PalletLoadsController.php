@@ -95,16 +95,16 @@ class PalletLoadsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+        $this->autoRender = FALSE;
 		$this->PalletLoad->id = $id;
 		if (!$this->PalletLoad->exists()) {
 			throw new NotFoundException(__('Invalid pallet load'));
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->PalletLoad->delete()) {
-			$this->Session->setFlash(__('The pallet load has been deleted.'), 'flash_delete');
+            echo 1;
 		} else {
-			$this->Session->setFlash(__('The pallet load could not be deleted. Please, try again.'), 'flash_warning');
+            echo 0;
 		}
-		return $this->redirect(array('action' => 'index'));
 	}
 }

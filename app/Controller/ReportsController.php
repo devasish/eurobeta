@@ -650,10 +650,10 @@ class ReportsController extends AppController {
                         }
                     } elseif ($name == 'cal_from' && !empty($value)) {
                         $dateObj = DateTime::createFromFormat('d-m-Y', $value);
-                        $conditions['PalletChecklist.created >='] = $dateObj->format('Y-m-d');
+                        $conditions['Container.load_date >='] = $dateObj->format('Y-m-d');
                     } elseif ($name == 'cal_to' && !empty($value)) {
                         $dateObj = DateTime::createFromFormat('d-m-Y', $value);
-                        $conditions['PalletChecklist.created <='] = $dateObj->format('Y-m-d') . ' 23:59:59';
+                        $conditions['Container.load_date <='] = $dateObj->format('Y-m-d') . ' 23:59:59';
                     }
 
                     $this->request->data['Filter'][$name] = $value;
