@@ -158,7 +158,8 @@ class ReportsController extends AppController {
         $count = $this->PalletChecklist->find('count', array(
             'conditions' => array(
                 'Container.load_date >=' => $from,
-                'Container.load_date <=' => $to
+                'Container.load_date <=' => $to,
+                'Container.status' => 2
             ),
             'fields' => 'DISTINCT PalletChecklist.sap_id',
             'recursive' => 0
