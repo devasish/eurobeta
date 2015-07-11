@@ -113,14 +113,19 @@ class UsersController extends AppController {
         $this->layout = 'login';
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
-                // Get permissions
-                $this->loadModel('UacPermission');
-                $result = $this->UacPermission->getPermissions($role = $this->Session->read('Auth.User.role'));
-                $this->Session->write('Auth.User.Perm', $result);
-                
-                return $this->redirect($this->Auth->redirectUrl());
+                if ($this->Auth->user('status') == 1) {
+                    // Get permissions
+                    $this->loadModel('UacPermission');
+                    $result = $this->UacPermission->getPermissions($role = $this->Session->read('Auth.User.role'));
+                    $this->Session->write('Auth.User.Perm', $result);
+
+                    return $this->redirect($this->Auth->redirectUrl());
+                } else {
+                    $this->Session->setFlash(__('Sorry!! your account is INACTIVE.'), 'flash_warning_1');
+                    return $this->redirect(array('action' => 'logout'));
+                }
             }
-            $this->Session->setFlash(__('Invalid username or password, try again'), 'flash_warning_1');
+            $this->Session->setFlash(__('Invalid username or password, try again'), 'flash_delete');
         }
     }
 

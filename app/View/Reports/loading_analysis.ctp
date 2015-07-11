@@ -74,9 +74,8 @@
         
         function loadData() {
             term++;
-            var start = $('#start_index').val();
-            var max = $('#max_index').val();
-            
+            var start = parseInt($('#start_index').val(), 10);
+            var max = parseInt($('#max_index').val(), 10);
             if (start >= max || term > 100) {
                 console.log('completed');
                 return;

@@ -9,7 +9,7 @@ App::uses('AppController', 'Controller');
  * @property PaginatorComponent $Paginator
  */
 class ContainersController extends AppController {
-    
+
     /**
      * Components
      *
@@ -52,7 +52,7 @@ class ContainersController extends AppController {
                             $conditions['Container.' . $this->request->params['named']['field']] = $value;
                         } else {
                             $conditions['Sap.' . $this->request->params['named']['field'] . ' LIKE '] = "%$value%";
-                        }                    
+                        }
                     } elseif ($name == 'cal_from' && !empty($value)) {
                         $dateObj = DateTime::createFromFormat('d-m-Y', $value);
                         $conditions['Container.load_date >='] = $dateObj->format('Y-m-d');
@@ -68,11 +68,11 @@ class ContainersController extends AppController {
                 }
             }
         }
-        
+
         if ($this->Session->read('Auth.User.role') != ROLE_ADMIN) {
             $conditions['Container.user_id'] = $this->Session->read('Auth.User.id');
         }
-        
+
         $this->paginate = array(
             'limit' => 9,
             'order' => 'Container.id DESC',
@@ -95,10 +95,10 @@ class ContainersController extends AppController {
         }
         $options = array('conditions' => array('Container.' . $this->Container->primaryKey => $id));
         $this->Container->recursive = 1;
-        $this->set('container', $this->Container->find('first', $options));        
+        $this->set('container', $this->Container->find('first', $options));
         $this->loadModel('Loader');
         $this->loadModel('Checker');
-        
+
         $this->set('loaders', $this->Loader->find('list'));
         $this->set('checkers', $this->Checker->find('list'));
     }
@@ -170,39 +170,46 @@ class ContainersController extends AppController {
         }
         return $this->redirect(array('action' => 'index'));
     }
-    
+
     /**
      * 
      * @return type
      */
     public function change_statusXXX() {
-        $result             = array('success' => false);
-        $result['query']    = $this->params->query;
-        
-        $this->layout       = 'ajax';
-        $this->autoRender   = false;
-        
-        $status         = $this->params->query['status'];
-        $id             = $this->params->query['id'];
-        
+        $result = array('success' => false);
+        $result['query'] = $this->params->query;
+
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+
+        $status = $this->params->query['status'];
+        $id = $this->params->query['id'];
+
         $this->Container->id = $id;
-        
+
         if (!$this->Container->exists()) {
             echo json_encode($result);
             return;
         }
-        
+
         $x = $this->Container->saveField('status', $status);
         $result['success'] = true;
-        
-        
+
+
         echo json_encode($result);
     }
-    
-    
+
     public function update_container() {
         if ($this->request->is(array('post', 'put'))) {
             $dateObj = DateTime::createFromFormat('d-m-Y', $this->request->data['Container']['load_date']);
+
+            $CLOSED_STATUS = 2;
+            if ($this->Session->read('Auth.User.role') != ROLE_ADMIN && $this->request->data['Container']['status'] != $CLOSED_STATUS) {
+                $containerDetails = $this->Container->find('first', array('conditions' => array('id' => $this->request->data['Container']['id']), 'recursive' => -1));
+                if ($containerDetails['Container']['status'] == $CLOSED_STATUS) {
+                    $this->request->data['Container']['status'] = $CLOSED_STATUS;
+                }
+            }
             $this->request->data['Container']['load_date'] = $dateObj->format('Y-m-d');
             if ($this->Container->save($this->request->data)) {
                 $this->Session->setFlash(__('The container has been updated.'), 'flash_success');

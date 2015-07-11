@@ -170,7 +170,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                     <?php endif; ?>
                                 </li>
                                 <?php endif; ?>
-                                <?php if (!empty($perms['users'])) : ?>
+                                <?php if (!empty($perms['customers']) || !empty($perms['checkers']) || !empty($perms['loaders'])) : ?>
                                 <li>
                                     <a href="javascript:void(0)">
                                         <span class="glyphicon glyphicon-adjust"></span>&nbsp;&nbsp;Control Panel 
