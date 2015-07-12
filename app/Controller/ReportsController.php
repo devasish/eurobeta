@@ -479,6 +479,7 @@ class ReportsController extends AppController {
 //            'conditions' => $conditions
 //        );
         //$this->Container->recursive = 0;
+        $conditions['Container.status'] = 2; // CLOSED
         if ($hasDateFrom && $hasDateTo) {
             $this->loadModel('Container');
             $containers = $this->Container->find('all', array('conditions' => $conditions, 'order' => 'Container.id DESC'));

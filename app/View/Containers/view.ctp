@@ -253,6 +253,10 @@ $empty_space_perc = round(($empty_space / $container_cbm * 100), 2);
                             <td>
                                 <?php if ($container['Container']['status'] != 2): ?>
                                     <span class="label label-warning"><?php echo $this->Html->link(__('Edit'), array('controller' => 'pallet_checklists', 'action' => 'edit', $pallet['id'])) ?></span>
+                                    <span class="label label-danger">
+                                    <?php 
+                                    echo $this->Form->postLink('<i class="fa fa-trash"></i>' . '&nbsp;&nbsp;' . __('Delete'), array('controller' => 'pallet_checklists', 'action' => 'delete', $pallet['id']), array('escape' => FALSE), __('Are you sure you want to delete # %s?', $pallet['id'])); ?>
+                                        </span>
                                 <?php endif; ?>
                             </td>
                         </tr>

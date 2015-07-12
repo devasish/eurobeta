@@ -33,7 +33,7 @@
                 </div>
             </div><!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
-                <table class="table table-hover list" id="containers-report-table">
+                <table class="table table-hover list table-condensed" id="containers-report-table">
                     <?php if ((!empty($this->request->data['Filter']['cal_from']) || !empty($this->request->data['Filter']['cal_to']))) : ?>
                     <tr>
                         <td colspan="9">
@@ -52,6 +52,7 @@
                         <td><?php echo h('Type'); ?></td>
                         <td><?php echo h('Container Type'); ?></td>
                         <td><?php echo h('Status'); ?></td>
+                        <td><?php echo h('User'); ?></td>
                         <td><?php echo h('Loaded On'); ?></td>			
                         <td><?php echo h('Customer'); ?></td>			
                     </tr>
@@ -100,7 +101,8 @@
                             <td class="<?php echo $cls; ?>">
                                 <?php echo $status; ?>
                             </td>
-                            <td><?php echo h($container['Container']['load_date']); ?></td>
+                            <td><?php echo h($container['User']['username']); ?>&nbsp;</td>
+                            <td><?php echo h(date('d-m-Y', strtotime($container['Container']['load_date']))); ?>&nbsp;</td>
                             <td><?php echo h($container['Customer']['name']); ?></td>
                         </tr>
                     <?php endforeach; ?>

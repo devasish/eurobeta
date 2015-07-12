@@ -7,7 +7,7 @@
 </div>
 
 <br/><br/>
-
+<?php $plt_wts = Configure::read('CONT_VP_CTN_PLT_WT'); ?>
 <div class="row">
     <div class="col-xs-8">
         <div class="box">
@@ -50,7 +50,9 @@
                             <td><?php echo $this->Form->input('PalletLoad.' . $row_index . '.wt_with_pallet', array('label' => FALSE, 'div' => FALSE, 'class' => 'loads-input form-control', 'data-index' => $row_index)); ?></td>
                             <td><?php echo $this->Form->input('PalletLoad.' . $row_index . '.wt_per_ctn', array('label' => FALSE, 'div' => FALSE, 'readonly' => true, 'data-index' => $row_index, 'class' => 'loads_wt_per_ctn form-control')); ?></td>
                             <td>
+                                <?php if ($x > 2): ?>
                                 <a href="javascript:void(0)" id="del_load_<?php echo $row_index; ?>" class="del_load">Delete</a>
+                                <?php endif; ?>
                             </td>
                         </tr>
                         <?php $row_index++; ?>
@@ -99,7 +101,6 @@
                     </div>
                     <div class="form-group">
                         <?php
-                        $plt_wts = Configure::read('CONT_VP_CTN_PLT_WT');
                         echo $this->Form->input('single_empty_pallet_wt', array('type' => 'hidden', 'readonly' => true, 'class' => 'form-control', 'value' => $plt_wts[$this->Form->value('Container.vp_ctn')]));
                         ?>
                     </div>
@@ -255,7 +256,12 @@
                         </tr>
                         <tr>
                             <td style=" border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('PalletChecklist.no_of_pallet'); ?></td>
-                            <td style=" border: 1px solid #666; text-align: center;"><?php echo $this->Form->value('PalletChecklist.empty_pallet_wt'); ?></td>
+                            <td style=" border: 1px solid #666; text-align: center;">
+                                <?php 
+                                echo $this->Form->value('PalletChecklist.no_of_pallet') * $plt_wts[$this->Form->value('Container.vp_ctn')];
+                                //echo $this->Form->value('PalletChecklist.empty_pallet_wt'); 
+                                ?>
+                            </td>
                         </tr>
                     </table>
                     <br/>
@@ -332,6 +338,5 @@
     </center>
 </div>
 <?php 
-//pr($container_data)
 ?>
 

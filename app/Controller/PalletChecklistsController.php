@@ -68,7 +68,7 @@ class PalletChecklistsController extends AppController {
             }
         } else {
             $this->loadModel('Container');
-            $container = $this->Container->find('first', array('condtions' => array('id' => $container_id), 'recursive' => -1));
+            $container = $this->Container->find('first', array('conditions' => array('id' => $container_id), 'recursive' => -1));
             $this->set('container', $container);
             $this->Session->setFlash(__('Please type SAP Code First'), 'flash_info');
         }
@@ -120,17 +120,23 @@ class PalletChecklistsController extends AppController {
      * @return void
      */
     public function delete($id = null) {
+        $this->autoRender = false;
         $this->PalletChecklist->id = $id;
+        $this->PalletChecklist->recursive = -1;
+        $palletChecklistDetails = $this->PalletChecklist->findById($id);
+        $container_id = $palletChecklistDetails['PalletChecklist']['container_id'];
+        
         if (!$this->PalletChecklist->exists()) {
             throw new NotFoundException(__('Invalid pallet checklist'));
         }
         $this->request->allowMethod('post', 'delete');
+        
         if ($this->PalletChecklist->delete()) {
             $this->Session->setFlash(__('The pallet checklist has been deleted.'), 'flash_delete');
         } else {
             $this->Session->setFlash(__('The pallet checklist could not be deleted. Please, try again.'), 'flash_warning');
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(array('controller' => 'containers', 'action' => 'view', $container_id));
     }
 
 }

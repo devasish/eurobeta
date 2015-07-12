@@ -33,7 +33,7 @@
                     </div>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
-                  <table class="table table-hover list">
+                  <table class="table table-hover list table-condensed">
                     <tr>
                         <th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('container_no'); ?></th>
@@ -42,6 +42,7 @@
 			<th><?php echo $this->Paginator->sort('type'); ?></th>
 			<th><?php echo $this->Paginator->sort('Container_type'); ?></th>
 			<th><?php echo $this->Paginator->sort('status'); ?></th>
+			<th><?php echo $this->Paginator->sort('User'); ?></th>
 			<th><?php echo $this->Paginator->sort('load_date'); ?></th>			
 			<th><?php echo $this->Paginator->sort('Customer.name'); ?></th>			
 			<th class="actions noprint"><?php echo __('Actions'); ?></th>
@@ -98,7 +99,8 @@
                                 <span class="label <?php echo $cls; ?>"><?php echo $status; ?></span>
                                 &nbsp;
                             </td>
-                            <td><?php echo h($container['Container']['load_date']); ?>&nbsp;</td>
+                            <td><?php echo h($container['User']['username']); ?>&nbsp;</td>
+                            <td><?php echo h(date('d-m-Y', strtotime($container['Container']['load_date']))); ?>&nbsp;</td>
                             <td><?php echo h($container['Customer']['name']); ?>&nbsp;</td>
 
                             <td class="noprint">
