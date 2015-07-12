@@ -11,6 +11,8 @@ if (is_array($container['PalletChecklist']) && !empty($container['PalletChecklis
         $total_plt_wt += $value['empty_pallet_wt'];
     }
 }
+$cont_gross_wt = round($cont_gross_wt);
+$total_plt_wt = round($total_plt_wt);
 $empty_space = $container_cbm - $loaded_cbm;
 $empty_space_perc = round(($empty_space / $container_cbm * 100), 2);
 ?>
@@ -356,7 +358,7 @@ $empty_space_perc = round(($empty_space / $container_cbm * 100), 2);
                     <td style="border: 1px solid #666; padding-left: 10px;"><?php echo h($pallet['sap_desc']) ?></td>
                     <td style="border: 1px solid #666; padding-left: 10px;"><?php echo h($pallet['sap_code']) ?></td>
                     <td style="border: 1px solid #666; padding-left: 10px;"><?php echo h($pallet['no_of_ctn']) ?></td>
-                    <td style="border: 1px solid #666; padding-left: 10px;"><?php echo h($container['Container']['id']); ?></td>
+                    <td style="border: 1px solid #666; padding-left: 10px;"><?php echo h($cont_type_cbm[$container['Container']['type']]); ?></td>
                     <td style="border: 1px solid #666; padding-left: 10px;height: 50px;"><?php echo h($container['Container']['remarks']) ?><td/>
                 </tr>
             <?php endforeach; ?>
@@ -422,19 +424,15 @@ $empty_space_perc = round(($empty_space / $container_cbm * 100), 2);
                     <table style="border-collapse: collapse;">
                         <tr>
                             <td width="40%" style="border: 1px solid #666; height: 30px;"><b>CONTAINER GROSS WT</b></td>
-                            <td style="border: 1px solid #666; height: 30px;">23.8900</td>
+                            <td style="border: 1px solid #666; height: 30px;"><?php echo $cont_gross_wt; ?></td>
                         </tr>
                         <tr>
                             <td style="border: 1px solid #666; height: 30px;"><b>GROSS GOODS WT <br>(with out pallet)</b></td>
-                            <td style="border: 1px solid #666; height: 30px;">21.4567</td>
+                            <td style="border: 1px solid #666; height: 30px;"><?php echo $cont_gross_wt - $total_plt_wt; ?></td>
                         </tr>
                         <tr>
                             <td style="border: 1px solid #666; height: 30px;"><b>T. PALLET WT</b></td>
-                            <td style="border: 1px solid #666; height: 30px;">10.567</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid #666; height: 30px;"><b>GROSS WT <br>(with pallet)</b></td>
-                            <td style="border: 1px solid #666; height: 30px;">24.8979</td>
+                            <td style="border: 1px solid #666; height: 30px;"><?php echo $total_plt_wt; ?></td>
                         </tr>
                     </table>
                 </td>
