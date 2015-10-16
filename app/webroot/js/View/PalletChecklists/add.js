@@ -107,10 +107,12 @@ $(document).ready(function () {
         $('.loads-input:first').trigger('blur');
         
         function re_arrange() {
+            //<input type="hidden" id="PalletLoad1Id" value="209" data-index="1" class="loads_id_input form-control" name="data[PalletLoad][1][id]">
             $('#loads-table tbody tr').each(function (index) {
                 if (index > 0) {
                     var row_index = index - 1;
-                    $(this).find('td:nth-child(1)').html(index);
+                    var id_field = $(this).find('td:nth-child(1)').find('input');
+                    $(this).find('td:nth-child(1)').html(index).append(id_field);
                     $(this).find('td:nth-child(2)').find('input')
                             .attr('id', 'PalletLoad' + row_index + 'Quantity')
                             .attr('name', 'data[PalletLoad][' + row_index + '][quantity]')

@@ -171,8 +171,8 @@ class Transfer extends AppModel {
             $where .= !empty($params['description']) ? ' AND description LIKE "%' . $params['sapcode'].'%"' : '';
             $sql_morning = "(SELECT "
                     . " sap_id,"
-                    . " SUM(ctn_per_pallet) AS total_ctn_per_pallet, "
-                    . " ROUND(SUM(net_wt),2) AS total_net_wt"
+                    . " SUM(ctn_per_pallet) AS total_ctn_per_pallet_m, "
+                    . " ROUND(SUM(net_wt),2) AS total_net_wt_m"
                     . " FROM transfers "
                     . " INNER JOIN users on transfers.user_id=users.id "
                     . " WHERE 1 " . $where . " AND shift = 0 "
@@ -180,21 +180,40 @@ class Transfer extends AppModel {
             
             $sql_night = "(SELECT "
                     . " sap_id,"
-                    . " SUM(ctn_per_pallet) AS total_ctn_per_pallet, "
-                    . " ROUND(SUM(net_wt),2) AS total_net_wt"
+                    . " SUM(ctn_per_pallet) AS total_ctn_per_pallet_n, "
+                    . " ROUND(SUM(net_wt),2) AS total_net_wt_n"
                     . " FROM transfers "
                     . " INNER JOIN users on transfers.user_id=users.id "
                     . " WHERE 1 " . $where . " AND shift = 1 "
                     . " GROUP BY sap_id) AS night ";
             
             $sql = "SELECT "
-                    . " sap.*, morning.*, night.* "
+                    . " sap.sapcode, 
+                        sap.description, 
+                        sap.net_wt, 
+                        sap.id, 
+                        IFNULL(total_ctn_per_pallet_m, 0) AS total_ctn_per_pallet_m, 
+                        IFNULL(total_net_wt_m, 0) AS total_net_wt_m, 
+                        IFNULL(total_ctn_per_pallet_n, 0) AS total_ctn_per_pallet_n, 
+                        IFNULL(total_net_wt_n, 0) AS total_net_wt_n"
                     . " FROM " . $sql_morning . " "
                     . " LEFT JOIN " . $sql_night . " ON morning.sap_id = night.sap_id "
-                    . " LEFT JOIN saps AS sap ON morning.sap_id = sap.id";
-            
+                    . " LEFT JOIN saps AS sap ON morning.sap_id = sap.id"
+                    . " UNION "
+                    . " SELECT "
+                    . " sap.sapcode, 
+                        sap.description, 
+                        sap.net_wt, 
+                        sap.id, 
+                        IFNULL(total_ctn_per_pallet_m, 0) AS total_ctn_per_pallet_m, 
+                        IFNULL(total_net_wt_m, 0) AS total_net_wt_m, 
+                        IFNULL(total_ctn_per_pallet_n, 0) AS total_ctn_per_pallet_n, 
+                        IFNULL(total_net_wt_n, 0) AS total_net_wt_n"
+                    . " FROM " . $sql_morning . " "
+                    . " RIGHT JOIN " . $sql_night . " ON morning.sap_id = night.sap_id "
+                    . " LEFT JOIN saps AS sap ON night.sap_id = sap.id"
+                    ;
             $data = $this->query($sql);
-            
             return $data;
         }
 }

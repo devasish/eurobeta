@@ -86,24 +86,35 @@
                     ?>
                     <?php foreach ($transfers as $transfer): ?>
                         <?php
-                        $sums['morning']['ctn'] += $transfer['morning']['total_ctn_per_pallet'];
-                        $sums['morning']['mt'] += $transfer['sap']['net_wt'] * $transfer['morning']['total_ctn_per_pallet'];
-                        $sums['night']['ctn'] += $transfer['night']['total_ctn_per_pallet'];
-                        $sums['night']['mt'] += $transfer['sap']['net_wt'] * $transfer['night']['total_ctn_per_pallet'];
-                        $total_ctn = $transfer['morning']['total_ctn_per_pallet'] + $transfer['night']['total_ctn_per_pallet'];
-                        $total_mt = $transfer['sap']['net_wt'] *  ($transfer['morning']['total_ctn_per_pallet'] + $transfer['night']['total_ctn_per_pallet']);
+//                        $sums['morning']['ctn'] += $transfer['morning']['total_ctn_per_pallet'];
+//                        $sums['morning']['mt'] += $transfer['sap']['net_wt'] * $transfer['morning']['total_ctn_per_pallet'];
+//                        $sums['night']['ctn'] += $transfer['night']['total_ctn_per_pallet'];
+//                        $sums['night']['mt'] += $transfer['sap']['net_wt'] * $transfer['night']['total_ctn_per_pallet'];
+//                        $total_ctn = $transfer['morning']['total_ctn_per_pallet'] + $transfer['night']['total_ctn_per_pallet'];
+//                        $total_mt = $transfer['sap']['net_wt'] *  ($transfer['morning']['total_ctn_per_pallet'] + $transfer['night']['total_ctn_per_pallet']);
+//                        
+//                        $sums['total']['ctn'] += $total_ctn;
+//                        $sums['total']['mt'] += $total_mt;
+                        
+                        $transfer = $transfer[0];
+                        $sums['morning']['ctn'] += $transfer['total_ctn_per_pallet_m'];
+                        $sums['morning']['mt'] += $transfer['net_wt'] * $transfer['total_ctn_per_pallet_m'];
+                        $sums['night']['ctn'] += $transfer['total_ctn_per_pallet_n'];
+                        $sums['night']['mt'] += $transfer['net_wt'] * $transfer['total_ctn_per_pallet_n'];
+                        $total_ctn = $transfer['total_ctn_per_pallet_m'] + $transfer['total_ctn_per_pallet_n'];
+                        $total_mt = $transfer['net_wt'] *  ($transfer['total_ctn_per_pallet_m'] + $transfer['total_ctn_per_pallet_n']);
                         
                         $sums['total']['ctn'] += $total_ctn;
                         $sums['total']['mt'] += $total_mt;
                         ?>
                         <tr>
-                            <td><?php echo h($transfer['sap']['sapcode']); ?></td>
-                            <td><?php echo h($transfer['sap']['description']); ?></td>
-                            <td><?php echo h($transfer['sap']['net_wt']); ?></td>
-                            <td><?php echo h($transfer['morning']['total_ctn_per_pallet']); ?></td>
-                            <td><?php echo h($transfer['sap']['net_wt'] * $transfer['morning']['total_ctn_per_pallet']); ?></td>
-                            <td><?php echo h($transfer['night']['total_ctn_per_pallet']); ?></td>
-                            <td><?php echo h($transfer['sap']['net_wt'] * $transfer['night']['total_ctn_per_pallet']); ?></td>
+                            <td><?php echo h($transfer['sapcode']); ?></td>
+                            <td><?php echo h($transfer['description']); ?></td>
+                            <td><?php echo h($transfer['net_wt']); ?></td>
+                            <td><?php echo h($transfer['total_ctn_per_pallet_m']); ?></td>
+                            <td><?php echo h($transfer['net_wt'] * $transfer['total_ctn_per_pallet_m']); ?></td>
+                            <td><?php echo h($transfer['total_ctn_per_pallet_n']); ?></td>
+                            <td><?php echo h($transfer['net_wt'] * $transfer['total_ctn_per_pallet_n']); ?></td>
                             <td><?php echo h($total_ctn); ?></td>
                             <td><?php echo h($total_mt); ?></td>
                         </tr>
