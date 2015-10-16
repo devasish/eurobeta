@@ -1,2 +1,4 @@
-/nbproject/
-/app/tmp/
+/nbproject
+/app/tmp
+/app/Test
+/lib/Cake
