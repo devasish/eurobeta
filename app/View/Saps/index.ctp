@@ -72,7 +72,7 @@
                                 ?>
                             </td>
                             <td class="noprint">
-                                <span class="label label-info"><?php echo $this->Html->link(__('View'), array('action' => 'view', $sap['Sap']['id'])); ?></span>
+                                <span class="label label-info"><?php echo $this->Html->link(__('View'), array('action' => 'view', $sap['Sap']['id'])); ?></span>                                
                             </td>
                         </tr>
                     <?php endforeach; ?>

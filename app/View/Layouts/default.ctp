@@ -155,6 +155,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                             <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Transfer Report 2', array('controller' => 'reports', 'action' => 'transfer_report_2'), array('escape' => FALSE)); ?>
                                         </li>
                                         <?php endif; ?>
+                                        <?php if (!empty($perms['reports']['transfer_report_3'])) : ?>
+                                        <li>
+                                            <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>' . '&nbsp;' . 'Transfer Report 3', array('controller' => 'reports', 'action' => 'transfer_report_3'), array('escape' => FALSE)); ?>
+                                        </li>
+                                        <?php endif; ?>
                                     </ul>
                                 </li>
                                 <?php endif; ?>

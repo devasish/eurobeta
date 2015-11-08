@@ -35,6 +35,13 @@ $(document).ready(function () {
         
         $('#add_new_load').on('click', function () {
             var row_index = $('#loads-table tbody').find('tr').length - 1;
+            var loaded_serial_no = $('<input>')
+                    .attr('id', 'PalletLoad' + row_index + 'LoadedSerialNo')
+                    .attr('name', 'data[PalletLoad][' + row_index + '][loaded_serial_no]')                    
+                    .attr('data-index', row_index)
+                    .addClass('loads-input')
+                    .addClass('form-control')
+                    .attr('required', true);
             var qty = $('<input>')
                     .attr('id', 'PalletLoad' + row_index + 'Quantity')
                     .attr('name', 'data[PalletLoad][' + row_index + '][quantity]')
@@ -64,6 +71,7 @@ $(document).ready(function () {
                     .append(
                             $('<td>').text(row_index + 1)
                             )
+                    .append($('<td>').append(loaded_serial_no))
                     .append($('<td>').append(qty))
                     .append($('<td>').append(wtWithPallet))
                     .append($('<td>').append(wtPerCtn))
@@ -114,14 +122,18 @@ $(document).ready(function () {
                     var id_field = $(this).find('td:nth-child(1)').find('input');
                     $(this).find('td:nth-child(1)').html(index).append(id_field);
                     $(this).find('td:nth-child(2)').find('input')
+                            .attr('id', 'PalletLoad' + row_index + 'LoadedSerialNo')
+                            .attr('name', 'data[PalletLoad][' + row_index + '][loaded_serial_no]')
+                    
+                    $(this).find('td:nth-child(3)').find('input')
                             .attr('id', 'PalletLoad' + row_index + 'Quantity')
                             .attr('name', 'data[PalletLoad][' + row_index + '][quantity]')
 
-                    $(this).find('td:nth-child(3)').find('input')
+                    $(this).find('td:nth-child(4)').find('input')
                             .attr('id', 'PalletLoad' + row_index + 'WtWithPallet')
                             .attr('name', 'data[PalletLoad][' + row_index + '][wt_with_pallet]')
 
-                    $(this).find('td:nth-child(4)').find('input')
+                    $(this).find('td:nth-child(5)').find('input')
                             .attr('id', 'PalletLoad' + row_index + 'WtPerCtn')
                             .attr('name', 'data[PalletLoad][' + row_index + '][wt_per_ctn]')
                 }
@@ -148,8 +160,8 @@ $(document).ready(function () {
             var wt_wth_pallet = 0;
             $('#loads-table tbody tr.valid-data').each(function (index) {
                 var that = $(this);
-                qty_ctn += parseInt(that.find('td:nth-child(2) input').val(), 10);
-                wt_wth_pallet += parseInt(that.find('td:nth-child(3) input').val(), 10);
+                qty_ctn += parseInt(that.find('td:nth-child(3) input').val(), 10);
+                wt_wth_pallet += parseInt(that.find('td:nth-child(4) input').val(), 10);
                 
                // console.info(that.find('input:nth-child(0)').length);
                 

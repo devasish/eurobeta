@@ -421,6 +421,67 @@ class ReportsController extends AppController {
         $this->set('transfers', $transfers);
 //        pr($transfers);
     }
+    
+    public function transfer_report_3() {
+        $params = array();
+        $dateSet = false;
+        if (($this->request->is('post') || $this->request->is('put')) && isset($this->data['Filter'])) {
+            $filter_url = array();
+            $filter_url['controller'] = $this->request->params['controller'];
+            $filter_url['action'] = $this->request->params['action'];
+            $filter_url['page'] = 1;
+            foreach ($this->data['Filter'] as $name => $value) {
+                if (trim($value)) {
+                    if ($name == 'cal_from' || $name == 'cal_to') {
+                        $filter_url[$name] = urlencode(str_replace('/', '-', $value));
+                    } else {
+                        $filter_url[$name] = urlencode($value);
+                    }
+                }
+            }
+            return $this->redirect($filter_url);
+        } else {
+            foreach ($this->request->params['named'] as $name => $value) {
+                if (!in_array($name, array('page', 'sort', 'direction', 'limit'))) {
+                    $value = urldecode($value);
+                    if ($name == 'value' && strlen(trim($value)) > 0) {
+                        if ($this->request->params['named']['field'] == 'serial_no') {
+                            $params['serial_no'] = $value;
+                        }elseif ($this->request->params['named']['field'] == 'sap_code') {
+                            $params['sapcode'] = $value;
+                        } 
+                    } elseif ($name == 'cal_from' && !empty($value)) {
+                        $dateObj = DateTime::createFromFormat('d-m-Y', $value);
+                        $params['cal_from'] = $dateObj->format('Y-m-d');
+                        $dateSet = true;
+                    } elseif ($name == 'cal_to' && !empty($value)) {
+                        $dateObj = DateTime::createFromFormat('d-m-Y', $value);
+                        $params['cal_to'] = $dateObj->format('Y-m-d');
+                        $dateSet = true;
+                    }
+
+                    $this->request->data['Filter'][$name] = $value;
+                }
+            }
+        }
+
+        if (!$dateSet) {
+            $date_from = date('d-m-Y', strtotime(date('Y-m-d') . ' - 1 days'));
+            $date_to = date('d-m-Y');
+            $this->request->data['Filter']['cal_from'] = $date_from;
+            $this->request->data['Filter']['cal_to'] = $date_to;
+            $dateObj = DateTime::createFromFormat('d-m-Y', $date_from);
+            $params['cal_from'] = $dateObj->format('Y-m-d');
+            $dateObj = DateTime::createFromFormat('d-m-Y', $date_to);
+            $params['cal_to'] = $dateObj->format('Y-m-d') . ' 23:59:59';
+        }
+
+        $this->loadModel('Transfer');
+        $this->loadModel('PalletLoad');
+//        pr($params); die();
+        $transfers = $this->Transfer->report_3_data($params);
+        $this->set('transfers', $transfers);
+    }
 
     public function containers() {
         $conditions = array();

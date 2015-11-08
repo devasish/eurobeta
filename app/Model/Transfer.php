@@ -168,7 +168,7 @@ class Transfer extends AppModel {
             $where .= !empty($params['cal_to']) ? ' AND transfer_date <= "' . $params['cal_to'].' 23:59:59"' : '';
             $where .= !empty($params['factory']) ? ' AND users.role = ' . $params['factory'] : '';
             $where .= !empty($params['sapcode']) ? ' AND sap_code = "' . $params['sapcode'].'"' : '';
-            $where .= !empty($params['description']) ? ' AND description LIKE "%' . $params['sapcode'].'%"' : '';
+            $where .= !empty($params['description']) ? ' AND description LIKE "%' . $params['description'].'%"' : '';
             $sql_morning = "(SELECT "
                     . " sap_id,"
                     . " SUM(ctn_per_pallet) AS total_ctn_per_pallet_m, "
@@ -215,5 +215,28 @@ class Transfer extends AppModel {
                     ;
             $data = $this->query($sql);
             return $data;
+        }
+        
+        public function report_3_data($params = array()) {
+            $where = '';
+            $where .= !empty($params['cal_from']) ? ' AND transfer_date >= "' . $params['cal_from'].'"' : '';
+            $where .= !empty($params['cal_to']) ? ' AND transfer_date <= "' . $params['cal_to'].' 23:59:59"' : '';
+            $where .= !empty($params['serial_no']) ? ' AND serial_no = "' . $params['serial_no'].'"' : '';
+            $where .= !empty($params['sapcode']) ? ' AND sap_code = "' . $params['sapcode'].'"' : '';
+            
+            $sql = "SELECT "
+                    . " sap_code,
+                        serial_no, 
+                        transfer_date, 
+                        loaded_serial_no,
+                        pallet_loads.created"                          
+                    . " FROM transfers "
+                    . " LEFT JOIN pallet_loads on transfers.serial_no = pallet_loads.loaded_serial_no "  
+                    . " WHERE 1 " . $where  
+                    ;
+            $data = $this->query($sql); 
+            return $data;
+            
+            
         }
 }
